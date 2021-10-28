@@ -33,7 +33,7 @@ export class AtualizarCadastroComponent implements OnInit {
       senha:[''],
       telefone: this.formBuilder.group({
         ddd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-        numero: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+        numero: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
         tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
       }),
       endereco: this.formBuilder.group({
@@ -46,9 +46,20 @@ export class AtualizarCadastroComponent implements OnInit {
     });
   }
 
-  get f(): {[key: string]: AbstractControl} {
+
+  // Acessando informações no formulário
+  get campoForm(): {[key: string]: AbstractControl} {
     return this.form.controls;
   }
+
+  //Acessando informações no formulário nesteado
+  get campoTelefone(): {[key: string]: AbstractControl} { 
+   return (this.form.get('telefone') as FormGroup).controls; 
+  }
+
+  get campoEndereco(): {[key: string]: AbstractControl} { 
+    return (this.form.get('endereco') as FormGroup).controls; 
+   }
 
 onSubmit(cliente:Cliente){
   this.submitted = true;

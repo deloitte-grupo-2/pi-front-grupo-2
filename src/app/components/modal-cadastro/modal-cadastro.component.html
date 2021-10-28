@@ -26,10 +26,13 @@
             type="text"
             formControlName="nome"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.nome.errors }"
+            [ngClass]="{ 'is-invalid': submitted && campoForm.nome.errors }"
           />
-          <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
-            <div *ngIf="f.nome.errors.required">Nome inválido</div>
+          <div
+            *ngIf="submitted && campoForm.nome.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoForm.nome.errors.required">Nome inválido</div>
           </div>
         </div>
 
@@ -39,11 +42,14 @@
             type="text"
             formControlName="email"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            [ngClass]="{ 'is-invalid': submitted && campoForm.email.errors }"
           />
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">E-mail inválido</div>
-            <div *ngIf="f.email.errors.email">E-mail inválido</div>
+          <div
+            *ngIf="submitted && campoForm.email.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoForm.email.errors.required">E-mail inválido</div>
+            <div *ngIf="campoForm.email.errors.email">E-mail inválido</div>
           </div>
         </div>
 
@@ -53,14 +59,17 @@
             type="password"
             formControlName="senha"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.senha.errors }"
+            [ngClass]="{ 'is-invalid': submitted && campoForm.senha.errors }"
           />
-          <div *ngIf="submitted && f.senha.errors" class="invalid-feedback">
-            <div *ngIf="f.senha.errors.required">Senha inválida</div>
-            <div *ngIf="f.senha.errors.minlength">
+          <div
+            *ngIf="submitted && campoForm.senha.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoForm.senha.errors.required">Senha inválida</div>
+            <div *ngIf="campoForm.senha.errors.minlength">
               Senha precisa ter, pelo menos, 8 caracteres
             </div>
-            <div *ngIf="f.senha.errors.maxlength">
+            <div *ngIf="campoForm.senha.errors.maxlength">
               Senha precisa ter, no máximo, 30 caracteres
             </div>
           </div>
@@ -71,14 +80,18 @@
             type="password"
             formControlName="confirmarSenha"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.confirmarSenha.errors }"
+            [ngClass]="{
+              'is-invalid': submitted && campoForm.confirmarSenha.errors
+            }"
           />
           <div
-            *ngIf="submitted && f.confirmarSenha.errors"
+            *ngIf="submitted && campoForm.confirmarSenha.errors"
             class="invalid-feedback"
           >
-            <div *ngIf="f.confirmarSenha.errors.required">Senha inválida</div>
-            <div *ngIf="f.confirmarSenha.errors.matching">
+            <div *ngIf="campoForm.confirmarSenha.errors.required">
+              Senha inválida
+            </div>
+            <div *ngIf="campoForm.confirmarSenha.errors.matching">
               Senhas não são iguais
             </div>
           </div>

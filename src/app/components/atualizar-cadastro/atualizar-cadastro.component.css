@@ -1,111 +1,111 @@
 article {
-    height: 100%;
-    margin: 4em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  margin: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 article form {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
 article form label {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 article form input {
-    width: 100%;
-    margin: 0 0 0.4em 0;
-    background-color: #fedada;
-    border: none;
-    padding: 0.4em;
-    border-radius: 1em;
-    font-size: 1.4em;
-    color: #4a4949;
-    font-family: "Architects Daughter", sans-serif;
-    display: block;
+  width: 100%;
+  margin: 0 0 0.4em 0;
+  background-color: #fedada;
+  border: none;
+  padding: 0.4em;
+  border-radius: 1em;
+  font-size: 1.4em;
+  color: #4a4949;
+  font-family: "Architects Daughter", sans-serif;
+  display: block;
 }
 
 article form h2 {
-    margin: 1em 0 0.5em 0;
-    font-size: 1.6em;
+  margin: 1em 0 0.5em 0;
+  font-size: 1.6em;
 }
 
 article form .contato {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 article form .contato .ddd {
-    width: 14%;
-    margin: 0 0.5em 0 0;
+  width: 14%;
+  margin: 0 0.5em 0 0;
 }
 
 article form .contato .telefone,
 article form .contato .tipo {
-    width: 43%;
+  width: 43%;
 }
 
 article form .contato .telefone {
-    margin: 0 0.5em 0 0;
+  margin: 0 0.5em 0 0;
 }
 
 article form .endereco {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 article form .endereco .cep {
-    width: 18%;
-    margin: 0 0.5em 0 0;
+  width: 22%;
+  margin: 0 0.5em 0 0;
 }
 
 article form .endereco .logradouro {
-    width: 64%;
-    margin: 0 0.5em 0 0;
+  width: 61%;
+  margin: 0 0.5em 0 0;
 }
 
 article form .endereco .numero {
-    width: 14%;
+  width: 14%;
 }
 
 article form .contato .ddd input,
 article form .endereco .numero input {
-    text-align: center;
+  text-align: center;
 }
 
 article form .endereco .complemento,
 article form .endereco .tipo {
-    width: 48.5%;
+  width: 48.5%;
 }
 
 article form .endereco .complemento {
-    margin: 0 1em 0 0;
+  margin: 0 1em 0 0;
 }
 
 article form .controles {
-    display: flex;
-    justify-content: right;
-    align-items: center;
+  display: flex;
+  justify-content: right;
+  align-items: center;
 }
 
 article form button {
-    color: #ffffff;
-    font-family: "Architects Daughter", sans-serif;
-    font-size: 1.4em;
-    background-color: #ff6584;
-    border: none;
-    border-radius: 1.4em;
-    padding: 0.6em;
-    margin: 2em 0;
-    cursor: pointer;
+  color: #ffffff;
+  font-family: "Architects Daughter", sans-serif;
+  font-size: 1.4em;
+  background-color: #ff6584;
+  border: none;
+  border-radius: 1.4em;
+  padding: 0.6em;
+  margin: 2em 0;
+  cursor: pointer;
 }
 
 .invalid-feedback {
-    font-size: 1.1em;
+  font-size: 1.1em;
 }

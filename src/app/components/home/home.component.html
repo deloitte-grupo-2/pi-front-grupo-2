@@ -5,8 +5,10 @@
   *ngIf="mostrandoLogin"
 ></app-modal-login>
 <app-modal-cadastro
-  *ngIf="mostrandoCadastro"
   (onCancelarClick)="esconderCadastro()"
+  *ngIf="mostrandoCadastro"
+  (onLogarClick)="mostrarLogin()"
+  (onLogarClick)="esconderCadastro()"
 ></app-modal-cadastro>
 <app-carousel></app-carousel>
 <app-about></app-about>

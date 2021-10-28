@@ -44,12 +44,12 @@ export class ModalLoginComponent implements OnInit {
   }
 
   cadastrar(){
-    this.onCadastrarClick.emit();
     this.onCancelarClick.emit();
+    this.onCadastrarClick.emit();
   }
 
 
-  get f(): {[key: string]: AbstractControl} {
+  get campoForm(): {[key: string]: AbstractControl} {
     return this.form.controls;
 
   }

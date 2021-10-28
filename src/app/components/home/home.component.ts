@@ -19,9 +19,11 @@ export class HomeComponent implements OnInit {
   mostrarLogin(){
     this.mostrandoLogin = true;
   }
+
   esconderLogin(){
     this.mostrandoLogin = false;
   }
+  
   mostrarCadastro(){
     this.mostrandoLogin = false;
     this.mostrandoCadastro = true;

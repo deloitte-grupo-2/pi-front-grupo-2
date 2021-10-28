@@ -1,111 +1,192 @@
 <app-header></app-header>
 
 <article>
-    <div class="register-form">
-        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-            <label> Nome completo </label>
-            <input type="name" formControlName="nome" />
+  <div class="register-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+      <label> Nome completo </label>
+      <input type="name" formControlName="nome" />
 
-            <div class="form-group">
-                <label> CPF </label>
-                <input type="string" formControlName="cpf" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" placeholder="000.000.000-00" />
-                <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
-                    <div *ngIf="f.cpf.errors.required">cpf inválido</div>
-                    <div *ngIf="f.cpf.errors.minlength">cpf inválido. Precisa ser no formato 000.000.000-00</div>
-                    <div *ngIf="f.cpf.errors.maxlength">cpf inválido. Precisa ser no formato 000.000.000-00</div>
-                </div>
+      <div class="form-group">
+        <label> CPF </label>
+        <input
+          type="string"
+          formControlName="cpf"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && campoForm.cpf.errors }"
+          placeholder="000.000.000-00"
+        />
+        <div *ngIf="submitted && campoForm.cpf.errors" class="invalid-feedback">
+          <div *ngIf="campoForm.cpf.errors.required">cpf inválido</div>
+          <div *ngIf="campoForm.cpf.errors.minlength">
+            cpf inválido. Precisa ser no formato 000.000.000-00
+          </div>
+          <div *ngIf="campoForm.cpf.errors.maxlength">
+            cpf inválido. Precisa ser no formato 000.000.000-00
+          </div>
+        </div>
+      </div>
+
+      <label> E-mail </label>
+      <input type="email" formControlName="email" />
+
+      <label> Senha </label>
+      <input type="password" formControlName="senha" />
+
+      <h2>Telefone</h2>
+      <div class="contato" formGroupName="telefone">
+        <div class="form-group ddd">
+          <label> DDD </label>
+          <input
+            type="string"
+            formControlName="ddd"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && campoTelefone.ddd.errors }"
+          />
+          <div
+            *ngIf="submitted && campoTelefone.ddd.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoTelefone.ddd.errors.required">DDD inválido</div>
+            <div *ngIf="campoTelefone.ddd.errors.minlength">DDD inválido</div>
+            <div *ngIf="campoTelefone.ddd.errors.maxlength">DDD inválido</div>
+          </div>
+        </div>
+
+        <div class="form-group telefone">
+          <label> Número </label>
+          <input
+            type="string"
+            formControlName="numero"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && campoTelefone.numero.errors
+            }"
+          />
+          <div
+            *ngIf="submitted && campoTelefone.numero.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoTelefone.numero.errors.required">
+              Número inválido
             </div>
-
-            <label> E-mail </label>
-            <input type="email" formControlName="email" />
-
-            <label> Senha </label>
-            <input type="password" formControlName="senha" />
-
-            <h2>Telefone</h2>
-            <div class="contato" formGroupName="telefone">
-                <div class="form-group ddd">
-                    <label> DDD </label>
-                    <input type="string" formControlName="ddd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ddd.errors }" />
-                    <div *ngIf="submitted && f.ddd.errors" class="invalid-feedback">
-                        <div *ngIf="f.ddd.errors.required">DDD inválido</div>
-                        <div *ngIf="f.ddd.errors.minlength">DDD inválido</div>
-                        <div *ngIf="f.ddd.errors.maxlength">DDD inválido</div>
-                    </div>
-                </div>
-
-                <div class="form-group telefone">
-                    <label> Número </label>
-                    <input type="string" formControlName="numero" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }" />
-                    <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
-                        <div *ngIf="f.numero.errors.required">Número inválido</div>
-                        <div *ngIf="f.numero.errors.minlength">
-                            Número inválido.
-                        </div>
-                        <div *ngIf="f.numero.errors.maxlength">Número inválido</div>
-                    </div>
-                </div>
-
-                <div class="form-group tipo">
-                    <label class="tipo"> Tipo</label>
-                    <input type="string" placeholder="Comercial ou residencial" formControlName="tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }" />
-                    <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
-                        <div *ngIf="f.tipo.errors.required">Tipo inválido</div>
-                        <div *ngIf="f.tipo.errors.minlength">Tipo inválido</div>
-                        <div *ngIf="f.tipo.errors.maxlength">Tipo inválido</div>
-                    </div>
-                </div>
+            <div *ngIf="campoTelefone.numero.errors.minlength">
+              Número inválido.
             </div>
-
-            <h2>Endereço</h2>
-            <div class="endereco" formGroupName="endereco">
-                <div class="form-group cep">
-                    <label> CEP </label>
-                    <input type="string" formControlName="cep" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cep.errors }" placeholder="00000-000" />
-                    <div *ngIf="submitted && f.cep.errors" class="invalid-feedback">
-                        <div *ngIf="f.cep.errors.required">CEP inválido</div>
-                        <div *ngIf="f.cep.errors.minlength">CEP inválido</div>
-                        <div *ngIf="f.cep.errors.maxlength">CEP inválido</div>
-                    </div>
-                </div>
-
-                <div class="form-group logradouro">
-                    <label> Logradouro </label>
-                    <input type="string" formControlName="logradouro" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.logradouro.errors }" />
-                    <div *ngIf="submitted && f.logradouro.errors" class="invalid-feedback">
-                        <div *ngIf="f.logradouro.errors.required">Logradouro inválido</div>
-                    </div>
-                </div>
-
-                <div class="form-group numero">
-                    <label> N° </label>
-                    <input type="string" formControlName="numero" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numero.errors }" />
-                    <div *ngIf="submitted && f.numero.errors" class="invalid-feedback">
-                        <div *ngIf="f.numero.errors.required">N° inválido</div>
-                    </div>
-                </div>
-
-                <div class="complemento">
-                    <label> Complemento </label>
-                    <input type="string" formControlName="complemento" />
-                </div>
-
-                <div class="tipo">
-                    <label class="tipo"> Tipo </label>
-                    <input type="string" placeholder="Comercial ou residencial" formControlName="tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }" />
-                    <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
-                        <div *ngIf="f.tipo.errors.required">Tipo inválido</div>
-                        <div *ngIf="f.tipo.errors.minlength">Tipo inválido</div>
-                        <div *ngIf="f.tipo.errors.maxlength">Tipo inválido</div>
-                    </div>
-                </div>
+            <div *ngIf="campoTelefone.numero.errors.maxlength">
+              Número inválido
             </div>
+          </div>
+        </div>
 
-            <div class="controles">
-                <button type="submit">Atualizar cadastro</button>
+        <div class="form-group tipo">
+          <label class="tipo"> Tipo</label>
+          <input
+            type="string"
+            placeholder="Comercial ou residencial"
+            formControlName="tipo"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && campoTelefone.tipo.errors }"
+          />
+          <div
+            *ngIf="submitted && campoTelefone.tipo.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoTelefone.tipo.errors.required">Tipo inválido</div>
+            <div *ngIf="campoTelefone.tipo.errors.minlength">Tipo inválido</div>
+            <div *ngIf="campoTelefone.tipo.errors.maxlength">Tipo inválido</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Endereço</h2>
+      <div class="endereco" formGroupName="endereco">
+        <div class="form-group cep">
+          <label> CEP </label>
+          <input
+            type="string"
+            formControlName="cep"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && campoEndereco.cep.errors }"
+            placeholder="00000-000"
+          />
+          <div
+            *ngIf="submitted && campoEndereco.cep.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoEndereco.cep.errors.required">CEP inválido</div>
+            <div *ngIf="campoEndereco.cep.errors.minlength">CEP inválido</div>
+            <div *ngIf="campoEndereco.cep.errors.maxlength">CEP inválido</div>
+          </div>
+        </div>
+
+        <div class="form-group logradouro">
+          <label> Logradouro </label>
+          <input
+            type="string"
+            formControlName="logradouro"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && campoEndereco.logradouro.errors
+            }"
+          />
+          <div
+            *ngIf="submitted && campoEndereco.logradouro.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoEndereco.logradouro.errors.required">
+              Logradouro inválido
             </div>
-        </form>
-    </div>
+          </div>
+        </div>
+
+        <div class="form-group numero">
+          <label> N° </label>
+          <input
+            type="string"
+            formControlName="numero"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && campoEndereco.numero.errors
+            }"
+          />
+          <div
+            *ngIf="submitted && campoEndereco.numero.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoEndereco.numero.errors.required">N° inválido</div>
+          </div>
+        </div>
+
+        <div class="complemento">
+          <label> Complemento </label>
+          <input type="string" formControlName="complemento" />
+        </div>
+
+        <div class="tipo">
+          <label class="tipo"> Tipo </label>
+          <input
+            type="string"
+            placeholder="Comercial ou residencial"
+            formControlName="tipo"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && campoEndereco.tipo.errors }"
+          />
+          <div
+            *ngIf="submitted && campoEndereco.tipo.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoEndereco.tipo.errors.required">Tipo inválido</div>
+            <div *ngIf="campoEndereco.tipo.errors.minlength">Tipo inválido</div>
+            <div *ngIf="campoEndereco.tipo.errors.maxlength">Tipo inválido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controles">
+        <button type="submit">Atualizar cadastro</button>
+      </div>
+    </form>
+  </div>
 </article>
 
 <app-footer></app-footer>

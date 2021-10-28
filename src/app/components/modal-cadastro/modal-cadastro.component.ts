@@ -11,6 +11,7 @@ import Validation from 'src/app/utils/Validation';
 })
 export class ModalCadastroComponent implements OnInit {
   @Output() onCancelarClick:EventEmitter<null> = new EventEmitter();
+  @Output() onLogarClick:EventEmitter<null> = new EventEmitter();
 
   form!: FormGroup;
   submitted = false;
@@ -29,7 +30,12 @@ export class ModalCadastroComponent implements OnInit {
     });
   }
 
-  get f(): {[key: string]: AbstractControl} {
+  logar(){
+    this.onCancelarClick.emit();
+    this.onLogarClick.emit();
+  }
+
+  get campoForm(): {[key: string]: AbstractControl} {
     return this.form.controls;
   }
 
@@ -47,7 +53,11 @@ export class ModalCadastroComponent implements OnInit {
     this.service.criarCliente(cliente).subscribe(
       {
       next: data =>{
+<<<<<<< HEAD
         
+=======
+        this.logar();
+>>>>>>> cafbd604ae713cae79ba5ea646bd30ec54a30bc4
         console.log(data);
         },
       error: err => console.log(err),

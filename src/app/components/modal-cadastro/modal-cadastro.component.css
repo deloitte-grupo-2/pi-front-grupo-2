@@ -30,7 +30,7 @@
 }
 
 #modal article figure img {
-  width: 4em;
+  width: 6em;
 }
 
 #modal article .fechar {
@@ -84,7 +84,7 @@
   border: none;
   border-radius: 1em;
 
-  margin: 0 0 1em 0;
+  margin: 0.5em 0 0 0;
   padding: 0.4em;
 
   cursor: pointer;
@@ -95,6 +95,17 @@
   margin: 0;
 
   cursor: pointer;
+}
+
+.register-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  margin: 0;
+  padding: 0;
 }
 
 .invalid-feedback {

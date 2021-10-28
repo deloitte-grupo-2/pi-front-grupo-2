@@ -1,7 +1,12 @@
 <section id="modal">
-    <article>
-        <img class="fechar" (click)="cancelar()" src="assets\Imagens\close.png" alt="Botão de fechar aba" />
-      
+  <article>
+    <img
+      class="fechar"
+      (click)="cancelar()"
+      src="assets\Imagens\close.png"
+      alt="Botão de fechar aba"
+    />
+
     <figure>
       <img
         src="assets\Imagens\salom_logo_rosa.png"
@@ -10,19 +15,27 @@
     </figure>
 
     <div class="register-form">
-      <form #clienteLogin="ngForm" [formGroup]="form" (ngSubmit)="onSubmit(clienteLogin.value)">
+      <form
+        #clienteLogin="ngForm"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit(clienteLogin.value)"
+      >
         <div class="form-group">
           <label> E-mail </label>
           <input
             type="text"
             formControlName="email"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-            name="email" ngModel
+            [ngClass]="{ 'is-invalid': submitted && campoForm.email.errors }"
+            name="email"
+            ngModel
           />
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">E-mail inválido</div>
-            <div *ngIf="f.email.errors.email">E-mail inválido</div>
+          <div
+            *ngIf="submitted && campoForm.email.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoForm.email.errors.required">E-mail inválido</div>
+            <div *ngIf="campoForm.email.errors.email">E-mail inválido</div>
           </div>
         </div>
 
@@ -32,16 +45,20 @@
             type="password"
             formControlName="senha"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.senha.errors }"
-            name="senha" ngModel
+            [ngClass]="{ 'is-invalid': submitted && campoForm.senha.errors }"
+            name="senha"
+            ngModel
           />
 
-          <div *ngIf="submitted && f.senha.errors" class="invalid-feedback">
-            <div *ngIf="f.senha.errors.required">Senha inválida</div>
-            <div *ngIf="f.senha.errors.minlength">
+          <div
+            *ngIf="submitted && campoForm.senha.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="campoForm.senha.errors.required">Senha inválida</div>
+            <div *ngIf="campoForm.senha.errors.minlength">
               Senha precisa ter, pelo menos, 8 caracteres
             </div>
-            <div *ngIf="f.senha.errors.maxlength">
+            <div *ngIf="campoForm.senha.errors.maxlength">
               Senha precisa ter, no máximo, 30 caracteres
             </div>
           </div>

@@ -9,13 +9,16 @@ export class CarouselComponent implements OnInit {
 
   images = [
     {
-      path: '../assets/Imagens/Carrossel.jpeg'
+      path: 'assets/Imagens/Carrossel2.jpeg'
     },
     {
-      path: '../assets/Imagens/Marmore_rosa.jpg'
+      path: 'assets/Imagens/Carrossel3.jpeg'
     },
     {
-      path: '../assets/Imagens/receita-de-docinho-de-morango.jpg'
+      path: 'assets/Imagens/Carrossel4.jpeg'
+    },
+    {
+      path: 'assets/Imagens/Carrossel5.jpeg'
     }
   ]
 
