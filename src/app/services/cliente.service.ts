@@ -18,7 +18,7 @@ export class ClienteService {
 
   logarCliente(cliente:any){
     
-    return this.http.post(`${this.url}/usuario/logar`, cliente).pipe(take(1));
+    return this.http.post(`${this.url}/usuario/logar`, cliente).pipe(take(1))
     
   }
 
