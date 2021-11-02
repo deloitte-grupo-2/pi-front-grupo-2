@@ -1,0 +1,103 @@
+#modal-produto {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 3s linear;
+  }
+  
+  #modal-produto article {
+    width: 30em;
+    background-color: #ffffff;
+    height: 31em;
+  
+    border-radius: 4em;
+    border: 0.5em solid #ff6584;
+  }
+  
+  #modal-produto article figure {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #modal-produto article figure img {
+    width: 7em;
+  }
+
+  #modal-produto article .descricao-produto{
+    margin: 10px;
+  }
+  
+  #modal-produto .fechar {
+    width: 1em;
+    cursor: pointer;
+  
+    position: relative;
+    left: 26em;
+    top: 2em;
+  }
+
+  #modal-produto article p {
+    font-size: 1.2em;
+    margin: 0;
+    text-align: center;
+  
+    cursor: pointer;
+  }
+  #modal-produto article h2{
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  #modal-produto article .descricao-quantidade{
+    font-weight:bolder;
+  }
+  
+  #modal-produto article .infos-produto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 10px;
+    gap: 20px;
+    margin-top: 10px;
+    color: #4A4949
+  }
+  .infos-produto input{
+    padding: 5px ;
+    text-align: center;
+    border: none;
+    border-radius: 1em;
+    background-color: #fedada;
+  }
+  
+  .infos-produto button{
+    border: none;
+    border-radius: 3em;
+    background-color: #ff6584;
+  }
+
+  .adicionar-produto{
+    text-align: center;
+    margin-top: 5px;
+  }
+  .adicionar-produto button{
+    color: #ffffff;
+  font-family: "Architects Daughter", sans-serif;
+  font-size: 1.4em;
+
+  background-color: #ff6584;
+  border: none;
+  border-radius: 1em;
+
+  margin: 0.5em 0 0 0;
+  padding: 0.4em;
+
+  cursor: pointer;
+  }

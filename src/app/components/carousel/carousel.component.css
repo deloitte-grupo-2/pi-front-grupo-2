@@ -1,4 +1,9 @@
 .carousel {
-  position: inherit;
   margin: 1.5em 0;
+}
+
+img{
+  /* width: 500px;
+  height: auto;
+  max-width: 500px; */
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProdutoService } from "src/app/services/produto.service";
 
 @Component({
   selector: 'app-product',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private produtoService:ProdutoService) { }
 
   ngOnInit(): void {
   }
 
+  mostrarProduto() {
+    this.produtoService.sendClick();
+    console.log("Mostrando modal Produto por Componente Produto");
+  }
 }

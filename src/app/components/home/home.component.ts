@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from "rxjs";
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-home',
@@ -7,15 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  clickSubscription!:Subscription;
+
+  constructor(private produtoService:ProdutoService ) { 
+    this.clickSubscription = this.produtoService.getClick().subscribe(() => {
+      this.toggleProduto();
+    })
+  }
 
   ngOnInit(): void {
   }
 
-  
+  // Atributos da classe  
   mostrandoLogin = false;
   mostrandoCadastro = false;
-
+  mostrandoProduto = false;
+  
+  // Métodos da classe
   mostrarLogin(){
     this.mostrandoLogin = true;
   }
@@ -31,6 +41,22 @@ export class HomeComponent implements OnInit {
 
   esconderCadastro(){
     this.mostrandoCadastro = false;
+  }
+
+  mostrarProduto(){
+    // Alterando atributo para mostrar o modal
+    this.mostrandoProduto = true;
+    console.log("Mostrando Produto pela Home");
+  }
+
+  esconderProduto(){
+    // Alterando atributo para mostrar o modal
+    this.mostrandoProduto = false;
+    console.log("Fechando Produto pela Home");
+  }
+
+  toggleProduto(){
+    this.mostrandoProduto = !this.mostrandoProduto;
   }
 
 }

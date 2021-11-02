@@ -1,9 +1,9 @@
 article {
   /* Tamanho suficiente para 3 produtos por linha */
   width: 100%;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
 
 article .docinho_informacoes {

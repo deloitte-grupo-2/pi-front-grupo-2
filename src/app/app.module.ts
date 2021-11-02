@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AtualizarCadastroComponent } from './components/atualizar-cadastro/atualizar-cadastro.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalProdutoComponent } from './components/modal-produto/modal-produto.component';
+import { CartComponent } from './components/cart/cart.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import{ MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+
+
 
 
 @NgModule({
@@ -30,6 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ModalCadastroComponent,
     AtualizarCadastroComponent,
     HomeComponent,
+    ModalProdutoComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +49,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule, 
     ReactiveFormsModule,
     HttpClientModule,
-    
+    CommonModule,
+    FontAwesomeModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule 
   ],
-  providers: [ ],
+
+ 
+  
+  providers: [  MatDatepickerModule,  MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

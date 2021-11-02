@@ -1,13 +1,21 @@
+.caixa{
+  padding: 10px 50px;
+}
 header {
   background-color: #dc969c;
   max-width: 100%;
   box-shadow: 0px 2px 8px #000000;
+  padding-bottom: 20px;
 }
 
 header article {
   /* codigo abaixo deixa a logo no centro */
   justify-content: center;
   text-align: center;
+}
+
+.navbar-nav .nav-link{
+  padding: 5px 10px;
 }
 
 /* Referente as imagens de Whats e Inst */
@@ -24,7 +32,7 @@ header article .contatos img {
 
 /* Referente as imagens da Logo */
 
-header article .logo img {
+header article img {
   width: 14em;
 }
 
@@ -53,4 +61,33 @@ header article nav a {
 
 header article nav a img {
   width: 1.2em;
+}
+
+
+.botoes, .botoes .hamburguer{
+  border: none;
+  background-color:transparent; 
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  display: none;
+}
+
+
+
+@media (max-width: 1020px){
+  .navegacao{
+    display:none;
+  }
+  .botoes, .botoes .hamburguer{
+    display: block;
+  }
+  .logo-menu{
+    display:flex;
+    /* center ate descobrir oq ta empurrando a pag p lado, suspeito estar no footer */
+    justify-content: center;
+    align-items: center;
+    
+  }
+
 }

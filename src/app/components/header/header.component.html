@@ -1,12 +1,38 @@
 <header>
-  <article>
+  <article class="container">
+
     <div class="contatos">
       <img src="assets/Imagens/whats_white.png" alt="icone_whatsapp" />
       <img src="assets/Imagens/insta_white.png" alt="icone_instagram" />
     </div>
 
-    <div class="logo">
-      <img src="assets/Imagens/Salom-logo-white.png" />
+    <div class="logo-menu">  
+      
+      <img class= "logo" src="assets/Imagens/Salom-logo-white.png" />
+      
+      
+      <div>
+        <button class="botoes hamburguer nav-item dropdown navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"><i class="fas fa-bars"></i></button>   
+          <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link">Cardápio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">História</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Carrinho</a>
+              </li>
+            </ul>
+        
+          </div>
+          
+      </div>
+      
     </div>
 
     <div class="navegacao">
@@ -17,5 +43,8 @@
         <a (click)="mostrarModalClick()">LogIn</a>
       </nav>
     </div>
+
+    
+
   </article>
 </header>

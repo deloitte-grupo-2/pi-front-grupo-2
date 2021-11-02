@@ -18,8 +18,6 @@ interface response{
 })
 export class ModalLoginComponent implements OnInit {
 
-
-
   @Output() onCancelarClick:EventEmitter<null> = new EventEmitter();
   @Output() onCadastrarClick:EventEmitter<null> = new EventEmitter();
 
