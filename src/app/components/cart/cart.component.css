@@ -1,0 +1,34 @@
+.btn-outline-info .rounded-circle {
+    color: pink;
+}
+
+h2 {
+    font-family: "Allura", sans-serif;
+    text-align: center;
+    font-size: 3.6em;
+  }
+
+.totalizacao{
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+}
+
+.fechar-pedido{
+    text-align: center;
+    margin-top: 5px;
+  }
+.fechar-pedido button{
+    color: #ffffff;
+    font-family: "Architects Daughter", sans-serif;
+    font-size: 1.4em;
+
+    background-color: #ff6584;
+    border: none;
+    border-radius: 1em;
+
+    margin: 0.5em 0 0 0;
+    padding: 0.4em;
+
+    cursor: pointer;
+}
