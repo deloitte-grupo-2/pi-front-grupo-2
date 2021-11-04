@@ -1,72 +1,17 @@
 <section class="produtos">
   <article class="container">
-  
     <div class="row">
-  
       <div class="docinho_informacoes col-lg-4 col-sm-12">
         <div class="docinho">
           <figure>
-            <img src="assets\Imagens\Coração.jpeg" alt="Brownie" />
+            <img src="{{ produto.imagemUrl }}" alt="{{ produto.nome }}" />
           </figure>
         </div>
-        <h3>Brigadeiro de pimenta</h3>
-        <button type="button" (click)="mostrarProduto()" class="saiba_mais">Saiba mais</button>
-      </div>
-  
-      <div class="docinho_informacoes col-lg-4 col-sm-12">
-        <div class="docinho">
-          <figure>
-            <img src="assets\Imagens\Beijinho.jpeg" alt="Beijinho" />
-          </figure>
-        </div>
-        <h3>Rafaello</h3>
-        <button class="saiba_mais">Saiba mais</button>
-      </div>
-  
-      <div class="docinho_informacoes col-lg-4 col-sm-12">
-        <div class="docinho">
-          <figure>
-            <img src="assets\Imagens\Casadinho.jpeg" alt="Beijinho" />
-          </figure>
-        </div>
-        <h3>Dois amores</h3>
-        <button class="saiba_mais">Saiba mais</button>
+        <h3>{{ produto.nome }}</h3>
+        <button type="button" (click)="mostrarProduto()" class="saiba_mais">
+          Saiba mais
+        </button>
       </div>
     </div>
-  
-    <div class="row">
-  
-      <div class="docinho_informacoes col-lg-4 col-sm-12">
-        <div class="docinho">
-          <figure>
-            <img src="assets\Imagens\Frisales.jpeg" alt="Beijinho" />
-          </figure>
-        </div>
-        <h3>Copinho de Frisales</h3>
-        <button class="saiba_mais">Saiba mais</button>
-      </div>
-  
-      <div class="docinho_informacoes col-lg-4 col-sm-12">
-        <div class="docinho">
-          <figure>
-            <img src="assets\Imagens\Redemoinho.jpeg" alt="Beijinho" />
-          </figure>
-        </div>
-        <h3>Brigadeiro de limão</h3>
-        <button class="saiba_mais">Saiba mais</button>
-      </div>
-  
-      <div class="docinho_informacoes col-lg-4 col-sm-12">
-        <div class="docinho">
-          <figure>
-            <img src="assets\Imagens\Coração.jpeg" alt="Beijinho" />
-          </figure>
-        </div>
-        <h3>Brigadeiro de limão</h3>
-        <button class="saiba_mais">Saiba mais</button>
-      </div>
-  
-    </div>
-  
   </article>
 </section>

@@ -26,6 +26,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "angular-material": "^1.2.3",
     "angular-responsive-carousel": "^2.1.2",
+    "correios-brasil": "^2.2.2",
     "guid-typescript": "^1.0.9",
     "ngx-bootstrap": "^7.1.0",
     "rxjs": "~6.6.0",

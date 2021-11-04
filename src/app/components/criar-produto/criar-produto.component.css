@@ -1,0 +1,52 @@
+article {
+  height: 100%;
+  width: 100%;
+  margin: 4em;
+}
+
+article form {
+  width: 80%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+article form label {
+  font-size: 1.2em;
+}
+
+article form input {
+  width: 100%;
+  margin: 0 0 0.4em 0;
+  background-color: #fedada;
+  border: none;
+  padding: 0.4em;
+  border-radius: 1em;
+  font-size: 1.4em;
+  color: #4a4949;
+  font-family: "Architects Daughter", sans-serif;
+  display: block;
+}
+
+article form .controles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article form button {
+  color: #ffffff;
+  font-family: "Architects Daughter", sans-serif;
+  font-size: 1.4em;
+  background-color: #ff6584;
+  border: none;
+  border-radius: 1.4em;
+  padding: 0.6em;
+  margin: 1em 0;
+  cursor: pointer;
+}
+
+.invalid-feedback {
+  font-size: 1.1em;
+}
