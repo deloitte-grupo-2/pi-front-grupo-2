@@ -80,6 +80,8 @@ export class ModalProdutoComponent implements OnInit {
     const PRODUTO: Produto = this.formulario.value;
     // Adicionar o produto do formulário ao carrinho
     this.carrinho.push(PRODUTO);
+    // Testando o formulário
+    console.log(this.formulario.value);
     // Armazenando dados no Local Storage
     localStorage.setItem("carrinho", JSON.stringify(this.carrinho));
     // Resetando o formulário

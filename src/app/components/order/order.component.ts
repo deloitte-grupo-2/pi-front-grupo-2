@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Cliente } from 'src/app/models/Cliente';
 import { Produto } from 'src/app/models/Produto';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { PedidoService } from 'src/app/services/pedido.service';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-order',
@@ -9,6 +12,9 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+
+  // Criando formulário para montar JSON
+  formulario!:FormGroup;
 
   @Input() cliente!:Cliente;
 
@@ -18,33 +24,42 @@ export class OrderComponent implements OnInit {
   frete:number;
   // Data de entrega agendada
   agendamento!:Date;
-
   // Criando o array de Produtos
   carrinho!:Produto[];
-
+  // Email para consultar Cliente
   email:string="brunosabia@gmail.com";
 
   // constructor(private clienteService:ClienteService) {
-  constructor() {
-    
+  //Injetando construtor do formulário e o serviço para Pedido
+  constructor(private formBuilder:FormBuilder,private pedidoService:PedidoService) {
     // Incializar subTotalCompra
     this.subTotalCompra=0;
     // Inicializar frete
     this.frete=40;
-
-    // this.clienteService.consultarCliente(this.email).subscribe(
-    //   {
-    //     next: cliente => {
-    //       this.cliente = cliente;
-    //     },
-    //     error: err => console.error(err)
-    //   }
-    // )
    }
 
   ngOnInit(): void {
     this.CarregarCarinho();
     this.CarregarAgendamento();
+
+    var ItensJSON:any=this.pedidoService.ParserCarrinho(this.carrinho);
+    // console.log(ItensJSON);
+
+    // Inicializando o formulário
+    this.formulario=this.formBuilder.group({
+      cliente:this.formBuilder.group({
+        id:1
+      }),
+      dataEntrega:this.agendamento,
+      formaPagamento:"dinheiro",
+      itens: ItensJSON,
+      status: "em processamento",
+      precoTotal: this.subTotalCompra+this.frete
+    })
+
+    console.log(this.formulario.value);
+    // console.log(this.carrinho);
+
   }
 
   CarregarCarinho(): void {

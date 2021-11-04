@@ -9,25 +9,12 @@
             <h2>Fechamento de Pedido</h2>
             <hr>
             <!-- Tabela com os itens do carrinho -->
-            <div class="container">
+            <div class="container" [formGroup]="formulario">
                 <!-- Usando sistema de GRID do Bootstrap -->
                 <!-- Verificando se o carrinho está vazio -->
                 <div class="pt-5 row" *ngIf="carrinho?.length == 0">
                     <p class="text-danger">Carrinho vazio</p>
                 </div>
-                <!-- Carrinho com produtos -->
-                <!-- <mat-card class="example-card">
-                    <mat-card-title>Dados para Entrega</mat-card-title>
-                    <mat-card-subtitle>Cliente</mat-card-subtitle>
-                    <mat-card-content>
-                        <ul>
-                            <li>BRUNO SABIÁ</li>
-                            <li>Endereço Fictício, 123 - Apartamento 22</li>
-                            <li>Santa Efigência - CEP: 12345-678</li>
-                            <li>São Paulo, SP</li>
-                        </ul>
-                    </mat-card-content>
-                </mat-card> -->
 
                 <div class="pt-5" *ngIf="carrinho?.length > 0">
                     Dados para Entrega
