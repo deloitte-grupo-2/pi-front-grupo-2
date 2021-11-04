@@ -8,5 +8,6 @@ export interface Cliente{
     senha:string;
     cpf?:string;
     endereco?:Endereco[];
-    telefone?:Telefone[];
+    telefone?:Telefone[]
     }
+    

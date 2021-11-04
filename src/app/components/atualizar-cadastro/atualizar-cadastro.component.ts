@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/Cliente';
-import { Telefone } from 'src/app/models/Telefone';
+import { } from 'src/app/models/Endereco' 
 
 import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 
@@ -12,13 +12,6 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./atualizar-cadastro.component.css']
 })
 export class AtualizarCadastroComponent implements OnInit {
-
-  novoTelefone:Telefone = {
-    ddd: "",
-    numero: "",
-    tipo: ""
-  }
-
 
   form!: FormGroup;
   submitted = false;
@@ -81,7 +74,5 @@ onSubmit(cliente:Cliente){
     complete: () => console.log("Observável finalizado")
     });
 }
-
-
-
+  
 }
