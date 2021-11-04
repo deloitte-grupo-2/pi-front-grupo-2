@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   carrinho!: Produto[];
   // Criando o formulário que armazenará os Produtos
   // Inicialmente não tem um tipo definido
-  formulario:any;
+  formulario!:FormGroup;
   // Definindo datas mínima e máxima para agendamento
   minDate:Date;
   maxDate:Date;
