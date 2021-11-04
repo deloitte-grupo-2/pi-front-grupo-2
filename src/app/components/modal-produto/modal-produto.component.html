@@ -1,68 +1,64 @@
 <section id="modal-produto">
-    <article>
-        <!-- botao de fechar -->
-      <img
-        class="fechar"
-        (click)="cancelar()"
-        src="assets\Imagens\close.png"
-        alt="Botão de fechar aba"
-      />
-        <!-- Nome do produto -->
-      <div class="nome-produto">
-        <h2> Brownie de Chocolate <br> com Pimenta </h2>
-      </div>  
-      <!-- imagem do produto -->
-      <figure>
-        <img
-          src="assets/Imagens/Coração.jpeg"
-          alt="Brigadeiro de Pimenta"
-        />
-      </figure>
-      <!-- descricao do produto -->
-      <div class="descricao-produto">
-        <p> Brownie recheado com brigadeiro de chocolate com pimenta.</p>
-      </div>  
-      <!-- descricao da quantidade -->
-      <div class="descricao-quantidade">
-        <p> Kit de 20 unidades </p>
-        <p> R$ 60,00 </p>
-      </div>
+  <article>
+    <!-- botao de fechar -->
+    <img
+      class="fechar"
+      (click)="cancelar()"
+      src="assets\Imagens\close.png"
+      alt="Botão de fechar aba"
+    />
+    <!-- Nome do produto -->
+    <div class="nome-produto">
+      <h2>{{ produto.nome }}</h2>
+    </div>
+    <!-- imagem do produto -->
+    <figure>
+      <img src="{{ produto.imagemUrl }}" alt="{{ produto.nome }}" />
+    </figure>
+    <!-- descricao do produto -->
+    <div class="descricao-produto">
+      <p>{{ produto.descricao }}</p>
+    </div>
+    <!-- descricao da quantidade -->
+    <div class="descricao-quantidade">
+      <p>Kit de 20 unidades</p>
+      <p>R$ 60,00</p>
+    </div>
 
-<!-- caixinha para selecionar a quantidade -->
-<div class="infos-produto">
-  <div class="quantidade">
+    <!-- caixinha para selecionar a quantidade -->
+    <div class="infos-produto">
+      <div class="quantidade">
         <button (click)="menos()">-</button>
-        <input type="text" readonly [value]="valor" style="width: 70px">
-        <button (click)=mais()>+</button>
-    
-    <!-- <div
+        <input type="text" readonly [value]="valor" style="width: 70px" />
+        <button (click)="mais()">+</button>
+
+        <!-- <div
       *ngIf="submitted && campoForm.nome.errors"
       class="invalid-feedback"
     >
       <div *ngIf="campoForm.nome.errors.required">Nome inválido</div>
     </div> -->
-  </div>
+      </div>
 
-  <div class="total">
-    <label></label>
-    <input [value]=total() style="background-color: #C4C4C4">
-  <!-- <div
+      <div class="total">
+        <label></label>
+        <input [value]="total()" style="background-color: #c4c4c4" />
+        <!-- <div
     *ngIf="submitted && campoForm.nome.errors"
     class="invalid-feedback"
   >
     <div ngIf="campoForm.nome.errors.required">**</div>
   </div> -->
-  </div>
-</div>
+      </div>
+    </div>
 
+    <!-- caixinha com valor total do produto -->
 
-<!-- caixinha com valor total do produto -->
-
-
-  <!-- botao de adicionar produto e quantidade ao carrinho -->
-  <div class="adicionar-produto">
-      <button type="submit" (click)="AdicionarAoCarrinho()">Adicionar ao Carrinho</button>
-  </div>
-         
-</article>
+    <!-- botao de adicionar produto e quantidade ao carrinho -->
+    <div class="adicionar-produto">
+      <button type="submit" (click)="AdicionarAoCarrinho()">
+        Adicionar ao Carrinho
+      </button>
+    </div>
+  </article>
 </section>

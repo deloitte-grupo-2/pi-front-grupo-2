@@ -22,6 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import{ MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
 
 
 
@@ -41,6 +42,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HomeComponent,
     ModalProdutoComponent,
     CartComponent,
+    CriarProdutoComponent,
   ],
   imports: [
     BrowserModule,

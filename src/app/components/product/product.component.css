@@ -1,16 +1,8 @@
-article {
-  /* Tamanho suficiente para 3 produtos por linha */
-  width: 100%;
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; */
-}
-
 article .docinho_informacoes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 33%;
+  justify-content: center;
 }
 
 article .docinho_informacoes .docinho {
@@ -53,16 +45,4 @@ article .docinho_informacoes .saiba_mais {
   font-family: "Architects Daughter", sans-serif;
   background-color: #ff6584;
   cursor: pointer;
-}
-
-@media (max-width: 979px) {
-  article .docinho_informacoes {
-    width: 33%;
-  }
-}
-
-@media (max-width: 779px) {
-  article .docinho_informacoes {
-    width: 50%;
-  }
 }
