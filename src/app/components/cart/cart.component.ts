@@ -6,7 +6,6 @@ import { Guid } from 'guid-typescript';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 // Formulário com os Produtos
 import { FormGroup, FormControl, Validators, FormBuilder, Validator } from '@angular/forms';
-import { AppCustomDirective } from './app.validators';
 
 @Component({
   selector: 'app-cart',
@@ -38,9 +37,7 @@ export class CartComponent implements OnInit {
   cepOrigem:string;
   cepDestino:string;
 
-  DaterForm!: FormGroup;
-
-  constructor(private formBuilder:FormBuilder, private fb:FormBuilder) {
+  constructor(private formBuilder:FormBuilder) {
     // Recuperando o ano atual
     const DATAATUAL = new Date();
     // Data mínima para pedido: 3 dias corridos da data atual
@@ -75,11 +72,6 @@ export class CartComponent implements OnInit {
       isComprado: new FormControl(),
     });
 
-    this.DaterForm = this.fb.group(
-      {
-        FromDate:new FormControl()
-      }
-    )
   }
 
   CadastrarProduto(): void {
@@ -169,31 +161,14 @@ export class CartComponent implements OnInit {
     // Se estiver editando o carrinho, carregar o agendamento definido anteriormente
     if(localStorage.getItem("entrega")) {
       // Adicionar produtos do carrinho no array de produtos (atributo "carrinho")
-      if(!(localStorage.getItem("entrega")=="undefined" || localStorage.getItem("entrega")=="")) {
+      if(!(localStorage.getItem("entrega")=="undefined")) {
         this.agendamento = JSON.parse(localStorage.getItem("entrega"));
       } 
     }    
   }
 
-  VerificarCarrinho(): void {
-      // Verificar se existem itens no carrinho
-      if(this.carrinho.length>0) {
-        this.DaterForm = this.fb.group(
-          {
-            FromDate:['',[AppCustomDirective.fromDateValidator]]
-          }
-        )
-        if(localStorage.getItem("entrega")) {
-          // Adicionar produtos do carrinho no array de produtos (atributo "carrinho")
-          if(!(localStorage.getItem("entrega")==="undefined" || localStorage.getItem("entrega")==="")) {
-            this.agendamento = JSON.parse(localStorage.getItem("entrega"));
-            console.log("Ir para a fechamento do pedido");
-          }  
-        } else {
-          console.log("Agendamento não definido!");
-        }
-      } else {
-        console.log("Carrinho vazio!");
-      }
-    }
+  GravarAgendamento(): void {
+    // Armazenando agendamento de entrega no Local Storage
+    localStorage.setItem("entrega", JSON.stringify(this.agendamento));
+  }
 }
