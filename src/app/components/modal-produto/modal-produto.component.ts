@@ -84,6 +84,10 @@ export class ModalProdutoComponent implements OnInit {
     localStorage.setItem("carrinho", JSON.stringify(this.carrinho));
     // Resetando o formulário
     // this.formulario.reset();
+    // Fechando o modal
+    this.cancelar();
+    // Mostrando o carrinho atualizado
+    
   }
 
   RecuperarCarrinho(): void {

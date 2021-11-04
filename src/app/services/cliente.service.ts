@@ -34,4 +34,10 @@ export class ClienteService {
     return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
   }
 
+  consultarCliente(clienteEmail:string):Observable<Cliente>{
+    let token = window.sessionStorage.getItem('token');
+    return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`,
+      {headers:{Authorization:`Bearer ${token}`}} );
+  }
+
 }

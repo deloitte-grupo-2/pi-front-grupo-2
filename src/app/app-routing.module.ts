@@ -4,6 +4,7 @@ import { AtualizarCadastroComponent } from './components/atualizar-cadastro/atua
 import { CartComponent } from './components/cart/cart.component';
 import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
 import { HomeComponent } from './components/home/home.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: "cadastrar-produto",  component: CriarProdutoComponent
+  },
+  {
+    path: "pedido", component: OrderComponent
   }];
 
 @NgModule({
