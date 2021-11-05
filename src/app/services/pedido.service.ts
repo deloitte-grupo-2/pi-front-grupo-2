@@ -17,7 +17,7 @@ export class PedidoService {
   constructor(private http:HttpClient) { }
 
   // Criando um pedido no Back End
-  CriarPedido(pedido:string):Observable<Pedido> {
+  CriarPedido(pedido:Pedido):Observable<Pedido> {
     // Recuperando o token da sessão ativa
     let token = window.sessionStorage.getItem('token');
     console.log("Token: " + token);
