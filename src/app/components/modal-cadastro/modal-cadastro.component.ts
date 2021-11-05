@@ -53,11 +53,7 @@ export class ModalCadastroComponent implements OnInit {
     this.service.criarCliente(cliente).subscribe(
       {
       next: data =>{
-<<<<<<< HEAD
-        
-=======
         this.logar();
->>>>>>> cafbd604ae713cae79ba5ea646bd30ec54a30bc4
         console.log(data);
         },
       error: err => console.log(err),
