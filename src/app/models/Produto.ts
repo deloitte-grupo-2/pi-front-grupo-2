@@ -5,5 +5,4 @@ export interface Produto {
     preco: number;
     imagemUrl: string;
     quantidade?: number;
-    isComprado?: boolean;
 }

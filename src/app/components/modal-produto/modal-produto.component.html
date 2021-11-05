@@ -29,10 +29,10 @@
     <div class="infos-produto">
       <div class="quantidade">
         <button (click)="menos()">-</button>
-        <input type="text" readonly [value]="valor" style="width: 70px" />
-        <button (click)="mais()">+</button>
-
-        <!-- <div
+        <input type="text" readonly [value]="quantidade" style="width: 70px">
+        <button (click)=mais()>+</button>
+    
+    <!-- <div
       *ngIf="submitted && campoForm.nome.errors"
       class="invalid-feedback"
     >

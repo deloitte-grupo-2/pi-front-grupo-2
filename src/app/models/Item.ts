@@ -1,6 +1,6 @@
 import { Produto } from "./Produto";
 
-export class Itens {
+export class Item {
     produto:Produto;
     quantidade:number;
 
