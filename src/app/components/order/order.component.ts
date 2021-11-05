@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Cliente } from 'src/app/models/Cliente';
 import { Item } from 'src/app/models/Item';
 import { Pedido } from 'src/app/models/Pedido';
@@ -30,6 +30,8 @@ export class OrderComponent implements OnInit {
   // Email para consultar Cliente
   email:string="brunosabia@gmail.com";
 
+  formCliente!:FormGroup;
+
   // constructor(private clienteService:ClienteService) {
   //Injetando construtor do formulário e o serviço para Pedido
   constructor(private formBuilder:FormBuilder,private pedidoService:PedidoService) {
@@ -43,6 +45,16 @@ export class OrderComponent implements OnInit {
     this.CarregarCarinho();
     this.CarregarAgendamento();
     this.CarregarItensPedido();
+
+    // Instanciando o formulário para Itens de Pedido
+    this.formCliente = new FormGroup({
+      // Incluindo os campos de Itens de Pedido
+      // Estes campos virão do model Item
+      cliente: new FormBuilder().group({
+        id: new FormControl()
+      })
+    });
+
   }
 
   CarregarCarinho(): void {
@@ -68,6 +80,8 @@ export class OrderComponent implements OnInit {
       // Carrinho não existe no LocalStorage. Inicializar array.
       this.itensPedido = [];
     } 
+    // Configurar cliente padrão
+    this.formCliente.value.cliente.id=1;
   }
 
   AtualizarTotalCompra(): void {
@@ -121,9 +135,8 @@ export class OrderComponent implements OnInit {
     //         });   
 
     //this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.carrinho,this.frete));
-    this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.itensPedido,this.frete));
+    this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.itensPedido,this.subTotalCompra+this.frete));
     console.log("Requisição enviada. Verifique o BD");// var ItensJSON:string=this.pedidoService.ParserCarrinho(1,this.carrinho,this.agendamento,"em processamento",this.subTotalCompra+this.frete);
-    
     
   }
         

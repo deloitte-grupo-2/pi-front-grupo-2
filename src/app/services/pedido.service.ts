@@ -22,7 +22,7 @@ export class PedidoService {
     let token = window.sessionStorage.getItem('token');
     console.log("Token: " + token);
     //return this.http.put<Cliente>(`${this.url}/usuario/atualizar`, cliente,{headers:{Authorization:`Bearer ${token}`}} ).pipe(take(1));
-    return this.http.post<Pedido>(`${this.url}/pedido/criar`,pedido,{headers:{Authorization:`{token}`}});
+    return this.http.post<Pedido>(`${this.url}/pedido/criar`,pedido,{headers:{Authorization:`${token}`}});
   }
 
   ParserCarrinho(clienteID:number,carrinho:Produto[],agendamento:Date,status:string,precoTotal:number):string {

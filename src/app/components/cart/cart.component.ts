@@ -152,9 +152,7 @@ export class CartComponent implements OnInit {
     //Incrementar a quantidade no carrinho
     this.carrinho[INDICE].quantidade++;
     //Incrementar a quantidade em itens de pedido
-    console.log("Anterior: " + this.itensPedido[INDICE].quantidade);
     this.itensPedido[INDICE].quantidade++;
-    console.log("Atual: " + this.itensPedido[INDICE].quantidade);
     // Atualizar total da compra
     this.AtualizarTotalCompra();
     // Gravando alterações no LocalStorage
