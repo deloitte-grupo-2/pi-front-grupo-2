@@ -1,17 +1,17 @@
 <section class="produtos">
-  <article class="container">
-    <div class="row">
-      <div class="docinho_informacoes col-lg-4 col-sm-12">
+    <div class="container">
+
         <div class="docinho">
-          <figure>
-            <img src="{{ produto.imagemUrl }}" alt="{{ produto.nome }}" />
-          </figure>
+            <figure>
+                <img src="{{ produto.imagemUrl }}" alt="{{ produto.nome }}" />
+            </figure>
         </div>
         <h3>{{ produto.nome }}</h3>
-        <button type="button" (click)="mostrarProduto()" class="saiba_mais">
-          Saiba mais
-        </button>
-      </div>
+        <div class=botao>
+            <button type="button" (click)="mostrarProduto()" class="saiba_mais">
+            Comprar
+          </button>
+        </div>
+
     </div>
-  </article>
 </section>
