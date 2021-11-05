@@ -1,8 +1,10 @@
+import { Cliente } from "./Cliente";
+import { ClienteID } from "./ClienteId";
 import { Item } from "./Item"
 
 export class Pedido {
     
-    cliente:number;
+    cliente:ClienteID;
     dataEntrega:Date;
     formaPagamento:string;
     itens:Item[];
@@ -10,8 +12,8 @@ export class Pedido {
     precoTotal: number;
     // frete:number;
 
-    constructor(dataEntrega:Date,formaPagamento:string,itens:Item[],precoTotal:number){
-        this.cliente=1;
+    constructor(cliente:ClienteID,dataEntrega:Date,formaPagamento:string,itens:Item[],precoTotal:number){
+        this.cliente=cliente;
         this.dataEntrega=dataEntrega;
         this.formaPagamento=formaPagamento;
         this.itens=itens;

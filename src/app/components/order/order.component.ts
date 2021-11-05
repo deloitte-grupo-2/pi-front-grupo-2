@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Cliente } from 'src/app/models/Cliente';
+import { ClienteID } from 'src/app/models/ClienteId';
 import { Item } from 'src/app/models/Item';
 import { Pedido } from 'src/app/models/Pedido';
 import { Produto } from 'src/app/models/Produto';
@@ -15,7 +16,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
 })
 export class OrderComponent implements OnInit {
 
-  @Input() cliente!:Cliente;
+  //@Input() cliente!:Cliente;
 
   // Controlando o subtotal da compra
   subTotalCompra:number;
@@ -31,6 +32,7 @@ export class OrderComponent implements OnInit {
   email:string="brunosabia@gmail.com";
 
   formCliente!:FormGroup;
+  
 
   // constructor(private clienteService:ClienteService) {
   //Injetando construtor do formulário e o serviço para Pedido
@@ -50,11 +52,14 @@ export class OrderComponent implements OnInit {
     this.formCliente = new FormGroup({
       // Incluindo os campos de Itens de Pedido
       // Estes campos virão do model Item
-      cliente: new FormBuilder().group({
+      //cliente: new FormBuilder().group({
         id: new FormControl()
-      })
+      //})
     });
 
+    // Configurar cliente padrão
+    this.formCliente.value.id=1;
+    console.log(this.formCliente.value);
   }
 
   CarregarCarinho(): void {
@@ -80,8 +85,6 @@ export class OrderComponent implements OnInit {
       // Carrinho não existe no LocalStorage. Inicializar array.
       this.itensPedido = [];
     } 
-    // Configurar cliente padrão
-    this.formCliente.value.cliente.id=1;
   }
 
   AtualizarTotalCompra(): void {
@@ -135,7 +138,8 @@ export class OrderComponent implements OnInit {
     //         });   
 
     //this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.carrinho,this.frete));
-    this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.itensPedido,this.subTotalCompra+this.frete));
+    const CLIENTE:ClienteID=this.formCliente.value;
+    this.pedidoService.CriarPedido(new Pedido(CLIENTE,this.agendamento,"dinheiro",this.itensPedido,this.subTotalCompra+this.frete));
     console.log("Requisição enviada. Verifique o BD");// var ItensJSON:string=this.pedidoService.ParserCarrinho(1,this.carrinho,this.agendamento,"em processamento",this.subTotalCompra+this.frete);
     
   }
