@@ -89,24 +89,4 @@ export class OrderComponent implements OnInit {
   }
 
   FecharPedido(): void {
-    // var ItensJSON:string=this.pedidoService.ParserCarrinho(1,this.carrinho,this.agendamento,"em processamento",this.subTotalCompra+this.frete);
-    // console.log(ItensJSON);
-    // const itens:Itens[]=new Array();
-    // this.carrinho.forEach(produto => {
-    //   console.log(produto);
-    //   const constItem=itens.find(item => {
-    //      item.produto=produto;
-    //    })
-    //    if(constItem) {
-    //       constItem?.incrementarQuantidade();
-    //    } else {
-    //      itens.push(new Itens(produto));
-    //    }
-    // });
-    this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.carrinho,this.frete));
-    console.log("Requisição enviada. Verifique o BD");
-    
-  }
-
-  
-}
+}}

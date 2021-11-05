@@ -8,7 +8,6 @@ export class Pedido {
     formaPagamento:string;
     itens:Produto[];
     status: string;
-    precoTotal: number;
     frete:number;
 
     constructor(dataEntrega:Date,formaPagamento:string,itens:Produto[],frete:number){
@@ -18,10 +17,6 @@ export class Pedido {
         this.itens=itens;
         this.status="em processamento";
         this.frete=frete;
-        this.precoTotal=this.itens
-        .map(item => item.quantidade*item.preco)
-        .reduce((total,atual)=>total+atual)+this.frete;
-
         console.log(this);
     }
 

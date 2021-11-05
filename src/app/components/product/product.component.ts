@@ -19,5 +19,6 @@ export class ProductComponent implements OnInit {
   mostrarProduto() {
     this.produtoService.sendClick();
     console.log("Mostrando modal Produto por Componente Produto");
+    console.log(this.produto);
   }
 }
