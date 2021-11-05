@@ -1,0 +1,41 @@
+<app-header></app-header>
+<article>
+  <form>
+    <label>
+      Nome
+      <input type="text" name="nome" [(ngModel)]="novoProduto.nome" />
+    </label>
+    <label>
+      Descrição
+      <input
+        type="text"
+        name="descricao"
+        id="descricao"
+        [(ngModel)]="novoProduto.descricao"
+      />
+    </label>
+    <label>
+      Preço
+      <input
+        type="number"
+        name="preco"
+        [(ngModel)]="novoProduto.preco"
+        id="preco"
+      />
+    </label>
+    <label>
+      Imagem do produto (url)
+      <input
+        type="text"
+        name="imagemUrl"
+        [(ngModel)]="novoProduto.imagemUrl"
+        id="imagemUrl"
+      />
+    </label>
+    <div class="controles">
+      <button (click)="sair()" type="button" class="link">Cancelar</button>
+      <button (click)="salvar()" type="button">Adicionar</button>
+    </div>
+  </form>
+</article>
+<app-footer></app-footer>

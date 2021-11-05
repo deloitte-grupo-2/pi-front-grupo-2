@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ProdutoService } from "src/app/services/produto.service"
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Guid } from 'guid-typescript';
@@ -12,8 +12,17 @@ import { Item } from 'src/app/models/Item';
 })
 export class ModalProdutoComponent implements OnInit {
   
+
   //quantidade inicial do input "quantidade"
   quantidade: number = 0;
+
+  produto:Produto = {
+    nome: "Brigadeiro",
+    descricao: "Melhor do mundo",
+    imagemUrl:"saskasnkna",
+    preco: 20
+  }
+
 
   // Criando o array de Produtos
   carrinho!: Produto[];

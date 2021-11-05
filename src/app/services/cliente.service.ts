@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../models/Cliente';
-import {take} from 'rxjs/operators'
+import {take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,7 +26,12 @@ export class ClienteService {
   atualizarCliente(cliente:Cliente){
     let token = window.sessionStorage.getItem('token');
     return this.http.put<Cliente>(`${this.url}/usuario/atualizar`, cliente,{headers:{Authorization:`Bearer ${token}`}} ).pipe(take(1));
-    
+  }
+
+  consultarClientePorEmail(clienteEmail:string):Observable<Cliente> {
+    //let token = window.sessionStorage.getItem('token');
+    let token:string = 'Basic YnJ1bm9zYWJpYUBnbWFpbC5jb206YnJ1bm9zYWJpYTIwMjE=';
+    return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
   }
 
   consultarCliente(clienteEmail:string):Observable<Cliente>{

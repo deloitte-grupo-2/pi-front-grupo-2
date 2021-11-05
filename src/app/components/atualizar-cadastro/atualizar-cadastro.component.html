@@ -16,12 +16,12 @@
           placeholder="000.000.000-00"
         />
         <div *ngIf="submitted && campoForm.cpf.errors" class="invalid-feedback">
-          <div *ngIf="campoForm.cpf.errors.required">cpf inválido</div>
+          <div *ngIf="campoForm.cpf.errors.required">CPF inválido</div>
           <div *ngIf="campoForm.cpf.errors.minlength">
-            cpf inválido. Precisa ser no formato 000.000.000-00
+            CPF inválido. Precisa ser no formato 000.000.000-00
           </div>
           <div *ngIf="campoForm.cpf.errors.maxlength">
-            cpf inválido. Precisa ser no formato 000.000.000-00
+            CPF inválido. Precisa ser no formato 000.000.000-00
           </div>
         </div>
       </div>
