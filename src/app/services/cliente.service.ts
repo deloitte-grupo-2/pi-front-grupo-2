@@ -9,6 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
 
+  public static clienteLogado:Cliente ={
+    nome: "",
+    email:"",
+    senha:"",
+    cpf:"",
+    endereco:[],
+    telefone:[]
+  }
+  
+
   private readonly url = "https://api-salom-doces.herokuapp.com";
 
   constructor(private http:HttpClient) { }
@@ -19,7 +29,7 @@ export class ClienteService {
 
   logarCliente(cliente:any){
     
-    return this.http.post(`${this.url}/usuario/logar`, cliente).pipe(take(1));
+    return this.http.post(`${this.url}/usuario/logar`, cliente).pipe(take(1))
     
   }
 
@@ -29,15 +39,9 @@ export class ClienteService {
   }
 
   consultarClientePorEmail(clienteEmail:string):Observable<Cliente> {
-    //let token = window.sessionStorage.getItem('token');
-    let token:string = 'Basic YnJ1bm9zYWJpYUBnbWFpbC5jb206YnJ1bm9zYWJpYTIwMjE=';
+    let token = window.sessionStorage.getItem('token');
     return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
   }
 
-  consultarCliente(clienteEmail:string):Observable<Cliente>{
-    let token = window.sessionStorage.getItem('token');
-    return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`,
-      {headers:{Authorization:`Bearer ${token}`}} );
-  }
 
 }

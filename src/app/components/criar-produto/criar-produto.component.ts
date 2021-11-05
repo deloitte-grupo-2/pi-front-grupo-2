@@ -16,6 +16,7 @@ export class CriarProdutoComponent implements OnInit {
   falhou: boolean = false;
 
   novoProduto:Produto = {
+    id: "",
     nome: "",
     descricao: "",
     preco: 0,

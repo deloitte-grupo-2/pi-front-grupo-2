@@ -2,21 +2,32 @@
   <!-------------------------------- SOCIAL -------------------------------->
 
   <div class="contatos">
-    <i class="fab fa-whatsapp"></i>
-    <i class="fab fa-instagram"></i>
+    <a
+      href="https://api.whatsapp.com/send?phone=5511999999999&text=Ol%C3%A1.%20Gostaria%20de%20encomendar%20docinhos"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="https://www.instagram.com">
+      <i class="fab fa-instagram"></i>
+    </a>
   </div>
 
   <!-------------------------------- LOGO -------------------------------->
 
   <div class="logo-menu">
-    <img class="logo" src="assets/Imagens/Salom-logo-white.png" routerLink="" />
+    <img
+      class="logo"
+      src="assets/Imagens/Salom-logo-white.png "
+      routerLink="/"
+    />
   </div>
 
   <!-------------------------------- NAVBAR -------------------------------->
 
   <nav class="navegacao">
-    <a (click)="ScrollIntoView('#product')">Cardápio</a>
     <a (click)="ScrollIntoView('#about')">História</a>
+    <a (click)="ScrollIntoView('#product')">Docinhos</a>
     <a routerLink="/carrinho"><i class="fas fa-shopping-cart"></i></a>
     <a (click)="mostrarModalClick()"><i class="fas fa-user"></i></a>
   </nav>
@@ -25,42 +36,46 @@
   <article>
     <nav
       class="menu-hamburguer navbar navbar-expand-lg navbar-light"
-      text="center"
+      text="center "
     >
       <button
         class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        type="button "
+        data-toggle="collapse "
+        data-target="#navbarNavDropdown "
+        aria-controls="navbarNavDropdown "
+        aria-expanded="false "
+        aria-label="Toggle navigation "
       >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown ">
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a
               class="nav-link"
-              text="center"
-              (click)="ScrollIntoView('#products')"
-              >Cardápio</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" text="center" (click)="ScrollIntoView('#about')"
+              text="center "
+              (click)="ScrollIntoView('#about')"
               >História</a
             >
           </li>
+          <li class="nav-item active">
+            <a
+              class="nav-link"
+              text="center "
+              (click)="ScrollIntoView('#products')"
+              >Docinhos</a
+            >
+          </li>
+
           <li class="nav-item">
-            <a class="nav-link" text="center" routerLink="/carrinho"
+            <a class="nav-link" text="center " routerLink="/carrinho "
               ><i class="fas fa-shopping-cart"></i
             ></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" text="center" (click)="mostrarModalClick()"
+            <a class="nav-link" text="center " (click)="mostrarModalClick()"
               ><i class="fas fa-user"></i
             ></a>
           </li>
