@@ -36,7 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import ptBr from '@angular/common/locales/pt';
+import  ptBr  from '@angular/common/locales/pt';
 import { OrderComponent } from './components/order/order.component';
 registerLocaleData(ptBr)
 
