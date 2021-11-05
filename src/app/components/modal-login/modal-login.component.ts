@@ -22,7 +22,9 @@ export class ModalLoginComponent implements OnInit {
   @Output() onCadastrarClick:EventEmitter<null> = new EventEmitter();
 
   form!: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
+
+  falhou: boolean = false;
 
   constructor(
     private service:ClienteService,
@@ -69,8 +71,10 @@ export class ModalLoginComponent implements OnInit {
         console.log(data);
 
         },
-      error: err => console.log(err),
-      complete: () => console.log("Observável finalizado")
+      error: err => {
+        console.log(err),
+        this.falhou = true
+      }
       });
 
   }

@@ -11,6 +11,10 @@ export class CriarProdutoComponent implements OnInit {
   
   @Output() onCloseModalClick:EventEmitter<null> = new EventEmitter()
 
+  cadastrou: boolean = false;
+
+  falhou: boolean = false;
+
   novoProduto:Produto = {
     nome: "",
     descricao: "",
@@ -18,15 +22,7 @@ export class CriarProdutoComponent implements OnInit {
     imagemUrl: ""
   }
 
-  constructor(private produtoService:ProdutoService) { 
-    this.produtoService.addProduto(this.novoProduto).subscribe({
-      next: produto => {
-        this.novoProduto = produto;
-        console.log(this.novoProduto);
-      },
-      error: err => console.error(err) 
-    })
-  }
+  constructor(private produtoService:ProdutoService) { }
 
   ngOnInit(): void {
   }
@@ -37,13 +33,26 @@ export class CriarProdutoComponent implements OnInit {
   }
 
   salvar(){
-    this.produtoService.addProduto(this.novoProduto)
-    this.novoProduto ={
-      nome: "",
-      descricao: "",
-      preco: 0,
-      imagemUrl: ""
-  }
+    this.produtoService.criarProduto(this.novoProduto).subscribe({
+      next: produto => {
+        this.novoProduto = produto;
+        console.log(this.novoProduto);
+        this.novoProduto ={
+          nome: "",
+          descricao: "",
+          preco: 0,
+          imagemUrl: ""
+      }
+      this.cadastrou = true;
+      this.falhou = false;
+      },
+      error: err => {
+        console.error(err); 
+        this.falhou = true;
+        this.cadastrou = false;
+      }
+    })
+
 }
 
 }

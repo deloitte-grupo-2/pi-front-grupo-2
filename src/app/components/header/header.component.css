@@ -1,93 +1,76 @@
-.caixa{
-  padding: 10px 50px;
-}
-header {
+container {
   background-color: #dc969c;
-  max-width: 100%;
-  box-shadow: 0px 2px 8px #000000;
+  box-shadow: 0px 0px 8px #000000;
   padding-bottom: 20px;
+  width: 1140px;
 }
 
-header article {
+.container .logo-menu {
   /* codigo abaixo deixa a logo no centro */
+  display: flex;
   justify-content: center;
   text-align: center;
 }
 
-.navbar-nav .nav-link{
-  padding: 5px 10px;
+.container .logo-menu img {
+  width: 14rem;
 }
-
 /* Referente as imagens de Whats e Inst */
-
-header article .contatos {
+.container .contatos {
+  color: white;
+  font-size: 2rem;
   display: flex;
   justify-content: flex-end;
-  align-self: flex-end;
+  gap: 10px;
+  padding: 20px;
 }
 
-header article .contatos img {
-  width: 2.4em;
-}
-
-/* Referente as imagens da Logo */
-
-header article img {
-  width: 14em;
-}
-
-/* Referente as imagens de história, cardapio .... */
-
-header article .navegacao {
-  height: 4em;
-}
-header article nav {
-  width: 100%;
+.navegacao {
   display: flex;
   justify-content: space-between;
-  text-align: center;
 }
-
-header article nav a {
-  color: #ffff;
-  font-family: "Architects Daughter";
-  font-size: 2.5em;
-  text-decoration: none;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-}
-
-header article nav a img {
-  width: 1.2em;
-}
-
-
-.botoes, .botoes .hamburguer{
-  border: none;
-  background-color:transparent; 
+.navegacao a,
+.menu-hamburguer {
   color: white;
-  font-size: 40px;
+  font-size: 2em;
+  padding-top: 20px;
   cursor: pointer;
+}
+article .menu-hamburguer {
   display: none;
 }
 
+/* <!-------------------------------- MEDIA QUERIES --------------------------------> */
 
-
-@media (max-width: 1020px){
-  .navegacao{
-    display:none;
-  }
-  .botoes, .botoes .hamburguer{
+@media (max-width: 630px) {
+  article .menu-hamburguer {
     display: block;
+    text-align: center;
+    max-width: 100%;
   }
-  .logo-menu{
-    display:flex;
-    /* center ate descobrir oq ta empurrando a pag p lado, suspeito estar no footer */
-    justify-content: center;
-    align-items: center;
-    
+  article .menu-hamburguer .navbar-toggler {
+    color: white;
+    border: none;
+    font-size: 1.8rem;
   }
+  article .menu-hamburguer a {
+    color: white;
+    font-size: 1.5rem;
+  }
+  .navegacao {
+    display: none;
+  }
+}
 
+@media (max-width: 586px) {
+  /* .container .logo-menu img {
+    width: 8rem;
+    
+  } */
+
+  /* .container{
+        width:400px;
+        padding:0;
+        
+    } */
 }
