@@ -6,6 +6,7 @@ import { Guid } from 'guid-typescript';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 // Formulário com os Produtos
 import { FormGroup, FormControl, Validators, FormBuilder, Validator } from '@angular/forms';
+import { Item } from 'src/app/models/Item';
 
 @Component({
   selector: 'app-cart',
@@ -19,9 +20,12 @@ export class CartComponent implements OnInit {
   faCheckCircle = faCheckCircle;
   // Criando o array de Produtos
   carrinho!: Produto[];
+  // Criando itens de pedido
+  itensPedido!:Item[];
   // Criando o formulário que armazenará os Produtos
   // Inicialmente não tem um tipo definido
   formulario!:FormGroup;
+  formItens!:FormGroup;
   // Definindo datas mínima e máxima para agendamento
   minDate:Date;
   maxDate:Date;
@@ -57,6 +61,8 @@ export class CartComponent implements OnInit {
 
     // Exibir dados do carrinho no LocalStorage
     this.ExibirProdutos();
+    // Atualizar Itens de Pedido
+    this.CarregarItensPedido();
     // Verificar se já havia sido definido agendamento
     this.VerificarAgendamento();
     // Instanciando o formulário
@@ -68,26 +74,43 @@ export class CartComponent implements OnInit {
       nome: new FormControl(),
       quantidade: new FormControl(),
       // descricao: new FormControl(),
-      preco: new FormControl(),
-      isComprado: new FormControl(),
+      preco: new FormControl()
+    });
+    // Instanciando o formulário para Itens de Pedido
+    this.formItens = new FormGroup({
+      // Incluindo os campos de Itens de Pedido
+      // Estes campos virão do model Item
+      produto: new FormBuilder().group({
+        id: new FormControl()
+      }),
+      quantidade: new FormControl()
     });
 
   }
 
   CadastrarProduto(): void {
     this.formulario.value.produtoId = Guid.create().toString();
-    this.formulario.value.isComprado = false;
+    // Atualizando Itens de Pedido
+    this.formItens.value.produto.id=this.formulario.value.produtoID;
+    this.formItens.value.quantidade=this.formulario.value.quantidade;
     // Constante para recuperar todos os valores do formulário
     const PRODUTO: Produto = this.formulario.value;
     // Adicionar o produto do formulário ao carrinho
     this.carrinho.push(PRODUTO);
+    // Constante para recuperar todos os valores do formulário de Itens de Pedido
+    const ITEM_PEDIDO: Item = this.formItens.value;
+    // Adicionar item de pedido
+    this.itensPedido.push(ITEM_PEDIDO);
     // Atualizar total da compra
     this.AtualizarTotalCompra();
     // Armazenando dados no Local Storage
+    // Carrinho
     localStorage.setItem("carrinho", JSON.stringify(this.carrinho));
-    // Atualizar o valor da compra
-    // Resetando o formulário
+    // Itens de Pedido
+    localStorage.setItem("itensPedido", JSON.stringify(this.itensPedido));
+    // Resetando os formulários
     this.formulario.reset();
+    this.formItens.reset();
   }
 
   ExibirProdutos(): void {
@@ -108,12 +131,16 @@ export class CartComponent implements OnInit {
     const INDICE: number = this.carrinho.findIndex(
       (p) => p.produtoId === produtoId
       );
- 
+    // Excluindo produto do carrinho
     this.carrinho.splice(INDICE,1);
+    // Excluindo produto de item de pedido
+    this.itensPedido.splice(INDICE,1);
     // Atualizar total da compra
     this.AtualizarTotalCompra();
     // Gravando alterações no LocalStorage
     localStorage.setItem("carrinho",JSON.stringify(this.carrinho));
+    // Itens de Pedido
+    localStorage.setItem("itensPedido", JSON.stringify(this.itensPedido));
   }
 
   //incremento da quantidade
@@ -122,12 +149,17 @@ export class CartComponent implements OnInit {
     const INDICE: number = this.carrinho.findIndex(
       (p) => p.produtoId === produtoId
       );
-    //Incrementar a quantidade
+    //Incrementar a quantidade no carrinho
     this.carrinho[INDICE].quantidade++;
+    //Incrementar a quantidade em itens de pedido
+    this.itensPedido[INDICE].quantidade++;
     // Atualizar total da compra
     this.AtualizarTotalCompra();
     // Gravando alterações no LocalStorage
+    // Carrinho
     localStorage.setItem("carrinho",JSON.stringify(this.carrinho));
+    // Itens de Pedido
+    localStorage.setItem("itensPedido", JSON.stringify(this.itensPedido));
   }
 
   //decremento da quantidade
@@ -136,14 +168,18 @@ export class CartComponent implements OnInit {
     const INDICE: number = this.carrinho.findIndex(
       (p) => p.produtoId === produtoId
       );
-    //Incrementar a quantidade
+    //Decrementar a quantidade
     if(this.carrinho[INDICE].quantidade>0) {
       this.carrinho[INDICE].quantidade--;
+      this.itensPedido[INDICE].quantidade--;
     }
     // Atualizar total da compra
     this.AtualizarTotalCompra();
     // Gravando alterações no LocalStorage
+    // Carrinho
     localStorage.setItem("carrinho",JSON.stringify(this.carrinho));
+    // Itens de Pedido
+    localStorage.setItem("itensPedido", JSON.stringify(this.itensPedido));
   }
 
   AtualizarTotalCompra(): void {
@@ -170,5 +206,17 @@ export class CartComponent implements OnInit {
   GravarAgendamento(): void {
     // Armazenando agendamento de entrega no Local Storage
     localStorage.setItem("entrega", JSON.stringify(this.agendamento));
+  }
+
+  CarregarItensPedido(): void {
+    // Se o carrinho estiver vazio, não há itens de Pedido
+    // Verificando se Carrinho existe no LocalStorage
+    if(localStorage.getItem("itensPedido")) {
+      // Adicionar Itens de Pedido no array de itens de pedido
+      this.itensPedido = JSON.parse(localStorage.getItem("itensPedido"));
+    } else {
+      // Carrinho não existe no LocalStorage. Inicializar array.
+      this.itensPedido = [];
+    } 
   }
 }
