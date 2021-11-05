@@ -16,8 +16,6 @@ import { ProdutoService } from 'src/app/services/produto.service';
 })
 export class OrderComponent implements OnInit {
 
-  //@Input() cliente!:Cliente;
-
   // Controlando o subtotal da compra
   subTotalCompra:number;
   // Calculando o frete
@@ -33,8 +31,6 @@ export class OrderComponent implements OnInit {
 
   formCliente!:FormGroup;
   
-
-  // constructor(private clienteService:ClienteService) {
   //Injetando construtor do formulário e o serviço para Pedido
   constructor(private formBuilder:FormBuilder,private pedidoService:PedidoService) {
     // Incializar subTotalCompra
@@ -50,16 +46,12 @@ export class OrderComponent implements OnInit {
 
     // Instanciando o formulário para Itens de Pedido
     this.formCliente = new FormGroup({
-      // Incluindo os campos de Itens de Pedido
-      // Estes campos virão do model Item
-      //cliente: new FormBuilder().group({
+      // Configurando ID do Cliente
         id: new FormControl()
-      //})
     });
 
     // Configurar cliente padrão
-    this.formCliente.value.id=1;
-    console.log(this.formCliente.value);
+    this.formCliente.value.id=1;    
   }
 
   CarregarCarinho(): void {
@@ -134,6 +126,15 @@ FecharPedido(): void {
       complete: () => console.log("Observável finalizado")
       });
       console.log("Requisição enviada. Verifique o BD");
+      // Limpando o carrinho
+      this.carrinho=[];
+      // Limpando Itens de Pedido
+      this.itensPedido=[];
+      // Excluindo chaves do LocalStorage
+      localStorage.removeItem("carrinho");
+      localStorage.removeItem("itensPedido");
+      localStorage.removeItem("entrega");
+      localStorage.removeItem("produtoModal");
   } 
 }
 

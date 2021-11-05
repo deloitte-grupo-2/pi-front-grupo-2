@@ -12,29 +12,20 @@ import { Item } from 'src/app/models/Item';
 })
 export class ModalProdutoComponent implements OnInit {
   
-
   //quantidade inicial do input "quantidade"
-  quantidade: number = 0;
-
-  produto:Produto = {
-    nome: "Brigadeiro",
-    descricao: "Melhor do mundo",
-    imagemUrl:"saskasnkna",
-    preco: 20
-  }
-
-
+  quantidade: number = 1;
+  // Dados do produto sendo exibidos no Modal
+  produto!:Produto;
   // Criando o array de Produtos
   carrinho!: Produto[];
   // Criando itens de pedido
   itensPedido!:Item[];
-  // Criando o formulário do Produto selecionado
-  // Formulários
+  // Formulários com os dados do produto selecionado
   // Dados para adicionar no carrinho
   formulario!:FormGroup;
   // Dados para adicionar em Itens de Pedido
   formItens!:FormGroup;
-
+  
   constructor(private produtoService:ProdutoService) { }
 
   ngOnInit(): void { 
@@ -42,18 +33,24 @@ export class ModalProdutoComponent implements OnInit {
     this.RecuperarCarrinho();
     // Recuperar o Itens de Pedido atualizado no LocalStorage
     this.CarregarItensPedido();
+    // Carregar dados do produto atual
+    this.CarregarProduto();
     // Instanciando o formulário para Carrinho
     this.formulario = new FormGroup({
       // Incluindo os campos do Produto
       // Estes campos virão do model Produto
-      // imagem: new FormControl(),
-      produtoId: new FormControl(),
+      id: new FormControl(),
       nome: new FormControl(),
       quantidade: new FormControl(),
       descricao: new FormControl(),
       preco: new FormControl()
     });
-
+    // Inicializando formulário do carrinho
+    // com os dados do produto selecionado
+    this.formulario.value.id = this.produto.id;
+    this.formulario.value.nome = this.produto.nome;
+    this.formulario.value.descricao = this.produto.descricao;
+    this.formulario.value.preco = this.produto.preco;
     // Instanciando o formulário para Itens de Pedido
     this.formItens = new FormGroup({
       // Incluindo os campos de Itens de Pedido
@@ -69,9 +66,7 @@ export class ModalProdutoComponent implements OnInit {
   cancelar() {
     // Disparando o evento para fechar o Modal Produto
     // Atributo mostrandoProduto do componente HOME setado para FALSE
-    // this.onCancelarClick.emit();
     this.produtoService.sendClick();
-    // console.log("Mostrando modal Produto por Componente Produto");
   }
 
   //incremento da quantidade
@@ -81,63 +76,63 @@ export class ModalProdutoComponent implements OnInit {
 
   //decremento da quantidade
   menos(){
-    if(this.quantidade>0) {
+    if(this.quantidade>1) {
       this.quantidade--;
     }
   }
 
   AdicionarAoCarrinho():void {
-    // Preenchedo quantidadees do formulário
-    // quantidadees HARD CODED. Único dinâmico: quantidade
-    // this.formulario.value.produtoId = Guid.create().toString();
-    this.formulario.value.produtoId = 1;
-    this.formulario.value.nome = "Brownie de Chocolate com Pimenta";
+    // Atualizando a quantidade de itens do produto
     this.formulario.value.quantidade = this.quantidade;
-    this.formulario.value.descricao = "Brownie recheado com brigadeiro de chocolate com pimenta.";
-    this.formulario.value.preco = 60;
-    // Constante para recuperar todos os quantidadees do formulário
+    // Constante para recuperar todos os quantidades do formulário
     const PRODUTO: Produto = this.formulario.value;
     // Adicionar o produto do formulário ao carrinho
     this.carrinho.push(PRODUTO);
-    // Testando o formulário
-    //console.log(this.formulario.value);
     // Armazenando dados no Local Storage
     localStorage.setItem("carrinho", JSON.stringify(this.carrinho));
-    // Resetando o formulário
-    // this.formulario.reset();
-
     // Atualizando Itens de Pedido
-    this.formItens.value.produto.id=this.formulario.value.produtoId;
+    // Estes dados comporão o JSON do pedido
+    this.formItens.value.produto.id=this.formulario.value.id;
     this.formItens.value.quantidade=this.quantidade;
     // Constante para recuperar todos os valores do formulário de Itens de Pedido
     const ITEM_PEDIDO: Item = this.formItens.value;
     // Adicionar item de pedido
     this.itensPedido.push(ITEM_PEDIDO);
-
-    console.log(this.formItens.value);
-
-    console.log(this.itensPedido);
-
     // Armazenando dados no Local Storage
     localStorage.setItem("itensPedido", JSON.stringify(this.itensPedido));
     // Fechando o modal
     this.cancelar();
   }
 
+  CarregarProduto(): void {
+     // Verificando se Produto existe no LocalStorage
+     // Se existir, carregar dados do produto selecionado pelo usuário
+     // Estes dados foram gravados pelo componente Product
+     if(localStorage.getItem("produtoModal")) {
+      // Adicionar produtos do carrinho no array de produtos (atributo "carrinho")
+      this.produto = JSON.parse(localStorage.getItem("produtoModal"));
+    } else {
+      // Produto não existe no LocalStorage. Inicializar com vazio.
+      this.produto = JSON.parse("");;
+    }
+  }
+
   RecuperarCarrinho(): void {
      // Verificando se Carrinho existe no LocalStorage
+     // Carrinho será atualizado com a inserção do produto
+     // e gravado novamente no LocalStorage
      if(localStorage.getItem("carrinho")) {
         // Adicionar produtos do carrinho no array de produtos (atributo "carrinho")
         this.carrinho = JSON.parse(localStorage.getItem("carrinho"));
       } else {
-        // Carrinho não existe no LocalStorage. Inicializar array.
+        // Carrinho não existe no LocalStorage. Inicializar array vazio.
         this.carrinho = [];
       }
   }
 
   CarregarItensPedido(): void {
-    // Se o carrinho estiver vazio, não há itens de Pedido
-    // Verificando se Carrinho existe no LocalStorage
+    // Verificando se Itens de Pedido existe no LocalStorage
+    // Estes dados comporão o JSON do pedido
     if(localStorage.getItem("itensPedido")) {
       // Adicionar Itens de Pedido no array de itens de pedido
       this.itensPedido = JSON.parse(localStorage.getItem("itensPedido"));
@@ -148,6 +143,7 @@ export class ModalProdutoComponent implements OnInit {
   }
 
   total(){
-    return `Total R$ ${this.quantidade*60}`;
+    // Calcular total do item
+    return `Total R$ ${this.quantidade*this.produto.preco}`;
   }
 }

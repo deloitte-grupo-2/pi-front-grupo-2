@@ -37,6 +37,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import  ptBr  from '@angular/common/locales/pt';
 import { OrderComponent } from './components/order/order.component';
+import { OrderStatusComponent } from './components/order-status/order-status.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -55,7 +56,8 @@ registerLocaleData(ptBr)
     ModalProdutoComponent,
     CartComponent,
     CriarProdutoComponent,
-    OrderComponent
+    OrderComponent,
+    OrderStatusComponent
   ],
   imports: [
     BrowserModule,

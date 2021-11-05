@@ -22,7 +22,7 @@
     <!-- descricao da quantidade -->
     <div class="descricao-quantidade">
       <p>Kit de 20 unidades</p>
-      <p>R$ 60,00</p>
+      <p>{{ produto.preco }}</p>
     </div>
 
     <!-- caixinha para selecionar a quantidade -->
@@ -31,24 +31,11 @@
         <button (click)="menos()">-</button>
         <input type="text" readonly [value]="quantidade" style="width: 70px">
         <button (click)=mais()>+</button>
-    
-    <!-- <div
-      *ngIf="submitted && campoForm.nome.errors"
-      class="invalid-feedback"
-    >
-      <div *ngIf="campoForm.nome.errors.required">Nome inválido</div>
-    </div> -->
       </div>
 
       <div class="total">
         <label></label>
         <input [value]="total()" style="background-color: #c4c4c4" />
-        <!-- <div
-    *ngIf="submitted && campoForm.nome.errors"
-    class="invalid-feedback"
-  >
-    <div ngIf="campoForm.nome.errors.required">**</div>
-  </div> -->
       </div>
     </div>
 

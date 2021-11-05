@@ -1,0 +1,18 @@
+at-card {
+    font-family: "Architects Daughter", sans-serif;
+    color: #4a4949;
+    font-size: 16px;
+}
+
+mat-card-subtitle {
+    font-family: "Architects Daughter", sans-serif;
+    color: #4a4949;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+h2 {
+    font-family: "Allura", sans-serif;
+    text-align: center;
+    font-size: 3.6em;
+  }

@@ -1,4 +1,3 @@
-import { Cliente } from "./Cliente";
 import { ClienteID } from "./ClienteId";
 import { Item } from "./Item"
 
