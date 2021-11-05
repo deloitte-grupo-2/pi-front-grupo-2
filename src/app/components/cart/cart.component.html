@@ -19,16 +19,16 @@
                         <!-- Colunas -->
                         <tr class="thead-light">
                             <th>Nome</th>
-                            <th>Quantidade</th>
-                            <th>Ações</th>
-                            <th>Subtotal</th>
+                            <th class="text-center">Quantidade</th>
+                            <th class="text-center">Ações</th>
+                            <th class="text-center">Subtotal</th>
                         </tr>
                         <!-- Produtos -->
                         <!-- Se isComprado=false, destacar a linha -->
                         <tr *ngFor="let produto of carrinho" [class.table-danger]="produto.isComprado == false">
                             <td>{{produto.nome}}</td>
-                            <td>{{produto.quantidade}}</td>
-                            <td>
+                            <td class="text-center">{{produto.quantidade}}</td>
+                            <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="IncrementarQuantidade(produto.produtoId)">
                                     <!-- Ícone para marcar/desmarcar produto como comprado -->
                                     <i class="fas fa-plus-circle"></i>
@@ -42,17 +42,20 @@
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </td>
-                            <td>{{(produto.quantidade*produto.preco) | currency:"BRL"}}</td>
+                            <td class="text-center">{{(produto.quantidade*produto.preco) | currency:"BRL"}}</td>
                         </tr>
                     </table>
                 </div>
                 <hr>
                 <div>
                     <div class="totalizacao">
-                        <div>SubTotal: {{subTotalCompra | currency:"BRL"}}</div>
-                        <div>Frete: {{frete | currency:"BRL"}}</div>                         
-                        <div>Total do Pedido: {{subTotalCompra+frete | currency:"BRL"}}</div>                        
-                    </div>                    
+                        <table>
+                            <tr>
+                                <td>Valor Total dos Itens:</td>
+                                <td>{{subTotalCompra | currency:"BRL"}}</td>
+                            </tr>
+                        </table>
+                    </div>                  
                     <hr>
                     <div>
                         <mat-form-field class="example-full-width" appearance="fill">
