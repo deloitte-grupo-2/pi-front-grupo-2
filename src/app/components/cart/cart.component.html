@@ -29,15 +29,15 @@
                             <td>{{produto.nome}}</td>
                             <td class="text-center">{{produto.quantidade}}</td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="IncrementarQuantidade(produto.produtoId)">
+                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="IncrementarQuantidade(produto.id)">
                                     <!-- Ícone para marcar/desmarcar produto como comprado -->
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="DecrementarQuantidade(produto.produtoId)">
+                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="DecrementarQuantidade(produto.id)">
                                     <!-- Ícone para marcar/desmarcar produto como comprado -->
                                     <i class="fas fa-minus-circle"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="RemoverProduto(produto.produtoId)">
+                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="RemoverProduto(produto.id)">
                                     <!-- Ícone para marcar/desmarcar produto como comprado -->
                                     <i class="far fa-trash-alt"></i>
                                 </button>
@@ -71,6 +71,7 @@
                     </div>
                 </div>
                 <div class="fechar-pedido">
+                    <button type="submit" routerLink="">Continuar comprando</button>
                     <button type="button" (click)="GravarAgendamento()" routerLink="/pedido">Continuar</button>
                 </div>            
             </div>

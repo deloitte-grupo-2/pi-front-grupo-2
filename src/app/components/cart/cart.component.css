@@ -19,10 +19,13 @@ h2 {
   }
   
 
-.fechar-pedido{
-    text-align: center;
-    margin-top: 5px;
-  }
+.fechar-pedido {
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+    gap: 20px;
+}
+
 .fechar-pedido button{
     color: #ffffff;
     font-family: "Architects Daughter", sans-serif;
