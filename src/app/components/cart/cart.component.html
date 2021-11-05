@@ -25,7 +25,7 @@
                         </tr>
                         <!-- Produtos -->
                         <!-- Se isComprado=false, destacar a linha -->
-                        <tr *ngFor="let produto of carrinho" [class.table-danger]="produto.isComprado == false">
+                        <tr *ngFor="let produto of carrinho">
                             <td>{{produto.nome}}</td>
                             <td class="text-center">{{produto.quantidade}}</td>
                             <td class="text-center">

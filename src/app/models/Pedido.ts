@@ -1,17 +1,16 @@
-import { Itens } from "./Itens"
-import { Produto } from "./Produto";
+import { Item } from "./Item"
 
 export class Pedido {
     
     cliente:number;
     dataEntrega:Date;
     formaPagamento:string;
-    itens:Produto[];
+    itens:Item[];
     status: string;
     precoTotal: number;
     frete:number;
 
-    constructor(dataEntrega:Date,formaPagamento:string,itens:Produto[],frete:number){
+    constructor(dataEntrega:Date,formaPagamento:string,itens:Item[],frete:number){
         this.cliente=1;
         this.dataEntrega=dataEntrega;
         this.formaPagamento=formaPagamento;
@@ -19,7 +18,7 @@ export class Pedido {
         this.status="em processamento";
         this.frete=frete;
         this.precoTotal=this.itens
-        .map(item => item.quantidade*item.preco)
+        .map(item => item.quantidade*item.produto.preco)
         .reduce((total,atual)=>total+atual)+this.frete;
 
         console.log(this);
