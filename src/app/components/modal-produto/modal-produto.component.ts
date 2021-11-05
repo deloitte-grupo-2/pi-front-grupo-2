@@ -34,7 +34,7 @@ export class ModalProdutoComponent implements OnInit {
   formulario!:FormGroup;
   // Dados para adicionar em Itens de Pedido
   formItens!:FormGroup;
-
+  
   constructor(private produtoService:ProdutoService) { }
 
   ngOnInit(): void { 

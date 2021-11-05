@@ -50,16 +50,12 @@ export class OrderComponent implements OnInit {
 
     // Instanciando o formulário para Itens de Pedido
     this.formCliente = new FormGroup({
-      // Incluindo os campos de Itens de Pedido
-      // Estes campos virão do model Item
-      //cliente: new FormBuilder().group({
+      // Configurando ID do Cliente
         id: new FormControl()
-      //})
     });
 
     // Configurar cliente padrão
-    this.formCliente.value.id=1;
-    console.log(this.formCliente.value);
+    this.formCliente.value.id=1;    
   }
 
   CarregarCarinho(): void {
@@ -122,26 +118,18 @@ export class OrderComponent implements OnInit {
   }
 
   FecharPedido(): void {
-    // console.log(ItensJSON);
-    // const itens:Item[]=new Array();
-    // this.carrinho.forEach(produto => {
-    //     console.log(produto);
-    //     const constItem=itens.find(item => {
-    //          item.produto=produto;
-    //        })
-    //        if(constItem) {
-    //             console.log(constItem);
-    //             constItem.quantidade=produto.quantidade;
-    //          } else {
-    //              itens.push(new Item(produto));
-    //            }
-    //         });   
-
-    //this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.carrinho,this.frete));
+    // Gravando ID do Cliente
     const CLIENTE:ClienteID=this.formCliente.value;
-    this.pedidoService.CriarPedido(new Pedido(CLIENTE,this.agendamento,"dinheiro",this.itensPedido,this.subTotalCompra+this.frete));
-    console.log("Requisição enviada. Verifique o BD");// var ItensJSON:string=this.pedidoService.ParserCarrinho(1,this.carrinho,this.agendamento,"em processamento",this.subTotalCompra+this.frete);
-    
+    // Gerando o pedido através do Service
+    this.pedidoService.CriarPedido(new Pedido(CLIENTE,this.agendamento,"dinheiro",this.itensPedido,this.subTotalCompra+this.frete)).subscribe(
+      {
+      next: data =>{      
+        console.log(data);
+        },
+      error: err => console.log(err),
+      complete: () => console.log("Observável finalizado")
+      });
+      console.log("Requisição enviada. Verifique o BD");
   }
         
 }
