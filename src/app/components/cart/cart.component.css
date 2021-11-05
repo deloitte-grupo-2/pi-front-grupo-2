@@ -6,34 +6,42 @@ h2 {
     font-family: "Allura", sans-serif;
     text-align: center;
     font-size: 3.6em;
-  }
+}
 
-  .totalizacao{
+.totalizacao {
     text-align: right;
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .totalizacao td{
-    padding: 5px;
-  }
-  
+}
 
-.fechar-pedido{
+.totalizacao td {
+    padding: 5px;
+}
+
+td button {
+    color: #dc969c;
+    border-color: #dc969c;
+}
+
+td button:hover {
+    color: white;
+    border-color: white;
+    background-color: #ff6584;
+}
+
+.fechar-pedido {
     text-align: center;
     margin-top: 5px;
-  }
-.fechar-pedido button{
+}
+
+.fechar-pedido button {
     color: #ffffff;
     font-family: "Architects Daughter", sans-serif;
     font-size: 1.4em;
-
     background-color: #ff6584;
     border: none;
     border-radius: 1em;
-
     margin: 0.5em 0 0 0;
     padding: 0.4em;
-
     cursor: pointer;
 }

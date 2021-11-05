@@ -6,22 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-
-  images = [
-    {
-      path: 'assets/Imagens/Carrossel2.jpeg'
-    },
-    {
-      path: 'assets/Imagens/Carrossel3.jpeg'
-    },
-    {
-      path: 'assets/Imagens/Carrossel4.jpeg'
-    },
-    {
-      path: 'assets/Imagens/Carrossel5.jpeg'
-    }
-  ]
-
   constructor() { }
 
   ngOnInit(): void {
