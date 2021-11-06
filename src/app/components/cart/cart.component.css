@@ -26,8 +26,10 @@ td button:hover {
 }
 
 .fechar-pedido {
-    text-align: center;
-    margin-top: 5px;
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+  gap: 20px;
 }
 
 .fechar-pedido button {
@@ -40,4 +42,8 @@ td button:hover {
     margin: 0.5em 0 0 0;
     padding: 0.4em;
     cursor: pointer;
+}
+
+.carrinho-vazio {
+    text-align: center;
 }
