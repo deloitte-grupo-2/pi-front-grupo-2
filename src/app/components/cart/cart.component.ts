@@ -197,6 +197,14 @@ LimparCarrinho(): void {
     this.CarregarCarrinho();
 }
 
+isCarrinhoVazio(): boolean {
+  if(this.carrinho.length==0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // Métodos da classe
   mostrarLogin(){
     this.mostrandoLogin = true;
