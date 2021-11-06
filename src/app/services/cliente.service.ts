@@ -44,8 +44,7 @@ export class ClienteService {
     let token = window.sessionStorage.getItem('token');
     console.log(`${this.url}/usuario/consultar/${clienteEmail}`);
     return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
-  
-    
+      
   }
 
 

@@ -27,6 +27,7 @@ export class AtualizarCadastroComponent implements OnInit {
       {
         next: cliente => {
           console.log(cliente);
+          localStorage.removeItem("cliente");
           localStorage.setItem("cliente", JSON.stringify(cliente));
           
          
