@@ -141,7 +141,6 @@ FecharPedido(): void {
       this.subTotalCompra=0;
       this.frete=0;
   }
-}
   
     // Métodos da classe
     mostrarLogin(){
@@ -160,5 +159,5 @@ FecharPedido(): void {
     esconderCadastro(){
       this.mostrandoCadastro = false;
     }
-
-}
+    
+  }

@@ -49,8 +49,6 @@ export class ModalCadastroComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-
-    console.log(JSON.stringify(this.form.value, null, 2))
     
     this.service.criarCliente(cliente).subscribe(
       {
