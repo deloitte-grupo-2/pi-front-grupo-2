@@ -10,7 +10,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 interface response{
   msg:string,
   token: string,
-  email: string
+  email:string
 }
 
 
@@ -28,7 +28,9 @@ export class ModalLoginComponent implements OnInit {
   @Output() onCadastrarClick:EventEmitter<null> = new EventEmitter();
 
   form!: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
+
+  falhou: boolean = false;
 
 
   constructor(
@@ -76,8 +78,10 @@ export class ModalLoginComponent implements OnInit {
         console.log(ClienteService.email);
         this.cancelar();
         },
-      error: err => console.log(err)
-      
+      error: err => {
+        console.log(err),
+        this.falhou = true
+      }
       });
      
   }

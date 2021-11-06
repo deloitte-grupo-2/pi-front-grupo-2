@@ -23,6 +23,11 @@ export class ProdutoService {
     return this.http.get<Produto[]>(this.url + '/produto/consultar', {headers:{Authorization:`${token}`}})
   }
 
+  criarProduto(produto:Produto):Observable<Produto> {
+    let token = window.sessionStorage.getItem('token');
+    return this.http.post<Produto>(this.url +"/produto/criar", produto, {headers:{Authorization:`${token}`}});
+  }
+
   sendClick(){
       this.subject.next();
   }
@@ -31,7 +36,4 @@ export class ProdutoService {
       return this.subject.asObservable();
   }
 
-  addProduto(produto:Produto):Observable<Produto> {
-    return this.http.post<Produto>(`${this.url}/produto/cadastrar`, produto);
-  }
 }

@@ -1,4 +1,6 @@
-<app-header></app-header>
+<app-header (onAddContatoClick)="mostrarLogin()"></app-header>
+<app-modal-login (onCancelarClick)="esconderLogin()" (onCadastrarClick)="mostrarCadastro()" *ngIf="mostrandoLogin"></app-modal-login>
+<app-modal-cadastro (onCancelarClick)="esconderCadastro()" *ngIf="mostrandoCadastro" (onLogarClick)="mostrarLogin()" (onLogarClick)="esconderCadastro()"></app-modal-cadastro>
 
 <article>
     <div class="register-form">
@@ -105,11 +107,19 @@
 
                 <div class="tipo">
                     <label class="tipo"> Tipo </label>
-                    <input type="string" placeholder="Comercial ou residencial" formControlName="apelido" class="form-control" [ngClass]="{ 'is-invalid': submitted && campoEndereco.apelido.errors }" />
+                    <input type="string" placeholder="Comercial ou residencial" formControlName="apelido" class="form-control" [ngClass]="{
+              'is-invalid': submitted && campoEndereco.apelido.errors
+            }" />
                     <div *ngIf="submitted && campoEndereco.apelido.errors" class="invalid-feedback">
-                        <div *ngIf="campoEndereco.apelido.errors.required">Apelido inválido</div>
-                        <div *ngIf="campoEndereco.apelido.errors.minlength">Apelido inválido</div>
-                        <div *ngIf="campoEndereco.apelido.errors.maxlength">Apelido inválido</div>
+                        <div *ngIf="campoEndereco.apelido.errors.required">
+                            Apelido inválido
+                        </div>
+                        <div *ngIf="campoEndereco.apelido.errors.minlength">
+                            Apelido inválido
+                        </div>
+                        <div *ngIf="campoEndereco.apelido.errors.maxlength">
+                            Apelido inválido
+                        </div>
                     </div>
                 </div>
             </div>

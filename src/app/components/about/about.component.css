@@ -17,7 +17,8 @@ section.historia article {
 }
 
 section.historia article .materia_historia {
-  width: 50%;
+  width: 70%;
+  padding: 0 0.6em;
 }
 
 section.historia article h2 {
@@ -28,7 +29,7 @@ section.historia article h2 {
 }
 
 section.historia article .imagem_historia {
-  width: 50%;
+  width: 30%;
 }
 
 section.historia article .imagem_historia figure img {
