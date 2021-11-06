@@ -1,75 +1,43 @@
 <section id="modal">
-  <article>
-    <img
-      class="fechar"
-      (click)="cancelar()"
-      src="assets\Imagens\close.png"
-      alt="Botão de fechar aba"
-    />
+    <article>
+        <img class="fechar" (click)="cancelar()" src="assets\Imagens\close.png" alt="Botão de fechar aba" />
 
-    <figure>
-      <img
-        src="assets\Imagens\salom_logo_rosa.png"
-        alt="Logo Salom (uma fatia de bolo)"
-      />
-    </figure>
+        <figure>
+            <img src="assets\Imagens\salom_logo_rosa.png" alt="Logo Salom (uma fatia de bolo)" />
+        </figure>
 
-    <div class="register-form">
-      <form
-        #clienteLogin="ngForm"
-        [formGroup]="form"
-        (ngSubmit)="onSubmit(clienteLogin.value)"
-      >
-        <div class="form-group">
-          <label> E-mail </label>
-          <input
-            type="text"
-            formControlName="email"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && campoForm.email.errors }"
-            name="email"
-            ngModel
-          />
-          <div
-            *ngIf="submitted && campoForm.email.errors"
-            class="invalid-feedback"
-          >
-            <div *ngIf="campoForm.email.errors.required">E-mail inválido</div>
-            <div *ngIf="campoForm.email.errors.email">E-mail inválido</div>
-          </div>
+        <div class="register-form">
+            <form #clienteLogin="ngForm" [formGroup]="form" (ngSubmit)="onSubmit(clienteLogin.value)">
+                <div class="form-group">
+                    <label> E-mail </label>
+                    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && campoForm.email.errors }" name="email" ngModel />
+                    <div *ngIf="submitted && campoForm.email.errors" class="invalid-feedback">
+                        <div *ngIf="campoForm.email.errors.required">E-mail inválido</div>
+                        <div *ngIf="campoForm.email.errors.email">E-mail inválido</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label> Senha </label>
+                    <input type="password" formControlName="senha" class="form-control" [ngClass]="{ 'is-invalid': submitted && campoForm.senha.errors }" name="senha" ngModel />
+
+                    <div *ngIf="submitted && campoForm.senha.errors" class="invalid-feedback">
+                        <div *ngIf="campoForm.senha.errors.required">Senha inválida</div>
+                        <div *ngIf="campoForm.senha.errors.minlength">
+                            Senha precisa ter, pelo menos, 8 caracteres
+                        </div>
+                        <div *ngIf="campoForm.senha.errors.maxlength">
+                            Senha precisa ter, no máximo, 30 caracteres
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controles">
+                    <p type="button" (click)="cadastrar()">Criar uma conta</p>
+
+                    <button type="submit" (click)="salvandoCliente()">Entrar</button>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group">
-          <label> Senha </label>
-          <input
-            type="password"
-            formControlName="senha"
-            class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && campoForm.senha.errors }"
-            name="senha"
-            ngModel
-          />
-
-          <div
-            *ngIf="submitted && campoForm.senha.errors"
-            class="invalid-feedback"
-          >
-            <div *ngIf="campoForm.senha.errors.required">Senha inválida</div>
-            <div *ngIf="campoForm.senha.errors.minlength">
-              Senha precisa ter, pelo menos, 8 caracteres
-            </div>
-            <div *ngIf="campoForm.senha.errors.maxlength">
-              Senha precisa ter, no máximo, 30 caracteres
-            </div>
-          </div>
-        </div>
-
-        <div class="controles">
-          <p type="button" (click)="cadastrar()">Criar uma conta</p>
-
-          <button type="submit">Entrar</button>
-        </div>
-      </form>
-    </div>
-  </article>
+    </article>
 </section>

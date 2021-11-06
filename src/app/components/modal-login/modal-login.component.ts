@@ -72,19 +72,43 @@ export class ModalLoginComponent implements OnInit {
       {
       next: data =>{
         window.sessionStorage.setItem("token", (<response>data).token);
- 
-        this.router.navigateByUrl("/atualizar-cadastro");
-
         ClienteService.email.email = (<response>data).email;
-       
         console.log(ClienteService.email);
+        this.cancelar();
         },
       error: err => console.log(err)
       
       });
+     
+  }
 
+  salvandoCliente() {
+    console.log("cheguei");
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve( 
+          this.service.consultarClientePorEmail(ClienteService.email.email).subscribe(
+            {
+              next: cliente => {
+                console.log(cliente);
+                localStorage.setItem("cliente", JSON.stringify(cliente));
+                
+              },
+              error: err => {
+              console.error(err)
+              console.log(ClienteService.email.email);
+              console.log("não cheguei");
+              }
+            }
+          )
+         );
+      }, 10000);
+    });
+  }    
+
+  
   }
  
-  }
+  
 
 

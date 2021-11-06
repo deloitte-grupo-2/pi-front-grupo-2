@@ -23,9 +23,6 @@
             <label> E-mail </label>
             <input type="email" formControlName="email" />
 
-            <label> Senha </label>
-            <input type="password" formControlName="senha" />
-
             <h2>Telefone</h2>
             <div class="contato" formGroupName="telefone">
                 <div class="form-group ddd">
@@ -108,11 +105,11 @@
 
                 <div class="tipo">
                     <label class="tipo"> Tipo </label>
-                    <input type="string" placeholder="Comercial ou residencial" formControlName="tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && campoEndereco.tipo.errors }" />
-                    <div *ngIf="submitted && campoEndereco.tipo.errors" class="invalid-feedback">
-                        <div *ngIf="campoEndereco.tipo.errors.required">Tipo inválido</div>
-                        <div *ngIf="campoEndereco.tipo.errors.minlength">Tipo inválido</div>
-                        <div *ngIf="campoEndereco.tipo.errors.maxlength">Tipo inválido</div>
+                    <input type="string" placeholder="Comercial ou residencial" formControlName="apelido" class="form-control" [ngClass]="{ 'is-invalid': submitted && campoEndereco.apelido.errors }" />
+                    <div *ngIf="submitted && campoEndereco.apelido.errors" class="invalid-feedback">
+                        <div *ngIf="campoEndereco.apelido.errors.required">Apelido inválido</div>
+                        <div *ngIf="campoEndereco.apelido.errors.minlength">Apelido inválido</div>
+                        <div *ngIf="campoEndereco.apelido.errors.maxlength">Apelido inválido</div>
                     </div>
                 </div>
             </div>

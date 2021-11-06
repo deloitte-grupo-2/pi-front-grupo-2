@@ -23,19 +23,7 @@ export class AtualizarCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.consultarClientePorEmail(ClienteService.email.email).subscribe(
-      {
-        next: cliente => {
-          console.log(cliente);
-          localStorage.removeItem("cliente");
-          localStorage.setItem("cliente", JSON.stringify(cliente));
-          
-         
-          
-        },
-        error: err => console.error(err)
-      }
-    );
+    
     
     let auxDois:any =localStorage.getItem("cliente");
     let aux = JSON.parse(auxDois);
@@ -47,7 +35,6 @@ export class AtualizarCadastroComponent implements OnInit {
       nome:[`${aux.nome}`],
       cpf: [`${aux.cpf}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       email:[`${aux.email}`],
-      senha:[`${aux.senha}`],
       telefone: this.formBuilder.group({
         ddd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         numero: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
@@ -58,7 +45,7 @@ export class AtualizarCadastroComponent implements OnInit {
         logradouro: ['', [Validators.required]],
         numero: ['', [Validators.required]],
         complemento: [''],
-        tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]]
+        apelido: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]]
       })
     });
     console.log(ClienteService.email.email);
@@ -90,11 +77,13 @@ onSubmit(cliente:Cliente){
   this.service.atualizarCliente(cliente).subscribe(
     {
     next: data =>{
-      
       console.log(data);
-
+      localStorage.removeItem("cliente");
+      localStorage.setItem("cliente", JSON.stringify(cliente));
       },
-    error: err => console.log(err)
+    error: err => {
+    console.log(err)
+    console.log(JSON.stringify(cliente));}
     });
 }
   
