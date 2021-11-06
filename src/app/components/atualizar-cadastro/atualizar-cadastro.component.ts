@@ -27,45 +27,45 @@ export class AtualizarCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.service.consultarClientePorEmail(ClienteService.clienteLogado.email).subscribe(
+    this.service.consultarClientePorEmail(ClienteService.email.email).subscribe(
       {
         next: cliente => {
           console.log(cliente);
+          localStorage.setItem("cliente", JSON.stringify(cliente));
           
-           ClienteService.clienteLogado.nome = cliente.nome;
-           ClienteService.clienteLogado.cpf = cliente.cpf;
-           ClienteService.clienteLogado.telefone = cliente.telefone;
-           ClienteService.clienteLogado.endereco = cliente.endereco;
-           console.log(ClienteService.clienteLogado.nome);
-           
+         
+          
         },
         error: err => console.error(err)
       }
     );
+    
+    let auxDois:any =localStorage.getItem("cliente");
+    let aux = JSON.parse(auxDois);
+    console.log(aux);
+    
+    
    
     this.form = this.formBuilder.group({
-      nome:[`${ClienteService.clienteLogado.nome}`],
-      cpf: [`${this.teste}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
-      email:[''],
-      senha:[''],
+      nome:[`${aux.nome}`],
+      cpf: [`${aux.cpf}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+      email:[`${aux.email}`],
+      senha:[`${aux.senha}`],
       telefone: this.formBuilder.group({
         ddd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         numero: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
         tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
       }),
       endereco: this.formBuilder.group({
-        cep: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+        cep: [``, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
         logradouro: ['', [Validators.required]],
         numero: ['', [Validators.required]],
         complemento: [''],
         tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]]
       })
     });
-    console.log(ClienteService.clienteLogado);
-    console.log(ClienteService.clienteLogado.nome);
-    console.log(ClienteService.clienteLogado.cpf);
-    console.log(ClienteService.clienteLogado.endereco);
+    console.log(ClienteService.email.email);
+ 
   }
 
 

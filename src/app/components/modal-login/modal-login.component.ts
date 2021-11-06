@@ -12,6 +12,8 @@ interface response{
   token: string
 }
 
+
+
 @Component({
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html',
@@ -71,10 +73,10 @@ export class ModalLoginComponent implements OnInit {
       {
       next: data =>{
         window.sessionStorage.setItem("token", (<response>data).token);
+ 
         this.router.navigateByUrl("/atualizar-cadastro");
-        // ClienteService.clienteLogado.email = (<response>data).email;
-       
-        console.log(ClienteService.clienteLogado);
+        ClienteService.email.email = (<response>data).email;
+        console.log(ClienteService.email);
         },
       error: err => {
         console.log(err),
