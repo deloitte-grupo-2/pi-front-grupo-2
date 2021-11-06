@@ -1,4 +1,15 @@
-<app-header></app-header>
+<app-header (onAddContatoClick)="mostrarLogin()"></app-header>
+<app-modal-login
+  (onCancelarClick)="esconderLogin()"
+  (onCadastrarClick)="mostrarCadastro()"
+  *ngIf="mostrandoLogin"
+></app-modal-login>
+<app-modal-cadastro
+  (onCancelarClick)="esconderCadastro()"
+  *ngIf="mostrandoCadastro"
+  (onLogarClick)="mostrarLogin()"
+  (onLogarClick)="esconderCadastro()"
+></app-modal-cadastro>
 
 <article>
     <div class="register-form">

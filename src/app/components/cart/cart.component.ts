@@ -39,6 +39,10 @@ export class CartComponent implements OnInit {
   cepOrigem:string;
   cepDestino:string;
 
+  mostrandoLogin = false;
+  mostrandoCadastro = false;
+  mostrandoProduto = false;
+
   constructor(private formBuilder:FormBuilder) {
     // Recuperando o ano atual
     const DATAATUAL = new Date();
@@ -217,5 +221,23 @@ export class CartComponent implements OnInit {
       // Carrinho não existe no LocalStorage. Inicializar array.
       this.itensPedido = [];
     } 
+  }
+
+  // Métodos da classe
+  mostrarLogin(){
+    this.mostrandoLogin = true;
+  }
+
+  esconderLogin(){
+    this.mostrandoLogin = false;
+  }
+  
+  mostrarCadastro(){
+    this.mostrandoLogin = false;
+    this.mostrandoCadastro = true;
+  }
+
+  esconderCadastro(){
+    this.mostrandoCadastro = false;
   }
 }
