@@ -3,20 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Cliente } from '../models/Cliente';
 import {take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Usuario } from '../models/Usuario';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
+
 export class ClienteService {
 
-  public static clienteLogado:Cliente ={
-    nome: "",
-    email:"",
-    senha:"",
-    cpf:"",
-    endereco:[],
-    telefone:[]
-  }
+
   
 
   private readonly url = "https://api-salom-doces.herokuapp.com";
@@ -40,7 +38,10 @@ export class ClienteService {
 
   consultarClientePorEmail(clienteEmail:string):Observable<Cliente> {
     let token = window.sessionStorage.getItem('token');
+    console.log(`${this.url}/usuario/consultar/${clienteEmail}`);
     return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
+  
+    
   }
 
 

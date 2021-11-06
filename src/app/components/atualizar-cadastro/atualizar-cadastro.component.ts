@@ -23,27 +23,22 @@ export class AtualizarCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.service.consultarClientePorEmail(ClienteService.clienteLogado.email).subscribe(
+    this.service.consultarClientePorEmail().subscribe(
       {
         next: cliente => {
           console.log(cliente);
+         
           
-           ClienteService.clienteLogado.nome = cliente.nome;
-           ClienteService.clienteLogado.cpf = cliente.cpf;
-           ClienteService.clienteLogado.telefone = cliente.telefone;
-           ClienteService.clienteLogado.endereco = cliente.endereco;
-           console.log(ClienteService.clienteLogado.nome);
-           
         },
         error: err => console.error(err)
       }
     );
+    
    
     this.form = this.formBuilder.group({
-      nome:[`${ClienteService.clienteLogado.nome}`],
+      nome:[`teste`],
       cpf: [`${this.teste}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
-      email:[''],
+      email:[``],
       senha:[''],
       telefone: this.formBuilder.group({
         ddd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
@@ -58,10 +53,11 @@ export class AtualizarCadastroComponent implements OnInit {
         tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]]
       })
     });
-    console.log(ClienteService.clienteLogado);
-    console.log(ClienteService.clienteLogado.nome);
-    console.log(ClienteService.clienteLogado.cpf);
-    console.log(ClienteService.clienteLogado.endereco);
+    console.log(ClienteService.email.email);
+    console.log(ClienteService.mapaClienteLogado)
+    console.log(ClienteService.mapaClienteLogado.get('nome'));
+    console.log(ClienteService.mapaClienteLogado.get("email"));
+ 
   }
 
 
