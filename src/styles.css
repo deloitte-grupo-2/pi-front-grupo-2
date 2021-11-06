@@ -23,6 +23,26 @@ article {
   max-width: 100%;
   margin: 0 auto;
 }
-/* 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+.sucesso,
+.fracasso {
+  width: fit-content;
+  height: 2.2em;
+
+  margin-bottom: 1em;
+
+  border-radius: 1em;
+  background-color: rgb(131, 236, 131);
+}
+
+.fracasso {
+  background-color: #f65f5f;
+}
+
+.sucesso p,
+.fracasso p {
+  /* font-size: 1.4em; */
+  padding-left: 0 1em;
+
+  color: #4a4949;
+}

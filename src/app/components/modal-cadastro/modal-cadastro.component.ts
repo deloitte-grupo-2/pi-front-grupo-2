@@ -14,7 +14,9 @@ export class ModalCadastroComponent implements OnInit {
   @Output() onLogarClick:EventEmitter<null> = new EventEmitter();
 
   form!: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
+
+  falhou:boolean = false;
 
   constructor(private formBuilder: FormBuilder, private service:ClienteService) {}
 
@@ -56,8 +58,10 @@ export class ModalCadastroComponent implements OnInit {
         this.logar();
         console.log(data);
         },
-      error: err => console.log(err),
-      complete: () => console.log("Observável finalizado")
+      error: err => {
+        console.log(err);
+        this.falhou = true;
+      }
       });
   }
 

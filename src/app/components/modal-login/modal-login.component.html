@@ -70,6 +70,10 @@
           <button type="submit">Entrar</button>
         </div>
       </form>
+
+      <div *ngIf="falhou" class="fracasso">
+        <p>Falha ao se conectar. Tente novamente</p>
+      </div>
     </div>
   </article>
 </section>

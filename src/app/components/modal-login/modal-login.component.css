@@ -102,3 +102,12 @@
 .invalid-feedback {
   font-size: 1em;
 }
+
+.fracasso {
+  margin: 0 auto;
+}
+
+.fracasso p {
+  font-size: 1.4em;
+  padding: 0 0.6em;
+}

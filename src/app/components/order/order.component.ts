@@ -26,10 +26,12 @@ export class OrderComponent implements OnInit {
   carrinho!:Produto[];
   // Criando itens de pedido
   itensPedido!:Item[];
-  // Email para consultar Cliente
-  email:string="brunosabia@gmail.com";
 
   formCliente!:FormGroup;
+
+  mostrandoLogin = false;
+  mostrandoCadastro = false;
+  mostrandoProduto = false;
   
   //Injetando construtor do formulário e o serviço para Pedido
   constructor(private formBuilder:FormBuilder,private pedidoService:PedidoService) {
@@ -135,6 +137,24 @@ FecharPedido(): void {
       localStorage.removeItem("itensPedido");
       localStorage.removeItem("entrega");
       localStorage.removeItem("produtoModal");
-  } 
+  }
+  
+    // Métodos da classe
+    mostrarLogin(){
+      this.mostrandoLogin = true;
+    }
+  
+    esconderLogin(){
+      this.mostrandoLogin = false;
+    }
+    
+    mostrarCadastro(){
+      this.mostrandoLogin = false;
+      this.mostrandoCadastro = true;
+    }
+  
+    esconderCadastro(){
+      this.mostrandoCadastro = false;
+    }
 }
 
