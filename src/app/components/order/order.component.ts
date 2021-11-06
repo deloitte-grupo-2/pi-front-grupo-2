@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit {
   carrinho!:Produto[];
   // Criando itens de pedido
   itensPedido!:Item[];
-
+  // Formulário com dados do cliente (atualmente, ID hard coded)
   formCliente!:FormGroup;
 
   mostrandoLogin = false;
@@ -35,6 +35,8 @@ export class OrderComponent implements OnInit {
   
   //Injetando construtor do formulário e o serviço para Pedido
   constructor(private formBuilder:FormBuilder,private pedidoService:PedidoService) {
+    // Objeto dos Correios
+    // const { calcularPrecoPrazo } = require('correios-brasil');
     // Incializar subTotalCompra
     this.subTotalCompra=0;
     // Inicializar frete
@@ -42,16 +44,15 @@ export class OrderComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    // Carregando dados do Carrinho e agendamento
     this.CarregarCarinho();
     this.CarregarAgendamento();
     this.CarregarItensPedido();
-
     // Instanciando o formulário para Itens de Pedido
     this.formCliente = new FormGroup({
       // Configurando ID do Cliente
         id: new FormControl()
     });
-
     // Configurar cliente padrão
     this.formCliente.value.id=1;    
   }
@@ -137,7 +138,10 @@ FecharPedido(): void {
       localStorage.removeItem("itensPedido");
       localStorage.removeItem("entrega");
       localStorage.removeItem("produtoModal");
+      this.subTotalCompra=0;
+      this.frete=0;
   }
+}
   
     // Métodos da classe
     mostrarLogin(){
@@ -156,5 +160,5 @@ FecharPedido(): void {
     esconderCadastro(){
       this.mostrandoCadastro = false;
     }
-}
 
+}

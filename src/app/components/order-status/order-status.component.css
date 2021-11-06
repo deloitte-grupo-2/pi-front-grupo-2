@@ -16,3 +16,33 @@ h2 {
     text-align: center;
     font-size: 3.6em;
   }
+
+h4 {
+    font-family: "Allura", sans-serif;
+    text-align: center;
+    font-size: 2em;
+}
+
+figure {
+    text-align: center;
+}
+
+.concluido{
+    text-align: center;
+    margin-top: 5px;
+  }
+
+.concluido button{
+    color: #ffffff;
+    font-family: "Architects Daughter", sans-serif;
+    font-size: 1.4em;
+
+    background-color: #ff6584;
+    border: none;
+    border-radius: 1em;
+
+    margin: 0.5em 0 0 0;
+    padding: 0.4em;
+
+    cursor: pointer;
+}
