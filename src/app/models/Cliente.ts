@@ -10,8 +10,13 @@ export class Cliente{
     endereco?:Endereco[];
     telefone?:Telefone[]
 
-    constructor(map:Map<string, any>){
-        Object.keys(this).forEach(atributo => Object.defineProperty(this, atributo, {value: map.get(atributo)}))
+    constructor(nome:string, email:string, senha:string,cpf:string, endereco:Endereco[], telefone:Telefone[]){
+    this.nome = nome;
+    this.email = email;
+    this.senha = senha;
+    this.cpf = cpf;
+    this.endereco = endereco;
+    this.telefone = telefone;
     }
 }
     

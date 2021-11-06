@@ -13,7 +13,7 @@ interface response{
   email: string
 }
 
-in
+
 
 @Component({
   selector: 'app-modal-login',
@@ -72,7 +72,7 @@ export class ModalLoginComponent implements OnInit {
       {
       next: data =>{
         window.sessionStorage.setItem("token", (<response>data).token);
-        window.sessionStorage.setItem()
+ 
         this.router.navigateByUrl("/atualizar-cadastro");
 
         ClienteService.email.email = (<response>data).email;

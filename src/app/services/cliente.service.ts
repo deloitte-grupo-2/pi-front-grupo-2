@@ -15,6 +15,10 @@ import { Usuario } from '../models/Usuario';
 export class ClienteService {
 
 
+
+  public static email:Usuario ={
+    email: ""
+  }
   
 
   private readonly url = "https://api-salom-doces.herokuapp.com";

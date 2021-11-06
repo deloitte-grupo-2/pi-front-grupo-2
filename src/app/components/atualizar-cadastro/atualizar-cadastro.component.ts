@@ -23,10 +23,12 @@ export class AtualizarCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.consultarClientePorEmail().subscribe(
+    this.service.consultarClientePorEmail(ClienteService.email.email).subscribe(
       {
         next: cliente => {
           console.log(cliente);
+          localStorage.setItem("cliente", JSON.stringify(cliente));
+          
          
           
         },
@@ -34,19 +36,24 @@ export class AtualizarCadastroComponent implements OnInit {
       }
     );
     
+    let auxDois:any =localStorage.getItem("cliente");
+    let aux = JSON.parse(auxDois);
+    console.log(aux);
+    
+    
    
     this.form = this.formBuilder.group({
-      nome:[`teste`],
-      cpf: [`${this.teste}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
-      email:[``],
-      senha:[''],
+      nome:[`${aux.nome}`],
+      cpf: [`${aux.cpf}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+      email:[`${aux.email}`],
+      senha:[`${aux.senha}`],
       telefone: this.formBuilder.group({
         ddd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         numero: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
         tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
       }),
       endereco: this.formBuilder.group({
-        cep: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+        cep: [``, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
         logradouro: ['', [Validators.required]],
         numero: ['', [Validators.required]],
         complemento: [''],
@@ -54,9 +61,6 @@ export class AtualizarCadastroComponent implements OnInit {
       })
     });
     console.log(ClienteService.email.email);
-    console.log(ClienteService.mapaClienteLogado)
-    console.log(ClienteService.mapaClienteLogado.get('nome'));
-    console.log(ClienteService.mapaClienteLogado.get("email"));
  
   }
 
