@@ -35,9 +35,7 @@ li {
     align-content: space-between;
     justify-content: center;
     gap: 20px;
-    /* flex-wrap: wrap; */
 }
-
 
 .fechar-pedido button{
     color: #ffffff;
