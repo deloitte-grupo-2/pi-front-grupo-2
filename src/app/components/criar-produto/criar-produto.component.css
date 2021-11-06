@@ -4,6 +4,30 @@ article {
   margin: 4em;
 }
 
+article form .sucesso,
+article form .fracasso {
+  width: fit-content;
+  height: 2.2em;
+
+  margin-bottom: 1em;
+
+  border-radius: 1em;
+  background-color: rgb(131, 236, 131);
+}
+
+article form .fracasso {
+  background-color: #f87a7a;
+}
+
+article form .sucesso p,
+article form .fracasso p {
+  font-size: 1.4em;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  color: #4a4949;
+}
+
 article form {
   width: 80%;
   margin: 0 auto;

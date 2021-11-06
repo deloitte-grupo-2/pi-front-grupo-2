@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() onAddContatoClick:EventEmitter<null> = new EventEmitter();
 
-  constructor() { }
+  constructo() { }
 
   ngOnInit(): void {
   }
@@ -23,7 +23,4 @@ export class HeaderComponent implements OnInit {
     console.log(elem);
     document.querySelector(elem).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-
- 
-
 }

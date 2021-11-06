@@ -17,6 +17,10 @@ export class AtualizarCadastroComponent implements OnInit {
   submitted = false;
 
   teste:string = "teste";
+  
+  mostrandoLogin = false;
+  mostrandoCadastro = false;
+  mostrandoProduto = false;
 
   constructor(private formBuilder: FormBuilder, private service:ClienteService) {
 
@@ -64,6 +68,25 @@ export class AtualizarCadastroComponent implements OnInit {
     console.log(ClienteService.clienteLogado.endereco);
   }
 
+
+    
+  // Métodos da classe
+  mostrarLogin(){
+    this.mostrandoLogin = true;
+  }
+
+  esconderLogin(){
+    this.mostrandoLogin = false;
+  }
+  
+  mostrarCadastro(){
+    this.mostrandoLogin = false;
+    this.mostrandoCadastro = true;
+  }
+
+  esconderCadastro(){
+    this.mostrandoCadastro = false;
+  }
 
   // Acessando informações no formulário
   get campoForm(): {[key: string]: AbstractControl} {
