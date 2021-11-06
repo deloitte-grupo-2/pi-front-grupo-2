@@ -10,7 +10,9 @@
                 <!-- Usando sistema de GRID do Bootstrap -->
                 <!-- Verificando se o carrinho está vazio -->
                 <div class="pt-5 row" *ngIf="carrinho?.length == 0">
-                    <p class="text-danger">Carrinho vazio</p>
+                    <figure>
+                        <img src="assets\Imagens\CarrinhoVazio.png" alt="Carrinho vazio">
+                    </figure>
                 </div>
 
                 <div class="pt-5" *ngIf="carrinho?.length > 0">
@@ -84,8 +86,8 @@
                     </mat-card>
                 </div>
                 <div class="fechar-pedido">
-                    <button type="submit" routerLink="/carrinho">Continuar comprando</button>
-                    <button type="submit" (click)="FecharPedido()">Fechar Pedido</button>
+                    <button type="submit" routerLink="/carrinho">Retornar ao Carrinho</button>
+                    <button type="submit" (click)="FecharPedido()" routerLink="">Fechar Pedido</button>
                 </div>            
             </div>
 

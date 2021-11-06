@@ -12,7 +12,6 @@ export class CriarProdutoComponent implements OnInit {
   @Output() onCloseModalClick:EventEmitter<null> = new EventEmitter()
 
   novoProduto:Produto = {
-    id: "",
     nome: "",
     descricao: "",
     preco: 0,
@@ -40,7 +39,6 @@ export class CriarProdutoComponent implements OnInit {
   salvar(){
     this.produtoService.addProduto(this.novoProduto)
     this.novoProduto ={
-      id: "",
       nome: "",
       descricao: "",
       preco: 0,

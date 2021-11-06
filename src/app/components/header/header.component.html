@@ -25,7 +25,9 @@
         <a (click)="ScrollIntoView( '#about') ">História</a>
         <a (click)="ScrollIntoView( '#product') ">Docinhos</a>
         <a routerLink="/carrinho"><i class="fas fa-shopping-cart "></i></a>
-        <a (click)="mostrarModalClick() "><i class="fas fa-user "></i></a>
+        <a (click)="mostrarModalClick() " *ngIf="isUsuarioLogado()==false"><i class="fas fa-user "></i></a>
+        <a *ngIf="isUsuarioLogado()==true">Olá Murilo!</a>
+        <a (click)="UsuarioSair()" *ngIf="isUsuarioLogado()==true" routerLink=""><i class="fas fa-sign-out-alt"></i></a>
     </nav>
 
     <!-------------------------------- MENU HAMBURGUER -------------------------------->
