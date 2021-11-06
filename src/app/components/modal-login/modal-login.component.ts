@@ -9,9 +9,10 @@ import { ClienteService } from 'src/app/services/cliente.service';
 
 interface response{
   msg:string,
-  token: string,
-  email: string
+  token: string
 }
+
+
 
 @Component({
   selector: 'app-modal-login',
@@ -26,7 +27,9 @@ export class ModalLoginComponent implements OnInit {
   @Output() onCadastrarClick:EventEmitter<null> = new EventEmitter();
 
   form!: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
+
+  falhou: boolean = false;
 
 
   constructor(
@@ -70,13 +73,15 @@ export class ModalLoginComponent implements OnInit {
       {
       next: data =>{
         window.sessionStorage.setItem("token", (<response>data).token);
+ 
         this.router.navigateByUrl("/atualizar-cadastro");
-        ClienteService.clienteLogado.email = (<response>data).email;
-       
-        console.log(ClienteService.clienteLogado);
+        ClienteService.email.email = (<response>data).email;
+        console.log(ClienteService.email);
         },
-      error: err => console.log(err)
-      
+      error: err => {
+        console.log(err),
+        this.falhou = true
+      }
       });
 
   }

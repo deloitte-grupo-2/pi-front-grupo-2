@@ -1,4 +1,16 @@
-<app-header></app-header>
+<app-header (onAddContatoClick)="mostrarLogin()"></app-header>
+
+<app-modal-login
+  (onCancelarClick)="esconderLogin()"
+  (onCadastrarClick)="mostrarCadastro()"
+  *ngIf="mostrandoLogin"
+></app-modal-login>
+<app-modal-cadastro
+  (onCancelarClick)="esconderCadastro()"
+  *ngIf="mostrandoCadastro"
+  (onLogarClick)="mostrarLogin()"
+  (onLogarClick)="esconderCadastro()"
+></app-modal-cadastro>
 
 <div class="container mt-5 mb-5">
     <div class="container shadow p-5">
@@ -10,9 +22,7 @@
                 <!-- Usando sistema de GRID do Bootstrap -->
                 <!-- Verificando se o carrinho está vazio -->
                 <div class="pt-5 row" *ngIf="carrinho?.length == 0">
-                    <figure>
-                        <img src="assets\Imagens\CarrinhoVazio.png" alt="Carrinho vazio">
-                    </figure>
+                    <p class="text-danger">Carrinho vazio</p>
                 </div>
 
                 <div class="pt-5" *ngIf="carrinho?.length > 0">

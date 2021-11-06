@@ -34,7 +34,11 @@ export class CartComponent implements OnInit {
   frete:number;
   // Gravando a data de agendamento
 
-  constructor(private formBuilder:FormBuilder, private router:Router) {
+  mostrandoLogin = false;
+  mostrandoCadastro = false;
+  mostrandoProduto = false;
+
+  constructor(private formBuilder:FormBuilder) {
     // Recuperando o ano atual
     const DATAATUAL = new Date();
     // Data mínima para pedido: 3 dias corridos da data atual
@@ -183,16 +187,31 @@ export class CartComponent implements OnInit {
     } 
   }
 
-  LimparCarrinho(): void {
+LimparCarrinho(): void {
     // Excluindo chaves do LocalStorage
     localStorage.removeItem("carrinho");
     localStorage.removeItem("itensPedido");
     localStorage.removeItem("entrega");
     localStorage.removeItem("produtoModal");
-    sessionStorage.removeItem("token");
     // Atualizando carrinho
     this.CarregarCarrinho();
-    // Reccaregando a página para reinicializar o calendário
-    this.router.navigateByUrl("/carrinho");
+}
+
+// Métodos da classe
+  mostrarLogin(){
+    this.mostrandoLogin = true;
+  }
+
+  esconderLogin(){
+    this.mostrandoLogin = false;
+  }
+  
+  mostrarCadastro(){
+    this.mostrandoLogin = false;
+    this.mostrandoCadastro = true;
+  }
+
+  esconderCadastro(){
+    this.mostrandoCadastro = false;
   }
 }

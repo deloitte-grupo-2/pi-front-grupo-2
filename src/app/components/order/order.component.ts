@@ -28,7 +28,11 @@ export class OrderComponent implements OnInit {
   itensPedido!:Item[];
   // Formulário com dados do cliente (atualmente, ID hard coded)
   formCliente!:FormGroup;
-    
+
+  mostrandoLogin = false;
+  mostrandoCadastro = false;
+  mostrandoProduto = false;
+  
   //Injetando construtor do formulário e o serviço para Pedido
   constructor(private formBuilder:FormBuilder,private pedidoService:PedidoService) {
     // Objeto dos Correios
@@ -136,6 +140,25 @@ FecharPedido(): void {
       localStorage.removeItem("produtoModal");
       this.subTotalCompra=0;
       this.frete=0;
-  } 
+  }
 }
+  
+    // Métodos da classe
+    mostrarLogin(){
+      this.mostrandoLogin = true;
+    }
+  
+    esconderLogin(){
+      this.mostrandoLogin = false;
+    }
+    
+    mostrarCadastro(){
+      this.mostrandoLogin = false;
+      this.mostrandoCadastro = true;
+    }
+  
+    esconderCadastro(){
+      this.mostrandoCadastro = false;
+    }
 
+}
