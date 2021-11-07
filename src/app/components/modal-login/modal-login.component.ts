@@ -53,6 +53,7 @@ export class ModalLoginComponent implements OnInit {
   get campoForm(): {[key: string]: AbstractControl} {
     return this.form.controls;
   }
+  
   onSubmit(cliente:any){
     this.submitted = true;
    
@@ -95,4 +96,10 @@ export class ModalLoginComponent implements OnInit {
     });
   }    
 
+<<<<<<< HEAD
 }
+
+
+=======
+}
+>>>>>>> 20db6b01c826bde71a05dfb4e766fdafa8e5dd73

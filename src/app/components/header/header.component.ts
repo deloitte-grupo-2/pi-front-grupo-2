@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.CarregarCliente();
-
     let token = window.sessionStorage.getItem('token');
     if (token == 'Basic YWRtaW5Ac2Fsb20uY29tOmFkbWluc2Fsb20=') {
       this.admin = true;
@@ -77,7 +76,11 @@ export class HeaderComponent implements OnInit {
     // Recuperando nome completo do cliente
     nomeCliente=this.cliente.nome;
     // Separando o primeiro nome
+<<<<<<< HEAD
+    this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));
+=======
     this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));    
+>>>>>>> 20db6b01c826bde71a05dfb4e766fdafa8e5dd73
   }
 
 }
