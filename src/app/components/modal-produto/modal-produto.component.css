@@ -105,6 +105,11 @@
 
   @media (min-width: 1800px) {
 
+    #modal-produto article{
+
+     height: 35em;
+    }
+
      #modal-produto article div.descricao-produto p{
       font-size: 1.5em;
     }
