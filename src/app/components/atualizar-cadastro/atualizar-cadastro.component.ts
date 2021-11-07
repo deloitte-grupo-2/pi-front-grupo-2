@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/Cliente';
-import { } from 'src/app/models/Endereco' 
+import { Endereco } from 'src/app/models/Endereco';
+import { Telefone } from 'src/app/models/Telefone';
 
 import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 
@@ -30,13 +31,41 @@ export class AtualizarCadastroComponent implements OnInit {
   ngOnInit(): void {
     
     let auxDois:any =localStorage.getItem("cliente");
-    let aux = JSON.parse(auxDois);
-   
+    let aux = JSON.parse(auxDois);  
+
+    let telefone:Telefone = {
+        ddd: "",
+        numero: "",
+        tipo: ""
+    } 
+
+    let endereco:Endereco = {
+      logradouro: "",
+      numero: "",
+      complemento: "",
+      cep: "",
+      apelido: ""
+    }
+
+    if (aux.cpf == null) {
+      aux.cpf = "";
+    }
+
+    if (aux.telefone == null) {
+      aux.telefone = telefone; 
+    }
+
+    if (aux.endereco == null) {
+      aux.endereco = endereco;
+    }
+
+    console.log(aux.endereco);
+
     this.form = this.formBuilder.group({
       nome:[`${aux.nome}`],
       cpf: [`${aux.cpf}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       email:[`${aux.email}`],
-      telefone: this.formBuilder.group({
+      telefone: this.formBuilder.group({ 
         ddd: [`${aux.telefone.ddd}`, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         numero: [`${aux.telefone.numero}`, [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
         tipo: [`${aux.telefone.tipo}`, [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
