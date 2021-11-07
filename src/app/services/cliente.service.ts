@@ -37,15 +37,14 @@ export class ClienteService {
 
   atualizarCliente(cliente:Cliente){
     let token = window.sessionStorage.getItem('token');
-    return this.http.put<Cliente>(`${this.url}/usuario/atualizar`, cliente,{headers:{Authorization:`Bearer ${token}`}} ).pipe(take(1));
+    return this.http.put<Cliente>(`${this.url}/usuario/atualizar`, cliente,{headers:{Authorization:`${token}`}} ).pipe(take(1));
   }
 
   consultarClientePorEmail(clienteEmail:string):Observable<Cliente> {
     let token = window.sessionStorage.getItem('token');
     console.log(`${this.url}/usuario/consultar/${clienteEmail}`);
     return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
-  
-    
+      
   }
 
 
