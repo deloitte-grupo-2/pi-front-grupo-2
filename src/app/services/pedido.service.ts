@@ -4,12 +4,17 @@ import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { OrderComponent } from '../components/order/order.component';
 import { Pedido } from '../models/Pedido';
+import { PedidoId } from '../models/PedidoId';
 import { Produto } from '../models/Produto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidoService {
+
+  public static pedidoID:PedidoId ={
+    id: 0
+  }
 
   // Configurando URL para acessar End Points
   private readonly url = "https://api-salom-doces.herokuapp.com";

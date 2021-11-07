@@ -19,6 +19,9 @@ h2 {
     font-family: "Allura", sans-serif;
     text-align: center;
     font-size: 3.6em;
+    
+    margin-top: 0;
+    padding-top: 0;
   }
 
 ul {
