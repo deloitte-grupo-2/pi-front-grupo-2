@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.CarregarCliente();
-
     let token = window.sessionStorage.getItem('token');
     if (token == 'Basic YWRtaW5Ac2Fsb20uY29tOmFkbWluc2Fsb20=') {
       this.admin = true;
@@ -71,12 +70,10 @@ export class HeaderComponent implements OnInit {
       // Carrinho não existe no LocalStorage. Inicializar array.
       this.cliente = new Cliente("","","","");
     } 
-    console.log(this.cliente);
     // Recuperando nome completo do cliente
     nomeCliente=this.cliente.nome;
     // Separando o primeiro nome
     this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));
-    console.log(this.clientePrimeiroNome);
   }
 
 }

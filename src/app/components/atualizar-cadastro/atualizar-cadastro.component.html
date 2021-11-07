@@ -15,7 +15,7 @@
   <div class="register-form">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
       <label> Nome completo </label>
-      <input type="name" formControlName="nome" readonly />
+      <input type="name" formControlName="nome" />
 
       <div class="form-group">
         <label> CPF </label>
@@ -38,7 +38,7 @@
       </div>
 
       <label> E-mail </label>
-      <input type="email" formControlName="email" readonly />
+      <input type="email" formControlName="email" />
 
       <h2>Telefone</h2>
       <div class="contato" formGroupName="telefone">
