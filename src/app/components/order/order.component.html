@@ -33,9 +33,9 @@
                                 <mat-card-subtitle>Cliente</mat-card-subtitle>
                                 <mat-card-content>
                                     <ul>
-                                        <li>BRUNO SABIÁ</li>
-                                        <li>Endereço Fictício, 123 - Apartamento 22</li>
-                                        <li>Santa Efigência - CEP: 12345-678</li>
+                                        <li>{{cliente.nome}}</li>
+                                        <li>{{cliente.endereco.logradouro}}, {{cliente.endereco.numero}}</li>
+                                        <li>CEP: {{cliente.endereco.cep}}</li>
                                         <li>São Paulo, SP</li>
                                     </ul>
                                 </mat-card-content>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="fechar-pedido">
                     <button type="submit" routerLink="/carrinho">Retornar ao Carrinho</button>
-                    <button type="submit" (click)="FecharPedido()" routerLink="">Fechar Pedido</button>
+                    <button type="submit" (click)="FecharPedido()" routerLink="/pedido-status">Fechar Pedido</button>
                 </div>            
             </div>
 
