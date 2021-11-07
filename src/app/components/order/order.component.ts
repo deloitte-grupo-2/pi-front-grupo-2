@@ -36,6 +36,8 @@ export class OrderComponent implements OnInit {
   formCliente!: FormGroup;
   // Carregando cliente logado
   cliente!: Cliente;
+  // Código do Pedido
+  pedidoCodigo:string="";
 
   mostrandoLogin = false;
   mostrandoCadastro = false;
@@ -140,12 +142,21 @@ export class OrderComponent implements OnInit {
     this.pedidoService.CriarPedido(new Pedido(CLIENTE, this.agendamento, "dinheiro", this.itensPedido, this.subTotalCompra + this.frete)).subscribe(
       {
         next: data => {
-          console.log(data.id);
-          PedidoService.pedidoID.id = data.id;
+          // console.log(data.id);
+          // Gravando ID do pedido gravado no BD e retornado pela requisição
+          PedidoService.pedidoID.id=<number>data.id;
+          // console.log("Pedido gerado: " + PedidoService.pedidoID.id);
+          // Gerando código do pedido
+          this.pedidoCodigo += "SD";
+          this.pedidoCodigo += "45032700";
+          this.pedidoCodigo += PedidoService.pedidoID.id;
+          console.log("Código do Pedido Gerado: " + this.pedidoCodigo)
+          // Gravando o código do pedido no LocalStorage
+          // Será recuperado e exibido em OrderStatus
+          localStorage.setItem("pedido",this.pedidoCodigo);
         },
         error: err => console.log(err),
       });
-    console.log("Requisição enviada. Verifique o BD");
     // Limpando o carrinho
     this.carrinho = [];
     // Limpando Itens de Pedido

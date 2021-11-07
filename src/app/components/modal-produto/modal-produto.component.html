@@ -22,7 +22,7 @@
     <!-- descricao da quantidade -->
     <div class="descricao-quantidade">
       <p>Kit de 20 unidades</p>
-      <p>{{ produto.preco }}</p>
+      <p>{{ produto.preco | currency: "BRL" }}</p>
     </div>
 
     <!-- caixinha para selecionar a quantidade -->
