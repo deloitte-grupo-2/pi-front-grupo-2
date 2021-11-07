@@ -1,39 +1,57 @@
-.btn-outline-info .rounded-circle {
-    color: pink;
-}
-
-h2 {
+h2.carrinho {
     font-family: "Allura", sans-serif;
     text-align: center;
     font-size: 3.6em;
-  }
+    
+    margin-top: 0;
+    padding-top: 0;
+}
 
-  .totalizacao{
+.totalizacao {
     text-align: right;
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .totalizacao td{
-    padding: 5px;
-  }
-  
+}
 
-.fechar-pedido{
-    text-align: center;
-    margin-top: 5px;
-  }
-.fechar-pedido button{
+.totalizacao td {
+    padding: 5px;
+}
+
+td button {
+    color: #dc969c;
+    border-color: #dc969c;
+}
+
+td button:hover {
+    color: white;
+    border-color: white;
+    background-color: #ff6584;
+}
+
+.fechar-pedido {
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+  gap: 20px;
+}
+
+.fechar-pedido button {
     color: #ffffff;
     font-family: "Architects Daughter", sans-serif;
     font-size: 1.4em;
-
     background-color: #ff6584;
     border: none;
     border-radius: 1em;
-
     margin: 0.5em 0 0 0;
     padding: 0.4em;
-
     cursor: pointer;
+}
+
+.fechar-pedido button:disabled {
+    /* color: dimgray; */
+    background-color: grey;
+}
+
+.carrinho-vazio {
+    text-align: center;
 }

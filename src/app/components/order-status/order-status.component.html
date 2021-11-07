@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<!-- <div class="container mt-5 mb-5">
+    <div class="container shadow p-5">
+        <div class="p-5 border border-light rounded">
+            <h2>Parabéns pela sua compra!</h2>
+            <hr>
+            <div class="container">
+                Detalhes do Pedido
+                <mat-card class="entrega">
+                    <div class="row">
+                        <div class="col">
+                            <mat-card-subtitle>Cliente</mat-card-subtitle>
+                            <mat-card-content>
+                                <ul>
+                                    <li>BRUNO SABIÁ</li>
+                                    <li>Endereço Fictício, 123 - Apartamento 22</li>
+                                    <li>Santa Efigência - CEP: 12345-678</li>
+                                    <li>São Paulo, SP</li>
+                                </ul>
+                            </mat-card-content>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container mt-5 mb-5">
+    <div class="container shadow p-5">
+        <div class="p-5 border border-light rounded">
+            <h2>Parabéns pela sua compra, {{clientePrimeiroNome}}!</h2>
+            <hr>
+            <div class="container">
+                <h3>Número do pedido: <strong>{{pedidoCodigo}}</strong></h3>
+                <div class="pt-5">
+                    <mat-card class="entrega">
+                        <h4><strong>Acompanhe seu pedido</strong></h4>
+                        <table class="table table-striped table-hover table-sm">
+                            <!-- Colunas -->
+                            <figure>
+                                <img src="assets\Imagens\Pedido.png" alt="Status do Pedido">
+                            </figure>
+                        </table>
+                        </mat-card>
+                    <br>
+                </div>
+                <div class="concluido">
+                    <button type="submit" routerLink="">Voltar para página principal </button>
+                </div>            
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<app-footer></app-footer>

@@ -1,10 +1,22 @@
-<app-header></app-header>
+<app-header (onAddContatoClick)="mostrarLogin()"></app-header>
+<app-modal-login
+  (onCancelarClick)="esconderLogin()"
+  (onCadastrarClick)="mostrarCadastro()"
+  *ngIf="mostrandoLogin"
+></app-modal-login>
+<app-modal-cadastro
+  (onCancelarClick)="esconderCadastro()"
+  *ngIf="mostrandoCadastro"
+  (onLogarClick)="mostrarLogin()"
+  (onLogarClick)="esconderCadastro()"
+></app-modal-cadastro>
 
 <article>
-  <div class="register-form">
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-      <label> Nome completo </label>
-      <input type="name" formControlName="nome" />
+    <div class="register-form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+            <h2 class="perfil">Meu Perfil</h2>
+            <label> Nome completo </label>
+            <input type="name" formControlName="nome" />
 
       <div class="form-group">
         <label> CPF </label>
@@ -27,10 +39,7 @@
       </div>
 
       <label> E-mail </label>
-      <input type="email" formControlName="email" />
-
-      <label> Senha </label>
-      <input type="password" formControlName="senha" />
+      <input type="email" formControlName="email" readonly />
 
       <h2>Telefone</h2>
       <div class="contato" formGroupName="telefone">
@@ -167,17 +176,25 @@
           <input
             type="string"
             placeholder="Comercial ou residencial"
-            formControlName="tipo"
+            formControlName="apelido"
             class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && campoEndereco.tipo.errors }"
+            [ngClass]="{
+              'is-invalid': submitted && campoEndereco.apelido.errors
+            }"
           />
           <div
-            *ngIf="submitted && campoEndereco.tipo.errors"
+            *ngIf="submitted && campoEndereco.apelido.errors"
             class="invalid-feedback"
           >
-            <div *ngIf="campoEndereco.tipo.errors.required">Tipo inválido</div>
-            <div *ngIf="campoEndereco.tipo.errors.minlength">Tipo inválido</div>
-            <div *ngIf="campoEndereco.tipo.errors.maxlength">Tipo inválido</div>
+            <div *ngIf="campoEndereco.apelido.errors.required">
+              Apelido inválido
+            </div>
+            <div *ngIf="campoEndereco.apelido.errors.minlength">
+              Apelido inválido
+            </div>
+            <div *ngIf="campoEndereco.apelido.errors.maxlength">
+              Apelido inválido
+            </div>
           </div>
         </div>
       </div>

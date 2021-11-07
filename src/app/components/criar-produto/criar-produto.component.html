@@ -1,6 +1,18 @@
 <app-header></app-header>
 <article>
   <form>
+    <div *ngIf="cadastrou" class="sucesso">
+      <p>Produto cadastrado com sucesso!</p>
+    </div>
+
+    <div *ngIf="falhou" class="fracasso">
+      <p>Houve um erro no cadastro. Favor tentar novamente.</p>
+    </div>
+
+    <div *ngIf="admin" class="fracasso">
+      <p>SÓ O ADMIN TEM ACESSO!</p>
+    </div>
+
     <label>
       Nome
       <input type="text" name="nome" [(ngModel)]="novoProduto.nome" />
@@ -33,7 +45,7 @@
       />
     </label>
     <div class="controles">
-      <button (click)="sair()" type="button" class="link">Cancelar</button>
+      <button routerLink="" type="button" class="link">Cancelar</button>
       <button (click)="salvar()" type="button">Adicionar</button>
     </div>
   </form>

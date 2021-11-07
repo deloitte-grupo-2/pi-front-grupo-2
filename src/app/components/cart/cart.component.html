@@ -1,84 +1,130 @@
-<app-header></app-header>
+<app-header (onAddContatoClick)="mostrarLogin()"></app-header>
+<app-modal-login
+  (onCancelarClick)="esconderLogin()"
+  (onCadastrarClick)="mostrarCadastro()"
+  *ngIf="mostrandoLogin"
+></app-modal-login>
+<app-modal-cadastro
+  (onCancelarClick)="esconderCadastro()"
+  *ngIf="mostrandoCadastro"
+  (onLogarClick)="mostrarLogin()"
+  (onLogarClick)="esconderCadastro()"
+></app-modal-cadastro>
 <!-- Definindo padding do Bootstrap -->
 <div class="container mt-5 mb-5">
-    <div class="container shadow p-5">
-        <div class="p-5 border border-light rounded">
-            <h2>Carrinho de Compras</h2>
-            <hr>
-            <!-- Tabela com os itens do carrinho -->
-            <div class="container">
-                <!-- Usando sistema de GRID do Bootstrap -->
-                <!-- Verificando se o carrinho está vazio -->
-                <div class="pt-5 row" *ngIf="carrinho?.length == 0">
-                    <p class="text-danger">Carrinho vazio</p>
-                </div>
-                <!-- Carrinho com produtos -->
-                <div class="pt-5 row" *ngIf="carrinho?.length > 0">
-                    <!-- Criando tabela para exibir os itens do carrinho -->
-                    <table class="table table-striped table-hover table-sm">
-                        <!-- Colunas -->
-                        <tr class="thead-light">
-                            <th>Nome</th>
-                            <th class="text-center">Quantidade</th>
-                            <th class="text-center">Ações</th>
-                            <th class="text-center">Subtotal</th>
-                        </tr>
-                        <!-- Produtos -->
-                        <!-- Se isComprado=false, destacar a linha -->
-                        <tr *ngFor="let produto of carrinho">
-                            <td>{{produto.nome}}</td>
-                            <td class="text-center">{{produto.quantidade}}</td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="IncrementarQuantidade(produto.produtoId)">
-                                    <!-- Ícone para marcar/desmarcar produto como comprado -->
-                                    <i class="fas fa-plus-circle"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="DecrementarQuantidade(produto.produtoId)">
-                                    <!-- Ícone para marcar/desmarcar produto como comprado -->
-                                    <i class="fas fa-minus-circle"></i>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="RemoverProduto(produto.produtoId)">
-                                    <!-- Ícone para marcar/desmarcar produto como comprado -->
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </td>
-                            <td class="text-center">{{(produto.quantidade*produto.preco) | currency:"BRL"}}</td>
-                        </tr>
-                    </table>
-                </div>
-                <hr>
-                <div>
-                    <div class="totalizacao">
-                        <table>
-                            <tr>
-                                <td>Valor Total dos Itens:</td>
-                                <td>{{subTotalCompra | currency:"BRL"}}</td>
-                            </tr>
-                        </table>
-                    </div>                  
-                    <hr>
-                    <div>
-                        <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Agende a entrega</mat-label>
-                            <input readonly
-                                matInput [(ngModel)]="agendamento"
-                                [min]="minDate" 
-                                [max]="maxDate"                             
-                                [matDatepicker]="picker">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="fechar-pedido">
-                    <button type="button" (click)="GravarAgendamento()" routerLink="/pedido">Continuar</button>
-                </div>            
-            </div>
-
+  <div class="container shadow p-5">
+    <div class="p-5 border border-light rounded">
+      <h2 class="carrinho">Carrinho de Compras</h2>
+      <hr />
+      <!-- Tabela com os itens do carrinho -->
+      <div class="container">
+        <!-- Usando sistema de GRID do Bootstrap -->
+        <!-- Verificando se o carrinho está vazio -->
+        <div class="pt-5 row" *ngIf="carrinho?.length == 0">
+          <p class="text-danger">Carrinho vazio</p>
         </div>
+        <!-- Carrinho com produtos -->
+        <div class="pt-5 row" *ngIf="carrinho?.length > 0">
+          <!-- Criando tabela para exibir os itens do carrinho -->
+          <table class="table table-striped table-hover table-sm">
+            <!-- Colunas -->
+            <tr class="thead-light">
+              <th>Nome</th>
+              <th class="text-center">Quantidade</th>
+              <th class="text-center">Ações</th>
+              <th class="text-center">Subtotal</th>
+            </tr>
+            <!-- Produtos -->
+            <!-- Se isComprado=false, destacar a linha -->
+            <tr *ngFor="let produto of carrinho">
+              <td>{{ produto.nome }}</td>
+              <td class="text-center">{{ produto.quantidade }}</td>
 
+              <td class="text-center">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-info rounded-circle"
+                  (click)="DecrementarQuantidade(produto.id)"
+                >
+                  <!-- Ícone para marcar/desmarcar produto como comprado -->
+                  <i class="fas fa-minus-circle"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-info rounded-circle"
+                  (click)="IncrementarQuantidade(produto.id)"
+                >
+                  <!-- Ícone para marcar/desmarcar produto como comprado -->
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-info rounded-circle"
+                  (click)="RemoverProduto(produto.id)"
+                >
+                  <!-- Ícone para marcar/desmarcar produto como comprado -->
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </td>
+              <td class="text-center">
+                {{ produto.quantidade * produto.preco | currency: "BRL" }}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <hr />
+        <div>
+          <div class="totalizacao">
+            <table>
+              <tr>
+                <td>Valor Total dos Itens:</td>
+                <td>{{ subTotalCompra | currency: "BRL" }}</td>
+              </tr>
+            </table>
+          </div>
+          <hr />
+          <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Agende a entrega</mat-label>
+              <input
+                readonly
+                matInput
+                [(ngModel)]="agendamento"
+                [min]="minDate"
+                [max]="maxDate"
+                [matDatepicker]="picker"
+                disable="isAgendamentoVazio()"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="fechar-pedido">
+          <button type="button" routerLink="">Continuar Comprando</button>
+          <button
+            type="button"
+            [disabled]="isCarrinhoVazio()"
+            (click)="LimparCarrinho()"
+          >
+            Limpar Carrinho
+          </button>
+          <button
+            type="button"
+            [disabled]="isCarrinhoVazio()"
+            (click)="GravarAgendamento()"
+            routerLink="/pedido"
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>
 
 <app-footer></app-footer>

@@ -1,8 +1,4 @@
-figure {
-    text-align: center;
-}
-
-mat-card {
+at-card {
     font-family: "Architects Daughter", sans-serif;
     color: #4a4949;
     font-size: 16px;
@@ -19,32 +15,28 @@ h2 {
     font-family: "Allura", sans-serif;
     text-align: center;
     font-size: 3.6em;
-    
-    margin-top: 0;
-    padding-top: 0;
   }
 
-ul {
-    padding: 0;
+h3 {
+    text-align: center;
 }
 
-li {
-    list-style: none;
+h4 {
+    font-family: "Allura", sans-serif;
+    text-align: center;
+    font-size: 2em;
 }
 
-.fechar-pedido{
+figure {
+    text-align: center;
+}
+
+.concluido{
     text-align: center;
     margin-top: 5px;
   }
 
-.fechar-pedido {
-    display: flex;
-    align-content: space-between;
-    justify-content: center;
-    gap: 20px;
-}
-
-.fechar-pedido button{
+.concluido button{
     color: #ffffff;
     font-family: "Architects Daughter", sans-serif;
     font-size: 1.4em;
@@ -58,14 +50,3 @@ li {
 
     cursor: pointer;
 }
-
-.totalizacao{
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .totalizacao td{
-    padding: 5px;
-  }
-  

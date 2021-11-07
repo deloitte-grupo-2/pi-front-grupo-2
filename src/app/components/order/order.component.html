@@ -1,8 +1,17 @@
-<app-header></app-header>
+<app-header (onAddContatoClick)="mostrarLogin()"></app-header>
 
-<!-- Dados da ENTREGA -->
+<app-modal-login
+  (onCancelarClick)="esconderLogin()"
+  (onCadastrarClick)="mostrarCadastro()"
+  *ngIf="mostrandoLogin"
+></app-modal-login>
+<app-modal-cadastro
+  (onCancelarClick)="esconderCadastro()"
+  *ngIf="mostrandoCadastro"
+  (onLogarClick)="mostrarLogin()"
+  (onLogarClick)="esconderCadastro()"
+></app-modal-cadastro>
 
-<!-- Dados do CARRINHO -->
 <div class="container mt-5 mb-5">
     <div class="container shadow p-5">
         <div class="p-5 border border-light rounded">
@@ -24,9 +33,9 @@
                                 <mat-card-subtitle>Cliente</mat-card-subtitle>
                                 <mat-card-content>
                                     <ul>
-                                        <li>BRUNO SABIÁ</li>
-                                        <li>Endereço Fictício, 123 - Apartamento 22</li>
-                                        <li>Santa Efigência - CEP: 12345-678</li>
+                                        <li>{{cliente.nome}}</li>
+                                        <li>{{cliente.endereco.logradouro}}, {{cliente.endereco.numero}}</li>
+                                        <li>CEP: {{cliente.endereco.cep}}</li>
                                         <li>São Paulo, SP</li>
                                     </ul>
                                 </mat-card-content>
@@ -87,8 +96,8 @@
                     </mat-card>
                 </div>
                 <div class="fechar-pedido">
-                    <button type="submit" routerLink="/carrinho">Continuar comprando</button>
-                    <button type="submit" (click)="FecharPedido()">Fechar Pedido</button>
+                    <button type="submit" routerLink="/carrinho">Retornar ao Carrinho</button>
+                    <button type="submit" (click)="FecharPedido()" routerLink="/pedido-status">Fechar Pedido</button>
                 </div>            
             </div>
 

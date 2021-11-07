@@ -11,6 +11,12 @@ export class CriarProdutoComponent implements OnInit {
   
   @Output() onCloseModalClick:EventEmitter<null> = new EventEmitter()
 
+  cadastrou: boolean = false;
+
+  falhou: boolean = false;
+
+  admin: boolean = false;
+
   novoProduto:Produto = {
     nome: "",
     descricao: "",
@@ -18,32 +24,38 @@ export class CriarProdutoComponent implements OnInit {
     imagemUrl: ""
   }
 
-  constructor(private produtoService:ProdutoService) { 
-    this.produtoService.addProduto(this.novoProduto).subscribe({
-      next: produto => {
-        this.novoProduto = produto;
-        console.log(this.novoProduto);
-      },
-      error: err => console.error(err) 
-    })
-  }
+  constructor(private produtoService:ProdutoService) { }
 
   ngOnInit(): void {
   }
 
-  sair(){
-    console.log("Pedindo para sair");
-    this.onCloseModalClick.emit()
-  }
 
   salvar(){
-    this.produtoService.addProduto(this.novoProduto)
-    this.novoProduto ={
-      nome: "",
-      descricao: "",
-      preco: 0,
-      imagemUrl: ""
-  }
+    let token = window.sessionStorage.getItem('token');
+    if (token == 'Basic YWRtaW5Ac2Fsb20uY29tOmFkbWluc2Fsb20=') {
+      this.produtoService.criarProduto(this.novoProduto).subscribe({
+      next: produto => {
+        this.novoProduto = produto;
+        console.log(this.novoProduto);
+        this.novoProduto ={
+          nome: "",
+          descricao: "",
+          preco: 0,
+          imagemUrl: ""
+      }
+      this.cadastrou = true;
+      this.falhou = false;
+      this.admin = false;
+      },
+      error: err => {
+        console.error(err); 
+        this.falhou = true;
+        this.cadastrou = false;
+        this.admin = false;
+      }
+    })
+    } else {
+      this.admin = true;
+    }
 }
-
 }
