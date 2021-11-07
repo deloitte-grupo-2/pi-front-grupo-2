@@ -28,6 +28,12 @@ ul {
     padding: 0;
 }
 
+p{
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
 li {
     list-style: none;
 }
@@ -69,3 +75,46 @@ li {
     padding: 5px;
   }
   
+
+
+  @media (min-width: 1800px) {
+
+    th{
+        font-size: 1.4em;
+    }
+
+    td{
+        font-size: 1.2em;
+        padding-top: 1em;
+    }
+      
+   hr{
+       margin-top: 0;
+       padding-top: 0;
+   }
+
+   h3{
+    font-size: 1.6em;
+   }
+
+   div.pt-5 .entrega .row .col mat-card-subtitle{
+
+    font-size: 1.4em;
+
+   }
+
+
+   div.pt-5 .entrega .row .col mat-card-content ul li{
+    font-size: 1.2em;
+
+   }
+
+   div.pt-5 .entrega .row .col mat-card-content p{
+       font-size: 1.2em;
+       margin: 0;
+       padding: 0;
+       height: 0;
+   
+   }
+     
+ } 

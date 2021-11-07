@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="pt-5" *ngIf="carrinho?.length > 0">
-                    Dados para Entrega
+                    <h3>Dados para Entrega</h3>
                     <mat-card class="entrega">
                         <div class="row">
                             <div class="col">
@@ -44,15 +44,15 @@
                                 <mat-card-subtitle>Agendamento</mat-card-subtitle>
                                 <mat-card-content>
                                     <br>
-                                    Data agendada para entrega
+                                    <p>Data agendada para entrega</p>
                                     <br>
-                                    {{agendamento | date:"dd/MM/yyyy"}}
+                                    <p>{{agendamento | date:"dd/MM/yyyy"}}</p>
                                 </mat-card-content>
                             </div>
                         </div>
                     </mat-card>
                     <br>
-                    Itens do Pedido<br>
+                    <h3>Itens do Pedido</h3><br>
                     <mat-card class="produtos">
                         <!-- Criando tabela para exibir os itens do carrinho -->
                         <table class="table table-striped table-hover table-sm">
