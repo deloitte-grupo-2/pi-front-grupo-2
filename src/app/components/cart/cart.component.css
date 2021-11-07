@@ -1,7 +1,10 @@
-h2 {
+h2.carrinho {
     font-family: "Allura", sans-serif;
     text-align: center;
     font-size: 3.6em;
+    
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .totalizacao {

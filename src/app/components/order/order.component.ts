@@ -10,6 +10,11 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { ProdutoService } from 'src/app/services/produto.service';
 
+interface resposta{
+  msg:string,
+  id: number
+}
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -135,10 +140,10 @@ export class OrderComponent implements OnInit {
     this.pedidoService.CriarPedido(new Pedido(CLIENTE, this.agendamento, "dinheiro", this.itensPedido, this.subTotalCompra + this.frete)).subscribe(
       {
         next: data => {
-          console.log(data);
+          console.log(data.id);
+          PedidoService.pedidoID.id = data.id;
         },
         error: err => console.log(err),
-        complete: () => console.log("Observável finalizado")
       });
     console.log("Requisição enviada. Verifique o BD");
     // Limpando o carrinho
@@ -161,6 +166,12 @@ export class OrderComponent implements OnInit {
 
   esconderLogin(){
     this.mostrandoLogin = false;
+    // Carregando dados do Cliente
+    this.CarregarCliente();
+    // Carregando dados do Carrinho e agendamento
+    this.CarregarCarinho();
+    this.CarregarAgendamento();
+    this.CarregarItensPedido();
   }
 
   mostrarCadastro(){

@@ -2,7 +2,7 @@ import { ClienteID } from "./ClienteId";
 import { Item } from "./Item"
 
 export class Pedido {
-    
+    id?:number;
     cliente:ClienteID;
     dataEntrega:Date;
     formaPagamento:string;

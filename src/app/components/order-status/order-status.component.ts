@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/Cliente';
+import { PedidoService } from 'src/app/services/pedido.service';
 
 @Component({
   selector: 'app-order-status',
@@ -12,13 +13,15 @@ export class OrderStatusComponent implements OnInit {
   cliente!: Cliente;
   // Primeiro nome do cliente
   clientePrimeiroNome!:string;
-
+  // Número do Pedido
+  pedidoCodigo:string=`SD20211106000${PedidoService.pedidoID.id}`;
+  
   constructor() { }
 
   ngOnInit(): void {
     // Carregar cliente logado
     this.CarregarCliente();
-    this.SepararNomeCliente();
+    this.SepararNomeCliente();    
   }
 
   CarregarCliente(): void {
