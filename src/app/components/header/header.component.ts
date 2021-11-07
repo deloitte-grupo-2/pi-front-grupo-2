@@ -76,11 +76,7 @@ export class HeaderComponent implements OnInit {
     // Recuperando nome completo do cliente
     nomeCliente=this.cliente.nome;
     // Separando o primeiro nome
-<<<<<<< HEAD
-    this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));
-=======
     this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));    
->>>>>>> 20db6b01c826bde71a05dfb4e766fdafa8e5dd73
   }
 
 }
