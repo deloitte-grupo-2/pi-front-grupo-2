@@ -18,10 +18,17 @@ export class HeaderComponent implements OnInit {
   // Primeiro nome do cliente
   clientePrimeiroNome!:string;
 
+  admin: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
     this.CarregarCliente();
+
+    let token = window.sessionStorage.getItem('token');
+    if (token == 'Basic YWRtaW5Ac2Fsb20uY29tOmFkbWluc2Fsb20=') {
+      this.admin = true;
+    }
   }
 
   mostrarModalClick(){
@@ -35,7 +42,11 @@ export class HeaderComponent implements OnInit {
   }
   
   isUsuarioLogado(): boolean {
-    if(sessionStorage.getItem("token")) {
+    let token = sessionStorage.getItem("token");
+    if(token != null) {
+      if (token == 'Basic YWRtaW5Ac2Fsb20uY29tOmFkbWluc2Fsb20=') {
+      this.admin = true;
+    }
       return true;
     } else {
       return false;
@@ -45,6 +56,8 @@ export class HeaderComponent implements OnInit {
   UsuarioSair(): void {
     // Encerrando a sessão do usuário atual
     sessionStorage.removeItem("token");
+    localStorage.removeItem("cliente");
+    this.admin = false;
   }
 
   CarregarCliente(): void {

@@ -13,16 +13,12 @@ interface response{
   email:string
 }
 
-
-
 @Component({
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html',
   styleUrls: ['./modal-login.component.css']
 })
 export class ModalLoginComponent implements OnInit {
-
-
 
   @Output() onCancelarClick:EventEmitter<null> = new EventEmitter();
   @Output() onCadastrarClick:EventEmitter<null> = new EventEmitter();
@@ -31,7 +27,6 @@ export class ModalLoginComponent implements OnInit {
   submitted: boolean = false;
 
   falhou: boolean = false;
-
 
   constructor(
     private service:ClienteService,
@@ -55,27 +50,21 @@ export class ModalLoginComponent implements OnInit {
     this.onCadastrarClick.emit();
   }
 
-
   get campoForm(): {[key: string]: AbstractControl} {
     return this.form.controls;
-
   }
   onSubmit(cliente:any){
     this.submitted = true;
-    
+   
     if (this.form.invalid) {
       return;
     }
-    
-    console.log(JSON.stringify(this.form.value, null, 2));
-    console.log(cliente);
-    
+          
     this.service.logarCliente(cliente).subscribe(
       {
       next: data =>{
         window.sessionStorage.setItem("token", (<response>data).token);
-        ClienteService.email.email = (<response>data).email;
-        console.log(ClienteService.email);
+        ClienteService.usuario.email = (<response>data).email;
         this.cancelar();
         },
       error: err => {
@@ -91,24 +80,18 @@ export class ModalLoginComponent implements OnInit {
     return new Promise(resolve => {
       setTimeout(() => {
         resolve( 
-          this.service.consultarClientePorEmail(ClienteService.email.email).subscribe(
+          this.service.consultarClientePorEmail(ClienteService.usuario.email).subscribe(
             {
               next: cliente => {
-                console.log(cliente);
                 localStorage.setItem("cliente", JSON.stringify(cliente));
-                
-              },
+             },
               error: err => {
               console.error(err)
-              console.log(ClienteService.email.email);
-              console.log("não cheguei");
               }
             }
           )
          );
-      }, 10000);
+      }, 3000);
     });
   }    
-
-  
-  
+}
