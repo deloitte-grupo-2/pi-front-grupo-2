@@ -1,12 +1,10 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Produto } from 'src/app/models/Produto';
-// Atribuir um ID apara o Produto
-import { Guid } from 'guid-typescript';
-// Ícone para marcar comprado/não comprado
-// import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 // Formulário com os Produtos
-import { FormGroup, FormControl, Validators, FormBuilder, Validator } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Item } from 'src/app/models/Item';
+import { faWindowRestore } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -35,9 +33,6 @@ export class CartComponent implements OnInit {
   // Calculando o frete
   frete:number;
   // Gravando a data de agendamento
-  // Configurando CEPs para cálculo do frete
-  cepOrigem:string;
-  cepDestino:string;
 
   mostrandoLogin = false;
   mostrandoCadastro = false;
@@ -54,24 +49,19 @@ export class CartComponent implements OnInit {
     this.subTotalCompra=0;
     // Inicializando o frete
     this.frete=40;
-    // Inicialiando CEPs para cálculo do frete
-    this.cepOrigem="13140-798";
-    this.cepDestino="13150-000";
    }
 
   ngOnInit(): void {
-
-    // Exibir dados do carrinho no LocalStorage
-    this.ExibirProdutos();
-    // Atualizar Itens de Pedido
+    // Exibir dados do carrinho armazenados no LocalStorage
+    this.CarregarCarrinho();
+    // Carregar Itens de Pedido armazenados no LocalStorage
     this.CarregarItensPedido();
     // Verificar se já havia sido definido agendamento
-    this.VerificarAgendamento();
+    this.CarregarAgendamento();
     // Instanciando o formulário
     this.formulario = new FormGroup({
       // Incluindo os campos do Produto
       // Estes campos virão do modal Produto
-      // imagem: new FormControl(),
       id: new FormControl(),
       nome: new FormControl(),
       quantidade: new FormControl(),
@@ -91,32 +81,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  CadastrarProduto(): void {
-    this.formulario.value.id = Guid.create().toString();
-    // Constante para recuperar todos os valores do formulário
-    const PRODUTO: Produto = this.formulario.value;
-    // Adicionar o produto do formulário ao carrinho
-    this.carrinho.push(PRODUTO);
-    // Armazenando dados do Carrinho no Local Storage
-    localStorage.setItem("carrinho", JSON.stringify(this.carrinho));
-    // Atualizando Itens de Pedido
-    // Estes dados comporão o JSON do pedido
-    this.formItens.value.produto.id=this.formulario.value.id;
-    this.formItens.value.quantidade=this.formulario.value.quantidade;
-    // Constante para recuperar todos os valores do formulário de Itens de Pedido
-    const ITEM_PEDIDO: Item = this.formItens.value;
-    // Adicionar item de pedido
-    this.itensPedido.push(ITEM_PEDIDO);
-    // Atualizar total da compra
-    this.AtualizarTotalCompra();
-    // Armazenando dados de Itens de Pedido no Local Storage
-    localStorage.setItem("itensPedido", JSON.stringify(this.itensPedido));
-    // Resetando os formulários
-    this.formulario.reset();
-    this.formItens.reset();
-  }
-
-  ExibirProdutos(): void {
+  CarregarCarrinho(): void {
     // Verificando se Carrinho existe no LocalStorage
     if(localStorage.getItem("carrinho")) {
       // Adicionar produtos do carrinho no array de produtos (atributo "carrinho")
@@ -192,10 +157,9 @@ export class CartComponent implements OnInit {
       // Atualizando o valor da compra
       this.subTotalCompra=this.subTotalCompra+(produto.quantidade*produto.preco);  
     });
-
   }
 
-  VerificarAgendamento(): void {
+  CarregarAgendamento(): void {
     // Verificando se Agendamento existe no LocalStorage
     // Se estiver editando o carrinho, carregar o agendamento definido anteriormente
     if(localStorage.getItem("entrega")) {
@@ -223,7 +187,25 @@ export class CartComponent implements OnInit {
     } 
   }
 
-  // Métodos da classe
+LimparCarrinho(): void {
+    // Excluindo chaves do LocalStorage
+    localStorage.removeItem("carrinho");
+    localStorage.removeItem("itensPedido");
+    localStorage.removeItem("entrega");
+    localStorage.removeItem("produtoModal");
+    // Atualizando carrinho
+    this.CarregarCarrinho();
+}
+
+isCarrinhoVazio(): boolean {
+  if(this.carrinho.length==0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Métodos da classe
   mostrarLogin(){
     this.mostrandoLogin = true;
   }

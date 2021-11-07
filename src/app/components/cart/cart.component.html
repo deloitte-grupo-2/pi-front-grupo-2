@@ -8,7 +8,7 @@
   (onCancelarClick)="esconderCadastro()"
   *ngIf="mostrandoCadastro"
   (onLogarClick)="mostrarLogin()"
-(onLogarClick)="esconderCadastro()"
+  (onLogarClick)="esconderCadastro()"
 ></app-modal-cadastro>
 <!-- Definindo padding do Bootstrap -->
 <div class="container mt-5 mb-5">
@@ -104,13 +104,9 @@
           </div>
         </div>
         <div class="fechar-pedido">
-          <button
-            type="button"
-            (click)="GravarAgendamento()"
-            routerLink="/pedido"
-          >
-            Continuar
-          </button>
+          <button type="button" routerLink="">Continuar Comprando</button>
+          <button type="button" (click)="LimparCarrinho()">Limpar Carrinho</button>
+          <button type="button" [disabled]="isCarrinhoVazio()" (click)="GravarAgendamento()" routerLink="/pedido">Continuar</button>
         </div>
       </div>
     </div>

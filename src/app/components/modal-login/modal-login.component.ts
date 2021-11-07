@@ -10,7 +10,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 interface response{
   msg:string,
   token: string,
-  email:string
+  email: string
 }
 
 
