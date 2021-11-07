@@ -19,16 +19,16 @@
                         <!-- Colunas -->
                         <tr class="thead-light">
                             <th>Nome</th>
-                            <th>Quantidade</th>
-                            <th>Ações</th>
-                            <th>Subtotal</th>
+                            <th class="text-center">Quantidade</th>
+                            <th class="text-center">Ações</th>
+                            <th class="text-center">Subtotal</th>
                         </tr>
                         <!-- Produtos -->
                         <!-- Se isComprado=false, destacar a linha -->
-                        <tr *ngFor="let produto of carrinho" [class.table-danger]="produto.isComprado == false">
+                        <tr *ngFor="let produto of carrinho">
                             <td>{{produto.nome}}</td>
-                            <td>{{produto.quantidade}}</td>
-                            <td>
+                            <td class="text-center">{{produto.quantidade}}</td>
+                            <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="IncrementarQuantidade(produto.produtoId)">
                                     <!-- Ícone para marcar/desmarcar produto como comprado -->
                                     <i class="fas fa-plus-circle"></i>
@@ -42,22 +42,25 @@
                                     <i class="far fa-trash-alt"></i>
                                 </button>
                             </td>
-                            <td>{{(produto.quantidade*produto.preco) | currency:"BRL"}}</td>
+                            <td class="text-center">{{(produto.quantidade*produto.preco) | currency:"BRL"}}</td>
                         </tr>
                     </table>
                 </div>
                 <hr>
                 <div>
                     <div class="totalizacao">
-                        <div>SubTotal: {{subTotalCompra | currency:"BRL"}}</div>
-                        <div>Frete: {{frete | currency:"BRL"}}</div>                         
-                        <div>Total do Pedido: {{subTotalCompra+frete | currency:"BRL"}}</div>                        
-                    </div>                    
+                        <table>
+                            <tr>
+                                <td>Valor Total dos Itens:</td>
+                                <td>{{subTotalCompra | currency:"BRL"}}</td>
+                            </tr>
+                        </table>
+                    </div>                  
                     <hr>
-                    <div [formGroup]="DaterForm">
+                    <div>
                         <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>Agende a entrega</mat-label>
-                            <input readonly formControlName="FromDate"
+                            <input readonly
                                 matInput [(ngModel)]="agendamento"
                                 [min]="minDate" 
                                 [max]="maxDate"                             
@@ -65,11 +68,10 @@
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
-                        <mat-error *ngIf="DaterForm.get('FromDate').hasError('requiredFromDate')">Please provide a valid Fromdate</mat-error>
                     </div>
                 </div>
                 <div class="fechar-pedido">
-                    <button type="button" (click)="VerificarCarrinho()">Continuar</button>
+                    <button type="button" (click)="GravarAgendamento()" routerLink="/pedido">Continuar</button>
                 </div>            
             </div>
 

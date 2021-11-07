@@ -1,5 +1,12 @@
+
 <h2>Para adoçar a vida</h2>
 
 <section class="produtos">
-  <app-product></app-product>
+
+      <app-product
+        *ngFor="let produto of produtos"
+        [produto]="produto"
+      ></app-product>
+
 </section>
+

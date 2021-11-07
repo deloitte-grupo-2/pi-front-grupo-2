@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AtualizarCadastroComponent } from './components/atualizar-cadastro/atualizar-cadastro.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
 import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './components/order/order.component';
 
@@ -14,6 +15,9 @@ const routes: Routes = [
   },
   {
     path: "carrinho", component: CartComponent    
+  },
+  {
+    path: "cadastrar-produto",  component: CriarProdutoComponent
   },
   {
     path: "pedido", component: OrderComponent

@@ -1,7 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Cliente } from 'src/app/models/Cliente';
+import { Item } from 'src/app/models/Item';
+import { Pedido } from 'src/app/models/Pedido';
 import { Produto } from 'src/app/models/Produto';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { PedidoService } from 'src/app/services/pedido.service';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-order',
@@ -18,33 +23,38 @@ export class OrderComponent implements OnInit {
   frete:number;
   // Data de entrega agendada
   agendamento!:Date;
-
   // Criando o array de Produtos
   carrinho!:Produto[];
-
+  // Criando itens de pedido
+  itensPedido!:Item[];
+  // Email para consultar Cliente
   email:string="brunosabia@gmail.com";
 
+  formCliente!:FormGroup;
+
   // constructor(private clienteService:ClienteService) {
-  constructor() {
-    
+  //Injetando construtor do formulário e o serviço para Pedido
+  constructor(private formBuilder:FormBuilder,private pedidoService:PedidoService) {
     // Incializar subTotalCompra
     this.subTotalCompra=0;
     // Inicializar frete
     this.frete=40;
-
-    // this.clienteService.consultarCliente(this.email).subscribe(
-    //   {
-    //     next: cliente => {
-    //       this.cliente = cliente;
-    //     },
-    //     error: err => console.error(err)
-    //   }
-    // )
    }
 
   ngOnInit(): void {
     this.CarregarCarinho();
     this.CarregarAgendamento();
+    this.CarregarItensPedido();
+
+    // Instanciando o formulário para Itens de Pedido
+    this.formCliente = new FormGroup({
+      // Incluindo os campos de Itens de Pedido
+      // Estes campos virão do model Item
+      cliente: new FormBuilder().group({
+        id: new FormControl()
+      })
+    });
+
   }
 
   CarregarCarinho(): void {
@@ -60,6 +70,20 @@ export class OrderComponent implements OnInit {
     }
   }
 
+  CarregarItensPedido(): void {
+    // Se o carrinho estiver vazio, não há itens de Pedido
+    // Verificando se Carrinho existe no LocalStorage
+    if(localStorage.getItem("itensPedido")) {
+      // Adicionar Itens de Pedido no array de itens de pedido
+      this.itensPedido = JSON.parse(localStorage.getItem("itensPedido"));
+    } else {
+      // Carrinho não existe no LocalStorage. Inicializar array.
+      this.itensPedido = [];
+    } 
+    // Configurar cliente padrão
+    this.formCliente.value.cliente.id=1;
+  }
+
   AtualizarTotalCompra(): void {
     // Reinicializar totalCompra
     this.subTotalCompra=0; //120 //200
@@ -72,9 +96,10 @@ export class OrderComponent implements OnInit {
   CarregarAgendamento(): void {
     // Verificando se Agendamento existe no LocalStorage
     if(localStorage.getItem("entrega")) {
-      // Adicionar produtos do carrinho no array de produtos (atributo "carrinho")
+      // Verificando a data de agendamento está definida
       if(localStorage.getItem("entrega")=="undefined") {
         const DATAATUAL = new Date();
+        // Inicializar com regra de negócio: Data Atual + 3 dias corridos
         this.agendamento = new Date(DATAATUAL.getFullYear(),DATAATUAL.getMonth(),DATAATUAL.getDay()+3);
         // Armazenando agendamento de entrega no Local Storage
         localStorage.setItem("entrega", JSON.stringify(this.agendamento));
@@ -92,4 +117,27 @@ export class OrderComponent implements OnInit {
       localStorage.setItem("entrega", JSON.stringify(this.agendamento));
     }    
   }
+
+  FecharPedido(): void {
+    // console.log(ItensJSON);
+    // const itens:Item[]=new Array();
+    // this.carrinho.forEach(produto => {
+    //     console.log(produto);
+    //     const constItem=itens.find(item => {
+    //          item.produto=produto;
+    //        })
+    //        if(constItem) {
+    //             console.log(constItem);
+    //             constItem.quantidade=produto.quantidade;
+    //          } else {
+    //              itens.push(new Item(produto));
+    //            }
+    //         });   
+
+    //this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.carrinho,this.frete));
+    this.pedidoService.CriarPedido(new Pedido(this.agendamento,"dinheiro",this.itensPedido,this.subTotalCompra+this.frete));
+    console.log("Requisição enviada. Verifique o BD");// var ItensJSON:string=this.pedidoService.ParserCarrinho(1,this.carrinho,this.agendamento,"em processamento",this.subTotalCompra+this.frete);
+    
+  }
+        
 }

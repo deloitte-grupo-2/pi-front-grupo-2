@@ -2,138 +2,47 @@ footer .container{
   padding: 20px 10px;
 }
 footer {
-  /* width: 100%;
-  height: 24em;
-
-  max-width: 100%;
-  max-height: 100%; */
-
   background-color: #bd898c;
 }
-
-footer article .informacoes {
-  /* width: 100%;
-  height: 20em; */
-  padding: 50px;
-
+.informacoes{
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content:center;
-  gap: 80px;
+  justify-content:space-around;
+  padding-top: 53px;
 }
-
-footer article .informacoes .contato {
-  /* height: 100%;
-  width: 50%; */
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-footer article .informacoes .contato figure {
-  margin-right: 20px;
+.informacoes figure img{
+  width: 13rem;
   padding: 0;
 }
-
-footer article .informacoes .contato figure img {
-  width: 13em;
-}
-
-footer article .informacoes .contato ul {
+.informacoes .contato ul{
+  list-style-type: none;
   margin: 0;
   padding: 0;
+  color: white;
 }
-
-footer article .informacoes .contato ul li {
-  font-size: 1.2em;
-  color: #ffffff;
-}
-
-footer article .informacoes .contato ul li a {
+.informacoes .contato ul li a{
+  color: white;
   text-decoration: none;
-  color: #ffffff;
 }
-
-footer article .informacoes .mapa {
-  /* display: flex;
-  justify-content: right;
-  align-items: center; */
+.mapa iframe{
+  width: 200px;
 }
-
-footer article .informacoes .mapa iframe {
-  /* width: 86%;
-  height: 68%; */
-
-  height: 200px;
-  width: auto;
-
-  border: none;
-  border-radius: 20px;
-}
-
-footer p {
-  font-size: 1.1em;
-  text-align: center;
-  color: #ffffff;
-}
-/* *******************************MEDIA QUERIES********************************* */
-@media (max-width: 979px) {
-  footer {
-    /* height: 24em; */
-  }
-
-  footer article .informacoes {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  footer article .informacoes .contato {
-    /* width: 100%; */
-  }
-
-  footer article .informacoes .mapa {
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    text-align:center;
-  }
-
-  footer article .informacoes .mapa iframe {
-    height: 10em;
-    width: 60%;
-  }
-
-  footer article p {
-    width: 100%;
-  }
-}
-
 .copyright{
-  padding: 0;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 53px;
+  color: white
 }
-@media (max-width: 779px) {
-  footer {
-    /* width: 100%; */
-    /* height: 34em; */
-  }
 
-  footer article .informacoes .contato {
-    display: flex;
-    flex-direction: column;
-  }
+/********** MEDIA QUERIES **********/
+@media (max-width:770px){
+  .informacoes{
 
-  footer article .informacoes .contato ul {
-    margin: 0 0 1em 0;
-  }
-
-  footer article .informacoes .contato ul li {
+    display: block;
     text-align: center;
+    padding-top: 53px;
+  
   }
-
-  footer article .informacoes .mapa iframe {
-    width: 100%;
+  .logo, .contato, .mapa{
+    margin-bottom: 20px;
   }
 }

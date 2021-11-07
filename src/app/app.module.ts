@@ -23,12 +23,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CriarProdutoComponent } from './components/criar-produto/criar-produto.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
-
 import { MatFormFieldModule } from '@angular/material/form-field';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
@@ -37,7 +36,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import ptBr from '@angular/common/locales/pt';
+import  ptBr  from '@angular/common/locales/pt';
 import { OrderComponent } from './components/order/order.component';
 registerLocaleData(ptBr)
 
@@ -56,7 +55,8 @@ registerLocaleData(ptBr)
     HomeComponent,
     ModalProdutoComponent,
     CartComponent,
-    OrderComponent,
+    CriarProdutoComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
