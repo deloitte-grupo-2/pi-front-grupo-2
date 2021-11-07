@@ -96,3 +96,5 @@ export class ModalLoginComponent implements OnInit {
   }    
 
 }
+
+}
