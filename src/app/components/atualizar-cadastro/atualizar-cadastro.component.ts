@@ -28,12 +28,8 @@ export class AtualizarCadastroComponent implements OnInit {
 
   ngOnInit(): void {
     
-    
     let auxDois:any =localStorage.getItem("cliente");
     let aux = JSON.parse(auxDois);
-    
-    
-    
    
     this.form = this.formBuilder.group({
       nome:[`${aux.nome}`],
@@ -55,9 +51,7 @@ export class AtualizarCadastroComponent implements OnInit {
     
  
   }
-
-
-    
+ 
   // Métodos da classe
   mostrarLogin(){
     this.mostrandoLogin = true;
@@ -95,7 +89,6 @@ onSubmit(cliente:Cliente){
   if (this.form.invalid) {
       return;
     }
-
     
   this.service.atualizarCliente(cliente).subscribe(
     {
@@ -108,6 +101,5 @@ onSubmit(cliente:Cliente){
     console.log(err)
     console.log(JSON.stringify(cliente));}
     });
-}
-  
+}  
 }

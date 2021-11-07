@@ -9,18 +9,12 @@ import { Usuario } from '../models/Usuario';
   providedIn: 'root'
 })
 
-
-
-
 export class ClienteService {
 
-
-
-  public static email:Usuario ={
+  public static usuario:Usuario ={
     email: ""
   }
   
-
   private readonly url = "https://api-salom-doces.herokuapp.com";
 
   constructor(private http:HttpClient) { }
@@ -30,9 +24,7 @@ export class ClienteService {
   }
 
   logarCliente(cliente:any){
-    
     return this.http.post(`${this.url}/usuario/logar`, cliente).pipe(take(1))
-    
   }
 
   atualizarCliente(cliente:Cliente){
@@ -42,10 +34,7 @@ export class ClienteService {
 
   consultarClientePorEmail(clienteEmail:string):Observable<Cliente> {
     let token = window.sessionStorage.getItem('token');
-    console.log(`${this.url}/usuario/consultar/${clienteEmail}`);
     return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
-      
+     
   }
-
-
 }
