@@ -13,8 +13,6 @@ interface response{
   email: string
 }
 
-
-
 @Component({
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html',
@@ -67,17 +65,12 @@ export class ModalLoginComponent implements OnInit {
       return;
     }
     
-    console.log(JSON.stringify(this.form.value, null, 2));
-    console.log(cliente);
-    
     this.service.logarCliente(cliente).subscribe(
       {
       next: data =>{
         window.sessionStorage.setItem("token", (<response>data).token);
- 
-        this.router.navigateByUrl("/atualizar-cadastro");
-        ClienteService.email.email = (<response>data).email;
-        console.log(ClienteService.email);
+        this.cancelar();
+        ClienteService.usuario.email = (<response>data).email;
         },
       error: err => {
         console.log(err),
@@ -85,8 +78,24 @@ export class ModalLoginComponent implements OnInit {
       }
       });
 
+    this.service.consultarClientePorEmail(ClienteService.usuario.email).subscribe(
+      {
+        next: dado => {
+          console.log(dado);
+          localStorage.setItem("cliente", JSON.stringify(dado));
+          console.log(ClienteService.usuario.email);
+          console.log("cheguei no acerto");
+        },
+          error: err => { 
+          console.error(err)
+          console.log(ClienteService.usuario.email);
+          console.log("cheguei no erro");
+          }
+        }
+      );
+
   }
- 
-  }
+
+}
 
 

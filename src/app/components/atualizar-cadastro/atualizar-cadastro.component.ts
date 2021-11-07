@@ -27,14 +27,12 @@ export class AtualizarCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.consultarClientePorEmail(ClienteService.email.email).subscribe(
+
+    this.service.consultarClientePorEmail(ClienteService.usuario.email).subscribe(
       {
         next: cliente => {
           console.log(cliente);
           localStorage.setItem("cliente", JSON.stringify(cliente));
-          
-         
-          
         },
         error: err => console.error(err)
       }
@@ -43,14 +41,11 @@ export class AtualizarCadastroComponent implements OnInit {
     let auxDois:any =localStorage.getItem("cliente");
     let aux = JSON.parse(auxDois);
     console.log(aux);
-    
-    
-   
+
     this.form = this.formBuilder.group({
       nome:[`${aux.nome}`],
       cpf: [`${aux.cpf}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       email:[`${aux.email}`],
-      senha:[`${aux.senha}`],
       telefone: this.formBuilder.group({
         ddd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         numero: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
@@ -64,11 +59,9 @@ export class AtualizarCadastroComponent implements OnInit {
         tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]]
       })
     });
-    console.log(ClienteService.email.email);
+    console.log(ClienteService.usuario.email);
  
   }
-
-
     
   // Métodos da classe
   mostrarLogin(){
@@ -106,18 +99,13 @@ onSubmit(cliente:Cliente){
   this.submitted = true;
   if (this.form.invalid) {
       return;
-    }
-
-    
+    } 
   this.service.atualizarCliente(cliente).subscribe(
     {
-    next: data =>{
-      
+    next: data =>{ 
       console.log(data);
-
       },
     error: err => console.log(err)
     });
 }
-  
 }
