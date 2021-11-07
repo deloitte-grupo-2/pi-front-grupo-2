@@ -55,3 +55,23 @@ td button:hover {
 .carrinho-vazio {
     text-align: center;
 }
+
+
+@media (min-width: 1800px) {
+
+    th{
+        font-size: 1.4em;
+    }
+
+    td{
+        font-size: 1.2em;
+        padding-top: 1em;
+    }
+      
+   hr{
+       margin-top: 0;
+       padding-top: 0;
+   }
+     
+ } 
+    

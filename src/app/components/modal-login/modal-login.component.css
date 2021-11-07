@@ -111,3 +111,13 @@
   font-size: 1.4em;
   padding: 0 0.6em;
 }
+
+
+@media (min-width: 1800px) {
+
+  #modal article div.form-group label{
+    
+   font-size: 1.4em;
+ }
+   
+}  

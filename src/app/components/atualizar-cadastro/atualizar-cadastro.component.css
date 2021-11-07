@@ -118,3 +118,20 @@ article form button {
 .invalid-feedback {
   font-size: 1.1em;
 }
+
+
+@media (min-width: 1800px) {
+
+
+  article div.register-form form label{
+    
+    font-size: 1.4em;
+  }
+    
+
+  article div.register-form div.form-group label{
+    
+   font-size: 1.4em;
+ }
+   
+}  
