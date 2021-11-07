@@ -12,10 +12,18 @@
 ></app-modal-cadastro>
 
 <article>
+<<<<<<< HEAD
   <div class="register-form">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
       <label> Nome completo </label>
       <input type="name" formControlName="nome" />
+=======
+    <div class="register-form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+            <h2 class="perfil">Meu Perfil</h2>
+            <label> Nome completo </label>
+            <input type="name" formControlName="nome" />
+>>>>>>> 20db6b01c826bde71a05dfb4e766fdafa8e5dd73
 
       <div class="form-group">
         <label> CPF </label>

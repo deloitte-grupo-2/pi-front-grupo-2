@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/Cliente';
+import { PedidoService } from 'src/app/services/pedido.service';
 
 @Component({
   selector: 'app-order-status',
@@ -12,13 +13,16 @@ export class OrderStatusComponent implements OnInit {
   cliente!: Cliente;
   // Primeiro nome do cliente
   clientePrimeiroNome!:string;
-
+  // Número do Pedido
+  pedidoCodigo!:string;
+  
   constructor() { }
 
   ngOnInit(): void {
     // Carregar cliente logado
     this.CarregarCliente();
     this.SepararNomeCliente();
+    this.CarregarCodigoPedido();
   }
 
   CarregarCliente(): void {
@@ -37,7 +41,17 @@ export class OrderStatusComponent implements OnInit {
       let nomeCliente=this.cliente.nome;
       // Separando o primeiro nome
       this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));
-      console.log(this.clientePrimeiroNome);
+  }
+
+  CarregarCodigoPedido(): void {
+       // Verificando se Cliente existe no LocalStorage
+    if(localStorage.getItem("pedido")) {
+      // Carregar dados do cliente
+      this.pedidoCodigo = String(localStorage.getItem("pedido"));
+    } else {
+      // Carrinho não existe no LocalStorage. Inicializar array.
+      this.pedidoCodigo = "";
+    }   
   }
 
 }

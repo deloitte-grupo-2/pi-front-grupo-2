@@ -11,6 +11,15 @@ article form {
   margin: 0 auto;
 }
 
+article form h2.perfil {
+  font-family: "Allura", sans-serif;
+  text-align: center;
+  font-size: 3.6em;
+
+  margin-top: 0;
+  padding-top: 0;
+}
+
 article form label {
   font-size: 1.2em;
 }
@@ -109,3 +118,20 @@ article form button {
 .invalid-feedback {
   font-size: 1.1em;
 }
+
+
+@media (min-width: 1800px) {
+
+
+  article div.register-form form label{
+    
+    font-size: 1.4em;
+  }
+    
+
+  article div.register-form div.form-group label{
+    
+   font-size: 1.4em;
+ }
+   
+}  

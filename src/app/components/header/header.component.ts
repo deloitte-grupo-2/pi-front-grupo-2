@@ -18,9 +18,11 @@ export class HeaderComponent implements OnInit {
   // Primeiro nome do cliente
   clientePrimeiroNome!:string;
 
-  admin: boolean = false;
+  constructor() { 
+    this.clientePrimeiroNome="";
+  }
 
-  constructor() { }
+  admin: boolean = false;
 
   ngOnInit(): void {
     this.CarregarCliente();
@@ -60,6 +62,7 @@ export class HeaderComponent implements OnInit {
   }
 
   CarregarCliente(): void {
+    this.clientePrimeiroNome="";
     let nomeCliente:string;
     // Se o carrinho estiver vazio, não há itens de Pedido
     // Verificando se Carrinho existe no LocalStorage
@@ -73,7 +76,11 @@ export class HeaderComponent implements OnInit {
     // Recuperando nome completo do cliente
     nomeCliente=this.cliente.nome;
     // Separando o primeiro nome
+<<<<<<< HEAD
     this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));
+=======
+    this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));    
+>>>>>>> 20db6b01c826bde71a05dfb4e766fdafa8e5dd73
   }
 
 }

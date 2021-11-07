@@ -10,6 +10,11 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { ProdutoService } from 'src/app/services/produto.service';
 
+interface resposta{
+  msg:string,
+  id: number
+}
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -31,6 +36,8 @@ export class OrderComponent implements OnInit {
   formCliente!: FormGroup;
   // Carregando cliente logado
   cliente!: Cliente;
+  // Código do Pedido
+  pedidoCodigo:string="";
 
   mostrandoLogin = false;
   mostrandoCadastro = false;
@@ -135,12 +142,21 @@ export class OrderComponent implements OnInit {
     this.pedidoService.CriarPedido(new Pedido(CLIENTE, this.agendamento, "dinheiro", this.itensPedido, this.subTotalCompra + this.frete)).subscribe(
       {
         next: data => {
-          console.log(data);
+          // console.log(data.id);
+          // Gravando ID do pedido gravado no BD e retornado pela requisição
+          PedidoService.pedidoID.id=<number>data.id;
+          // console.log("Pedido gerado: " + PedidoService.pedidoID.id);
+          // Gerando código do pedido
+          this.pedidoCodigo += "SD";
+          this.pedidoCodigo += "45032700";
+          this.pedidoCodigo += PedidoService.pedidoID.id;
+          console.log("Código do Pedido Gerado: " + this.pedidoCodigo)
+          // Gravando o código do pedido no LocalStorage
+          // Será recuperado e exibido em OrderStatus
+          localStorage.setItem("pedido",this.pedidoCodigo);
         },
         error: err => console.log(err),
-        complete: () => console.log("Observável finalizado")
       });
-    console.log("Requisição enviada. Verifique o BD");
     // Limpando o carrinho
     this.carrinho = [];
     // Limpando Itens de Pedido
@@ -161,6 +177,12 @@ export class OrderComponent implements OnInit {
 
   esconderLogin(){
     this.mostrandoLogin = false;
+    // Carregando dados do Cliente
+    this.CarregarCliente();
+    // Carregando dados do Carrinho e agendamento
+    this.CarregarCarinho();
+    this.CarregarAgendamento();
+    this.CarregarItensPedido();
   }
 
   mostrarCadastro(){

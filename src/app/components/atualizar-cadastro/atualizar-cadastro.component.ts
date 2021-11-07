@@ -5,6 +5,7 @@ import { } from 'src/app/models/Endereco'
 import { FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 
 import { ClienteService } from 'src/app/services/cliente.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-atualizar-cadastro',
@@ -22,7 +23,7 @@ export class AtualizarCadastroComponent implements OnInit {
   mostrandoCadastro = false;
   mostrandoProduto = false;
 
-  constructor(private formBuilder: FormBuilder, private service:ClienteService) {
+  constructor(private formBuilder: FormBuilder, private service:ClienteService, private router:Router) {
 
   }
 
@@ -96,6 +97,7 @@ onSubmit(cliente:Cliente){
       console.log(data);
       localStorage.removeItem("cliente");
       localStorage.setItem("cliente", JSON.stringify(cliente));
+      this.router.navigateByUrl("");
       },
     error: err => {
     console.log(err)
