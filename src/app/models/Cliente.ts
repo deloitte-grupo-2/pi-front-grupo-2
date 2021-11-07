@@ -7,10 +7,10 @@ export class Cliente{
     email!:string;
     senha!:string;
     cpf?:string;
-    endereco?:Endereco[];
-    telefone?:Telefone[]
+    endereco?:Endereco;
+    telefone?:Telefone;
 
-    constructor(nome:string, email:string, senha:string,cpf:string, endereco:Endereco[], telefone:Telefone[]){
+    constructor(nome:string, email:string, senha:string,cpf:string, endereco:Endereco, telefone:Telefone){
     this.nome = nome;
     this.email = email;
     this.senha = senha;

@@ -19,7 +19,7 @@ export class ProdutoService {
   constructor(private http:HttpClient) { }
 
   getProdutos():Observable<Produto[]> {
-    let token:string = 'Basic YnJ1bm9zYWJpYUBnbWFpbC5jb206YnJ1bm9zYWJpYTIwMjE=';
+    let token:string = 'Basic YWRtaW5Ac2Fsb20uY29tOmFkbWluc2Fsb20=';
     return this.http.get<Produto[]>(this.url + '/produto/consultar', {headers:{Authorization:`${token}`}})
   }
 

@@ -94,6 +94,7 @@
                 [min]="minDate"
                 [max]="maxDate"
                 [matDatepicker]="picker"
+                disable="isAgendamentoVazio()"
               />
               <mat-datepicker-toggle
                 matSuffix
@@ -105,7 +106,7 @@
         </div>
         <div class="fechar-pedido">
           <button type="button" routerLink="">Continuar Comprando</button>
-          <button type="button" (click)="LimparCarrinho()">Limpar Carrinho</button>
+          <button type="button" [disabled]="isCarrinhoVazio()" (click)="LimparCarrinho()">Limpar Carrinho</button>
           <button type="button" [disabled]="isCarrinhoVazio()" (click)="GravarAgendamento()" routerLink="/pedido">Continuar</button>
         </div>
       </div>

@@ -26,7 +26,7 @@
         <a (click)="ScrollIntoView( '#product') ">Docinhos</a>
         <a routerLink="/carrinho"><i class="fas fa-shopping-cart "></i></a>
         <a (click)="mostrarModalClick() " *ngIf="isUsuarioLogado()==false"><i class="fas fa-user "></i></a>
-        <a *ngIf="isUsuarioLogado()==true">Olá Murilo!</a>
+        <a class="usuario" *ngIf="isUsuarioLogado()==true">Olá {{clientePrimeiroNome}}!</a>
         <a (click)="UsuarioSair()" *ngIf="isUsuarioLogado()==true" routerLink=""><i class="fas fa-sign-out-alt"></i></a>
     </nav>
 
