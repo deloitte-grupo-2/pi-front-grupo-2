@@ -44,6 +44,11 @@ td button:hover {
     cursor: pointer;
 }
 
+.fechar-pedido button:disabled {
+    /* color: dimgray; */
+    background-color: grey;
+}
+
 .carrinho-vazio {
     text-align: center;
 }

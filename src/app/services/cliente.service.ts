@@ -34,8 +34,7 @@ export class ClienteService {
 
   consultarClientePorEmail(clienteEmail:string):Observable<Cliente> {
     let token = window.sessionStorage.getItem('token');
-    console.log(`${clienteEmail}`);
-    return this.http.get<Cliente>(this.url + `/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
-  
+    return this.http.get<Cliente>(`${this.url}/usuario/consultar/${clienteEmail}`, {headers:{Authorization:`${token}`}}); 
+     
   }
 }

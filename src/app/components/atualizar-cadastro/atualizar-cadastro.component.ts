@@ -27,42 +27,31 @@ export class AtualizarCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.service.consultarClientePorEmail(ClienteService.usuario.email).subscribe(
-      {
-        next: cliente => {
-          console.log(cliente);
-          localStorage.setItem("cliente", JSON.stringify(cliente));
-        },
-        error: err => console.error(err)
-      }
-    );
     
     let auxDois:any =localStorage.getItem("cliente");
     let aux = JSON.parse(auxDois);
-    console.log(aux);
-
+   
     this.form = this.formBuilder.group({
       nome:[`${aux.nome}`],
       cpf: [`${aux.cpf}`, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       email:[`${aux.email}`],
       telefone: this.formBuilder.group({
-        ddd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-        numero: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
-        tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
+        ddd: [`${aux.telefone.ddd}`, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+        numero: [`${aux.telefone.numero}`, [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
+        tipo: [`${aux.telefone.tipo}`, [Validators.required, Validators.minLength(9), Validators.maxLength(11)]],
       }),
       endereco: this.formBuilder.group({
-        cep: [``, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
-        logradouro: ['', [Validators.required]],
-        numero: ['', [Validators.required]],
-        complemento: [''],
-        tipo: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(11)]]
+        cep: [`${aux.endereco.cep}`, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+        logradouro: [`${aux.endereco.logradouro}`, [Validators.required]],
+        numero: [`${aux.endereco.numero}`, [Validators.required]],
+        complemento: [`${aux.endereco.complemento}`],
+        apelido: [`${aux.endereco.apelido}`, [Validators.required, Validators.minLength(9), Validators.maxLength(11)]]
       })
     });
-    console.log(ClienteService.usuario.email);
+    
  
   }
-    
+ 
   // Métodos da classe
   mostrarLogin(){
     this.mostrandoLogin = true;
@@ -99,13 +88,18 @@ onSubmit(cliente:Cliente){
   this.submitted = true;
   if (this.form.invalid) {
       return;
-    } 
+    }
+    
   this.service.atualizarCliente(cliente).subscribe(
     {
-    next: data =>{ 
+    next: data =>{
       console.log(data);
+      localStorage.removeItem("cliente");
+      localStorage.setItem("cliente", JSON.stringify(cliente));
       },
-    error: err => console.log(err)
+    error: err => {
+    console.log(err)
+    console.log(JSON.stringify(cliente));}
     });
-}
+}  
 }
