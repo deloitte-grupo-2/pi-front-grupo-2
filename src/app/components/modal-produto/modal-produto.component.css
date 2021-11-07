@@ -101,3 +101,25 @@
 
   cursor: pointer;
   }
+
+
+  @media (min-width: 1800px) {
+
+     #modal-produto article div.descricao-produto p{
+      font-size: 1.5em;
+    }
+
+    #modal-produto article figure img{
+      width: 9em ;
+    }
+
+    #modal-produto article  div.infos-produto div.quantidade input{
+      font-size: 1.3em;
+    }
+    
+    #modal-produto article  div.infos-produto div.total input{
+      font-size: 1.3em;
+    }
+    
+          
+  }  
