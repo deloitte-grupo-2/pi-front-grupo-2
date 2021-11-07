@@ -45,12 +45,24 @@ export class HeaderComponent implements OnInit {
   UsuarioSair(): void {
     // Encerrando a sessão do usuário atual
     sessionStorage.removeItem("token");
+    localStorage.removeItem("cliente");
   }
 
   CarregarCliente(): void {
     let nomeCliente:string;
-    nomeCliente="Mariana Magalhães Ximenes";
-    //nomeCliente=this.cliente.nome;
+    // Se o carrinho estiver vazio, não há itens de Pedido
+    // Verificando se Carrinho existe no LocalStorage
+    if(localStorage.getItem("cliente")) {
+      // Adicionar Itens de Pedido no array de itens de pedido
+      this.cliente = JSON.parse(localStorage.getItem("cliente"));
+    } else {
+      // Carrinho não existe no LocalStorage. Inicializar array.
+      this.cliente = new Cliente("","","","");
+    } 
+    console.log(this.cliente);
+    // Recuperando nome completo do cliente
+    nomeCliente=this.cliente.nome;
+    // Separando o primeiro nome
     this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));
     console.log(this.clientePrimeiroNome);
   }

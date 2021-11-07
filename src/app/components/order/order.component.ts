@@ -29,6 +29,8 @@ export class OrderComponent implements OnInit {
   itensPedido!: Item[];
   // Formulário com dados do cliente (atualmente, ID hard coded)
   formCliente!: FormGroup;
+  // Carregando cliente logado
+  cliente!: Cliente;
 
   mostrandoLogin = false;
   mostrandoCadastro = false;
@@ -49,7 +51,11 @@ export class OrderComponent implements OnInit {
     if(!sessionStorage.getItem("token")) {
       this.mostrandoLogin=true;
       return;
+    } else {
+      // Carregar dados do Cliente logado
+      this.CarregarCliente();
     }
+    
     // Carregando dados do Carrinho e agendamento
     this.CarregarCarinho();
     this.CarregarAgendamento();
@@ -148,7 +154,6 @@ export class OrderComponent implements OnInit {
     this.frete = 0;
   }
 
-
   // Métodos da classe
   mostrarLogin(){
     this.mostrandoLogin = true;
@@ -165,6 +170,18 @@ export class OrderComponent implements OnInit {
 
   esconderCadastro(){
     this.mostrandoCadastro = false;
+  }
+
+  CarregarCliente(): void {
+    // Verificando se Cliente existe no LocalStorage
+    if(localStorage.getItem("cliente")) {
+      // Carregar dados do cliente
+      this.cliente = JSON.parse(localStorage.getItem("cliente"));
+    } else {
+      // Carrinho não existe no LocalStorage. Inicializar array.
+      this.cliente = new Cliente("","","","");
+    } 
+    
   }
 
 }
