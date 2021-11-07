@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Cliente } from 'src/app/models/Cliente';
 import { Produto } from 'src/app/models/Produto';
 
 @Component({
@@ -12,11 +13,15 @@ export class HeaderComponent implements OnInit {
 
   // Criando o array de Produtos
   carrinho!: Produto[];
+  // Carregando cliente logado
+  cliente!: Cliente;
+  // Primeiro nome do cliente
+  clientePrimeiroNome!:string;
 
   constructor() { }
 
   ngOnInit(): void {
-    
+    this.CarregarCliente();
   }
 
   mostrarModalClick(){
@@ -40,6 +45,14 @@ export class HeaderComponent implements OnInit {
   UsuarioSair(): void {
     // Encerrando a sessão do usuário atual
     sessionStorage.removeItem("token");
+  }
+
+  CarregarCliente(): void {
+    let nomeCliente:string;
+    nomeCliente="Mariana Magalhães Ximenes";
+    //nomeCliente=this.cliente.nome;
+    this.clientePrimeiroNome=nomeCliente.slice(0,nomeCliente.indexOf(" "));
+    console.log(this.clientePrimeiroNome);
   }
 
 }

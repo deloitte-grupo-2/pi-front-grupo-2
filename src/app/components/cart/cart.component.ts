@@ -195,6 +195,16 @@ LimparCarrinho(): void {
     localStorage.removeItem("produtoModal");
     // Atualizando carrinho
     this.CarregarCarrinho();
+    // Recarregar a página
+    // window.location.reload();
+}
+
+isAgendamentoVazio(): boolean {
+  if(!JSON.parse(localStorage.getItem("entrega"))) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 isCarrinhoVazio(): boolean {

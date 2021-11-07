@@ -26,18 +26,23 @@
   padding: 20px;
 }
 
+.nome {
+  background-color: pink;
+  text-align: center;
+}
+
 .container .contatos a {
   color: #ffffff;
 }
 
 .navegacao {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .navegacao a,
 .menu-hamburguer {
   color: white;
-  font-size: 2em;
+  font-size: 30px;
   padding-top: 20px;
   cursor: pointer;
 }
