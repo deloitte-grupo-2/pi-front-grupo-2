@@ -196,7 +196,7 @@ LimparCarrinho(): void {
     // Atualizando carrinho
     this.CarregarCarrinho();
     // Recarregar a página
-    // window.location.reload();
+    window.location.reload();
 }
 
 isAgendamentoVazio(): boolean {

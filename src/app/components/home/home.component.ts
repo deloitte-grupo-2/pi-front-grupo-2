@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from "rxjs";
 import { ProdutoService } from 'src/app/services/produto.service';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   clickSubscription!:Subscription;
 
-  constructor(private produtoService:ProdutoService ) { 
+  constructor(private produtoService:ProdutoService, private router:Router) { 
     this.clickSubscription = this.produtoService.getClick().subscribe(() => {
       this.toggleProduto();
     })

@@ -59,7 +59,6 @@ export class AtualizarCadastroComponent implements OnInit {
       aux.endereco = endereco;
     }
 
-    console.log(aux.endereco);
 
     this.form = this.formBuilder.group({
       nome:[`${aux.nome}`],
@@ -124,7 +123,6 @@ onSubmit(cliente:Cliente){
     {
     next: data =>{
       console.log(data);
-      localStorage.removeItem("cliente");
       localStorage.setItem("cliente", JSON.stringify(cliente));
       this.router.navigateByUrl("");
       },

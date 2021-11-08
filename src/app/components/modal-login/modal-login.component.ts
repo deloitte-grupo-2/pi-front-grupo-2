@@ -85,6 +85,7 @@ export class ModalLoginComponent implements OnInit {
             {
               next: cliente => {
                 localStorage.setItem("cliente", JSON.stringify(cliente));
+                window.location.reload();
              },
               error: err => {
               console.error(err)
@@ -92,7 +93,7 @@ export class ModalLoginComponent implements OnInit {
             }
           )
          );
-      }, 3000);
+      }, 1000);
     });
   }    
 
