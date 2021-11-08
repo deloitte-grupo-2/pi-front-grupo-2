@@ -57,7 +57,9 @@ export class HeaderComponent implements OnInit {
   UsuarioSair(): void {
     // Encerrando a sessão do usuário atual
     sessionStorage.removeItem("token");
-    localStorage.removeItem("cliente");
+    // localStorage.removeItem("cliente");
+    // localStorage.removeItem("pedido");
+    localStorage.clear();
     this.admin = false;
   }
 

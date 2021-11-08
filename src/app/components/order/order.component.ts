@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit {
     // Incializar subTotalCompra
     this.subTotalCompra = 0;
     // Inicializar frete
-    this.frete = 40;
+    this.frete = 6.50;
   }
 
   ngOnInit(): void {

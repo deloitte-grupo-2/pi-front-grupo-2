@@ -1,4 +1,6 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/models/Cliente';
 import { PedidoService } from 'src/app/services/pedido.service';
 
@@ -51,7 +53,8 @@ export class OrderStatusComponent implements OnInit {
     } else {
       // Carrinho não existe no LocalStorage. Inicializar array.
       this.pedidoCodigo = "";
-    }   
+    }
+    
   }
 
 }
